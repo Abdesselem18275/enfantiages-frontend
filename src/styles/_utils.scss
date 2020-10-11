@@ -1,0 +1,48 @@
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+}
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+.column--centred {
+  @extend .column;
+  align-items: center;
+}
+.inline {
+  display: flex;
+}
+.inline--centred {
+  display: flex;
+  align-items: center;
+}
+.inline--centred--spaced {
+  @extend .inline--centred;
+  justify-content: space-between;
+}
+
+.global--gutters {
+  padding: 1rem 5rem;
+  @media only screen and (max-width: 1024px) {
+    padding: 1rem 3rem;
+  }
+  @media only screen and (max-width: 600px) {
+    padding: 1rem 1rem;
+  }
+}

@@ -1,0 +1,42 @@
+@import '../../../styles/app-custom-theme.scss';
+:host {
+  display: flex;
+  align-items: center;
+}
+.mat-h2 {
+  margin: 0;
+}
+.menu__mobile-icon {
+  display: none;
+}
+.logo {
+  color:mat-color($candy-app-primary);
+  text-transform: uppercase;
+  border-bottom: 4px solid mat-color($candy-app-accent);
+  span {
+    color: mat-color($candy-app-accent);
+  }
+}
+
+.menu__icons {
+  margin-left: auto;
+}
+@media only screen and (max-width: 600px) {
+  :host {
+    justify-content: space-between;
+    color:mat-color($candy-app-accent,darker);
+
+  }
+  .menu__mobile-icon {
+    display: block;
+  }
+  .menu__items {
+    display: none;
+  }
+  .menu__icons {
+    margin-left: 0;
+    .items-list-button {
+      display: none;
+    }
+  }
+}
