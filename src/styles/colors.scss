@@ -1,0 +1,35 @@
+@import './app-custom-theme.scss';
+
+$dark-grey: rgba(0, 0, 0, 0.7);
+$grey-color: rgba(0, 0, 0, 0.54);
+$light-grey-color: rgba(0, 0, 0, 0.12);
+$extreme-light-grey-color: rgba(0, 0, 0, 0.03);
+
+.font--green {
+  color: green;
+}
+.font--blue {
+  color: blue;
+}
+.font--amber {
+  color: orange;
+}
+.font--grey {
+  color: $grey-color;
+}
+.font--dark-grey {
+  color: $dark-grey;
+}
+.font--red {
+  color: red;
+}
+.font--white {
+  color: white;
+}
+.font--transparent {
+  color: transparent;
+}
+
+.alert {
+  @extend .font--red;
+}

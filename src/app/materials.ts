@@ -4,13 +4,20 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+import {MatTableModule} from '@angular/material/table';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 
 
 @NgModule({
-  exports: [MatCheckboxModule, MatButtonModule, MatDividerModule,
-            MatIconModule ,
+  exports: [MatCheckboxModule,MatMenuModule,MatAutocompleteModule,MatDialogModule,MatListModule,MatTableModule,MatDividerModule, MatButtonModule, MatDividerModule,
+            MatIconModule ,MatFormFieldModule,MatInputModule,
             MatProgressBarModule,],
 })
 export class MaterialModule {}

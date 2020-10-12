@@ -1,0 +1,29 @@
+table {
+  min-width: 850px;
+  width: 100%;
+}
+.item-stream--small-width {
+  display: none;
+}
+
+.table-row:hover:not(.active-link) {
+  background-color: rgb(250,250,250);
+  cursor: pointer;
+}
+.active-link {
+  background-color: rgb(245,245,245);
+}
+
+.meta-content {
+  margin-bottom: 3rem;
+}
+
+@media only screen and (max-width: 720px) {
+  table {
+    display: none;
+  }
+  .item-stream--small-width {
+    display: block;
+    width: 100%;
+  }
+}

@@ -1,0 +1,15 @@
+<form [formGroup]="sellForm">
+  <mat-form-field>
+    <mat-label>Buyer</mat-label>
+    <input formControlName="buyer" matInput maxlength="256" placeholder="Select a buyer">
+    <mat-hint align="start">Select a buyer</mat-hint>
+    <button mat-icon-button matSuffix>
+      <mat-icon>add_circle</mat-icon>
+      </button>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Sale price</mat-label>
+    <input type="number" formControlName="sale_price" matInput maxlength="256">
+    <mat-hint align="start">Sale price</mat-hint>
+  </mat-form-field>
+  </form>

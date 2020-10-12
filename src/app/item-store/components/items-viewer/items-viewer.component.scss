@@ -1,0 +1,33 @@
+@import '/src/styles/colors.scss';
+
+:host {
+  display:block;
+}
+
+main {
+  display: flex;
+  aside {
+    max-width: 320px;
+    margin-right: 1rem;
+    @media only screen and (max-width: 720px) {
+      min-width: 100%;
+    }
+  }
+  section {
+     width : 100%;
+     max-width: 100%;
+     overflow: auto;
+  }
+
+}
+.list-action-bar {
+  background-color: mat-color($enfantiages-app-accent,lighter);
+  button {
+    background-color: white;
+  }
+}
+.button--floating {
+  position: fixed;
+  right: 2rem;
+  bottom: 4rem;
+}

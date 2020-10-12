@@ -1,0 +1,12 @@
+<main *ngIf="item$ |async as item">
+  <section>
+    <label>Refrence</label>
+    <h1 class="mat-h1">{{item.reference}}</h1>
+
+  </section>
+  <section>
+    <label>Deposer</label>
+    <h1 class="mat-h1">{{item.deposer.first_name}}</h1>
+
+  </section>
+</main>

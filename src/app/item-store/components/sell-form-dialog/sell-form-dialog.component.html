@@ -1,0 +1,12 @@
+<header  mat-dialog-title>
+  <h1 class="mat-h1"> ITEM SELL FORM </h1>
+  <h3 class="mat-h3">{{data.item.reference}}</h3>
+  <p class="font--dark-grey mat-body">{{data.item.label}}</p>
+</header>
+<div mat-dialog-content>
+<app-sell-form></app-sell-form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button>CANCEL</button>
+  <button mat-button [mat-dialog-close]="" cdkFocusInitial>SELL</button>
+</div>

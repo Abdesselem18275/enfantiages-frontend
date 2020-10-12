@@ -10,10 +10,12 @@ import { RouterModule } from '@angular/router';
   imports: [
     MaterialModule,
     RouterModule,
+    MaterialModule,
     CommonModule
   ],
   exports: [
-    NavBarComponent
+    NavBarComponent,
+    MaterialModule
   ]
 })
 export class SharedModule { }

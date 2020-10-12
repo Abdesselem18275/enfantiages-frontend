@@ -10,11 +10,11 @@
   display: none;
 }
 .logo {
-  color:mat-color($candy-app-primary);
+  color:mat-color($enfantiages-app-primary);
   text-transform: uppercase;
-  border-bottom: 4px solid mat-color($candy-app-accent);
+  border-bottom: 4px solid mat-color($enfantiages-app-accent);
   span {
-    color: mat-color($candy-app-accent);
+    color: mat-color($enfantiages-app-accent);
   }
 }
 
@@ -24,7 +24,7 @@
 @media only screen and (max-width: 600px) {
   :host {
     justify-content: space-between;
-    color:mat-color($candy-app-accent,darker);
+    color:mat-color($enfantiages-app-accent,darker);
 
   }
   .menu__mobile-icon {
