@@ -8,10 +8,10 @@ export class ItemFormFactoryService {
 
   constructor(private fb : FormBuilder) { }
 
-  get sellForm() : FormGroup {
+  getSellForm(min_price:number = 0) : FormGroup {
     return this.fb.group({
       buyer : ['',Validators.required],
-      sale_price: ['', Validators.required],
+      sale_price: ['', [Validators.required,Validators.min(min_price)]],
     })
   }
 }

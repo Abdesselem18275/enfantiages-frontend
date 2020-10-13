@@ -1,6 +1,35 @@
 @import '/src/styles/colors.scss';
+.item__el,.item-action-bar {
+  background-color: mat-color($enfantiages-app-accent,lighter);
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 1rem 0;
+}
+.item__el__content {
+  display: flex;
+  flex-wrap: wrap;
+  div{
+    min-width: 15rem;
+    margin: 0.5rem 0;
+    flex: 0 0 33%;
+  }
+}
+.footer--bottom-sticked {
+  position: sticky;
+  position: -webkit-sticky;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
 
-
-main {
-  padding: 0 5rem;
+.detail__header {
+    h2 {
+    text-align: center;
+    
+  }
+}
+.item-action-bar {
+  background-color: mat-color($enfantiages-app-accent);
+  display: flex;
+  justify-content: space-between;
 }

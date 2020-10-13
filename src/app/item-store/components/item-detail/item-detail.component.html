@@ -1,12 +1,92 @@
+<header *ngIf="item$ |async as item" class="detail__header">
+  <h2 class="mat-h2">ITEM DETAILS</h2>
+
+  <div class="mat-elevation-z3  item-action-bar">
+    <button 
+    queryParamsHandling="merge"
+    [routerLink]="['/item-store/items-viewer', { outlets: { itemContentOutlet: null } }]"
+    mat-raised-button>
+      <mat-icon class="mr2">arrow_back</mat-icon>
+      <span>Back to list</span>
+    </button>
+    <button
+    [matMenuTriggerData]="{item: item}"
+    [matMenuTriggerFor]="itemActionMenu" color="primary" mat-mini-fab>
+      <mat-icon >more_vert</mat-icon>
+    </button>
+  </div>
+
+</header>
+
 <main *ngIf="item$ |async as item">
-  <section>
-    <label>Refrence</label>
-    <h1 class="mat-h1">{{item.reference}}</h1>
+  <article class="mat-elevation-z3  item__el">
+    <legend class="mat-h3">Identification</legend>
+    <mat-divider></mat-divider>
+    <section class="item__el__content">
+      <div>
+        <label class="mat-body-strong">Reference</label>
+        <p class="mat-body-1">{{item.reference}}</p>
+      </div>
+      <div>
+        <label class="mat-body-strong">Label</label>
+        <p class="mat-body-1">{{item.label}}</p>
+      </div>
+      <div>
+        <label class="mat-body-strong">Status</label>
+        <p class="mat-body-1">SOLD</p>
+      </div>
+    </section>
 
-  </section>
-  <section>
-    <label>Deposer</label>
-    <h1 class="mat-h1">{{item.deposer.first_name}}</h1>
+  </article>
+  <article class="mat-elevation-z3  item__el">
+    <legend class="mat-h3">Deposer</legend>
+    <mat-divider></mat-divider>
+    <section class="item__el__content">
+      <div>
+        <label class="mat-body-strong">Name</label>
+        <p class="mat-body-1">{{item.deposer.first_name}} {{item.deposer.last_name}}</p>
+      </div>
 
-  </section>
+      <div>
+        <label class="mat-body-strong">Email adress</label>
+        <p class="mat-body-1">{{item.deposer.email}}</p>
+      </div>
+      <div>
+        <label class="mat-body-strong">Deposit date</label>
+        <p class="mat-body-1">{{item.deposition_date | date:'medium'}}</p>
+      </div>
+</section>
+  </article>
+  <article class="mat-elevation-z3  item__el">
+    <legend class="mat-h3">Price</legend>
+    <mat-divider></mat-divider>
+    <section class="item__el__content">
+      <div>
+        <label class="mat-body-strong">Minimum price</label>
+        <p class="mat-body-1">{{item.deposer_gain | currency:'TND'}}</p>
+      </div>
+      <div>
+        <label class="mat-body-strong">Predifined Price</label>
+        <p class="mat-body-1">{{'32' | currency:'TND'}}</p>
+      </div>
+      <div>
+        <label class="mat-body-strong">Gain margin</label>
+        <p class="mat-body-1">{{'0.25' | percent}}</p>
+      </div>
+</section>
+  </article>
+
 </main>
+<mat-menu #itemActionMenu="matMenu">
+  <ng-template matMenuContent let-item="item">
+    <button (click)="openSellDialog(item)" mat-menu-item>
+      <mat-icon>point_of_sale</mat-icon>
+      <span>Sell</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>delete</mat-icon>
+      <span>Remove</span>
+    </button>
+  </ng-template>
+
+</mat-menu>

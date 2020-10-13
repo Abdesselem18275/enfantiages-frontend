@@ -23,8 +23,13 @@ export class ItemsListComponent  {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if(result) {
+        alert(JSON.stringify(result))
+      }
     });
+  }
+  checkCol(col) {
+    console.warn(col)
   }
 
 }

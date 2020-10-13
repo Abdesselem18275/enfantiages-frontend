@@ -1,12 +1,26 @@
-<header  mat-dialog-title>
+<header class="dialog-header" mat-dialog-title>
   <h1 class="mat-h1"> ITEM SELL FORM </h1>
   <h3 class="mat-h3">{{data.item.reference}}</h3>
   <p class="font--dark-grey mat-body">{{data.item.label}}</p>
 </header>
-<div mat-dialog-content>
-<app-sell-form></app-sell-form>
-</div>
-<div mat-dialog-actions>
-  <button mat-button>CANCEL</button>
-  <button mat-button [mat-dialog-close]="" cdkFocusInitial>SELL</button>
-</div>
+  <form mat-dialog-content [formGroup]="sellForm">
+    <mat-form-field class="full-width">
+      <mat-label>Buyer</mat-label>
+      <input formControlName="buyer" matInput maxlength="256" placeholder="Select a buyer">
+      <mat-hint align="start">Select a buyer</mat-hint>
+      <button matSuffix  mat-icon-button>
+        <mat-icon>person_add</mat-icon>
+        </button>
+    </mat-form-field>
+
+
+  <mat-form-field class="full-width">
+    <mat-label>Sale price</mat-label>
+    <input [min]="data.item.deposer_gain"  type="number" formControlName="sale_price" matInput maxlength="256">
+    <mat-hint align="start">Minimum sale price is {{data.item.deposer_gain  | currency :'TND'}}</mat-hint>
+  </mat-form-field>
+  </form>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onClose()">CANCEL</button>
+    <button mat-button type="submit" (click)="onSubmit()" cdkFocusInitial>SELL</button>
+  </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ItemFormFactoryService } from '../../service/item-form-factory-service/item-form-factory.service';
 @Component({
@@ -8,8 +8,9 @@ import { ItemFormFactoryService } from '../../service/item-form-factory-service/
 })
 export class SellFormComponent implements OnInit {
   sellForm : FormGroup
+  //@Output() sellForm$ = new EventEmitter<FormGroup>();
   constructor(private iffs : ItemFormFactoryService) {
-    this.sellForm = this.iffs.sellForm
+    this.sellForm = this.iffs.getSellForm()
   }
 
   ngOnInit(): void {

@@ -46,6 +46,7 @@
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr
+  queryParamsHandling="merge"
   mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
@@ -54,11 +55,11 @@
   queryParamsHandling="merge"
   [routerLink]="['./', { outlets: { itemContentOutlet: ['item-detail',item.id] } }]"
   *ngFor="let item of items$ | async">
-    <h3 class="mat-h3" matLine>  Ref :  {{item.reference}} </h3>
-    <p class="mat-body" matLine> Label :  {{item.label}} </p>
-    <p class="mat-body" matLine> Deposed by : {{item.deposer.first_name}} {{item.deposer.last_name}} </p>
+    <p class="mat-body-2" matLine>{{item.reference}} </p>
+    <p class="mat-caption" matLine>{{item.label}} </p>
+    <p class="mat-caption" matLine>{{item.deposer.first_name}} {{item.deposer.last_name}} </p>
     <div class="meta-content mat-caption">
-      <p>{{item.deposition_date | date:'medium'}}</p>
+      <p>{{item.deposition_date | date:'mediumDate'}}</p>
       <p>{{item.deposer_gain | currency :'TND' }}</p>
     </div>
     <mat-divider></mat-divider>
@@ -68,13 +69,14 @@
 
 <mat-menu #itemActionMenu="matMenu">
   <ng-template matMenuContent let-item="item">
+
+    <button [routerLink]="['./', { outlets: { itemContentOutlet: ['item-detail',item.id] } }]" mat-menu-item>
+      <mat-icon>list_alt</mat-icon>
+      <span>Item details</span>
+    </button>
     <button (click)="openSellDialog(item)" mat-menu-item>
       <mat-icon>point_of_sale</mat-icon>
       <span>Sell</span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>keyboard_return</mat-icon>
-      <span>Return</span>
     </button>
     <button mat-menu-item>
       <mat-icon>delete</mat-icon>
@@ -83,3 +85,7 @@
   </ng-template>
 
 </mat-menu>
+<button class="button--floating" mat-fab>
+  <mat-icon>add</mat-icon>
+  </button>
+  

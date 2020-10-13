@@ -3,5 +3,9 @@
 @import './styles/util-mixins';
 @import './styles/utils';
 
-html, body { height: 100%; }
+html, body {
+     height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+* {
+    box-sizing: border-box;
+}
