@@ -4,6 +4,7 @@ import { ActivatedRoute, Data } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Item } from 'src/app/core/models/item-models';
+import { DialogHandlerService } from '../../service/dialog-handler.service';
 import { SellFormDialogComponent } from '../sell-form-dialog/sell-form-dialog.component';
 
 @Component({
@@ -13,21 +14,11 @@ import { SellFormDialogComponent } from '../sell-form-dialog/sell-form-dialog.co
 })
 export class ItemDetailComponent  {
   item$ : Observable<Item>
-  constructor(public dialog: MatDialog,route : ActivatedRoute) {
+  constructor(private dhs: DialogHandlerService,route : ActivatedRoute) {
     this.item$ = route.data.pipe(map((x:Data) =>x.itemDetail))
    }
 
    openSellDialog(item: Item) {
-    const dialogRef = this.dialog.open(SellFormDialogComponent, {
-      width: '320px',
-      data: {item}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-        console.warn('HELLO')
-        alert(JSON.stringify(result))
-      }
-    });
+     this.dhs.openSellDialog(item)
   }
 }

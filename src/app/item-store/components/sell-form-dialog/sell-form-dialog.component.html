@@ -6,7 +6,12 @@
   <form mat-dialog-content [formGroup]="sellForm">
     <mat-form-field class="full-width">
       <mat-label>Buyer</mat-label>
-      <input formControlName="buyer" matInput maxlength="256" placeholder="Select a buyer">
+      <input [matAutocomplete]="auto"   formControlName="buyer" matInput maxlength="256" placeholder="Select a buyer">
+      <mat-autocomplete [displayWith]="displayFn" #auto="matAutocomplete">
+        <mat-option *ngFor="let customer of filteredCutomers$ | async" [value]="customer">
+            <small>{{customer.email}}</small>
+        </mat-option>
+      </mat-autocomplete>
       <mat-hint align="start">Select a buyer</mat-hint>
       <button matSuffix  mat-icon-button>
         <mat-icon>person_add</mat-icon>
@@ -16,7 +21,8 @@
 
   <mat-form-field class="full-width">
     <mat-label>Sale price</mat-label>
-    <input [min]="data.item.deposer_gain"  type="number" formControlName="sale_price" matInput maxlength="256">
+    <input [min]="data.item.deposer_gain" type="number" formControlName="sale_price" matInput maxlength="256">
+
     <mat-hint align="start">Minimum sale price is {{data.item.deposer_gain  | currency :'TND'}}</mat-hint>
   </mat-form-field>
   </form>
