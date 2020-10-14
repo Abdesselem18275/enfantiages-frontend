@@ -4,19 +4,15 @@
   display:block;
 }
 
-main {
-  display: flex;
-  aside {
-    max-width: 320px;
-    margin-right: 1rem;
-    @media only screen and (max-width: 720px) {
-      min-width: 100%;
-    }
-  }
-  section {
-     width : 100%;
-     max-width: 100%;
-     overflow: auto;
-  }
-
+.router-content {
+  width : 100%;
+  max-width: 100%;
+  overflow: auto;
+}
+.side-filter {
+  height: 100vh;
+  min-width: 320px;
+}
+.search-box-container {
+  max-width: 10rem;
 }

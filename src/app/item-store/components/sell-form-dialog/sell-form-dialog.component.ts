@@ -7,7 +7,6 @@ import { Item } from 'src/app/core/models/item-models';
 import { Customer } from 'src/app/core/models/profile-models';
 import { AppDataService } from 'src/app/shared/service/app-data.service';
 import { ItemFormFactoryService } from '../../service/item-form-factory-service/item-form-factory.service';
-import { SellFormComponent } from '../sell-form/sell-form.component';
 
 @Component({
   selector: 'app-sell-form-dialog',

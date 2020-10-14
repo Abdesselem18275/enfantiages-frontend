@@ -70,7 +70,7 @@
 <mat-menu #itemActionMenu="matMenu">
   <ng-template matMenuContent let-item="item">
 
-    <button [routerLink]="['./', { outlets: { itemContentOutlet: ['item-detail',item.id] } }]" mat-menu-item>
+    <button queryParamsHandling="merge" [routerLink]="['./', { outlets: { itemContentOutlet: ['item-detail',item.id] } }]" mat-menu-item>
       <mat-icon>list_alt</mat-icon>
       <span>Item details</span>
     </button>

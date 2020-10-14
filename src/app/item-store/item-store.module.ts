@@ -8,13 +8,13 @@ import { ItemsListComponent } from './components/items-list/items-list.component
 import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 import { SharedModule } from '../shared/shared.module';
 import { SellFormDialogComponent } from './components/sell-form-dialog/sell-form-dialog.component';
-import { SellFormComponent } from './components/sell-form/sell-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DepositFormComponent } from './components/deposit-form/deposit-form.component';
+import { ItemsFilterComponent } from './components/items-filter/items-filter.component';
 
 
 @NgModule({
-  declarations: [ItemStoreComponent, ItemsViewerComponent, ItemsListComponent, ItemDetailComponent, SellFormDialogComponent, SellFormComponent, DepositFormComponent],
+  declarations: [ItemStoreComponent, ItemsViewerComponent, ItemsListComponent, ItemDetailComponent, SellFormDialogComponent, DepositFormComponent, ItemsFilterComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule ,

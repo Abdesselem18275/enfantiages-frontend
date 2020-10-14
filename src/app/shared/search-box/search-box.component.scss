@@ -1,0 +1,15 @@
+@import '/src/styles/colors.scss';
+.field-container {
+    border: 2px solid mat-color($enfantiages-app-primary) ;
+    border-radius: 5px;
+    padding: 0.25rem;
+    background-color: white;
+    mat-icon {
+        background-color: white;
+    }
+    input {
+        border: none;
+        width: 100%;
+    }
+    
+}

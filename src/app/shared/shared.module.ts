@@ -5,10 +5,11 @@ import { MaterialModule } from '../materials';
 import { RouterModule } from '@angular/router';
 import { CustomersAutoCompleteFieldComponent } from './customers-auto-complete-field/customers-auto-complete-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SearchBoxComponent } from './search-box/search-box.component';
 
 
 @NgModule({
-  declarations: [NavBarComponent, CustomersAutoCompleteFieldComponent],
+  declarations: [NavBarComponent, CustomersAutoCompleteFieldComponent, SearchBoxComponent],
   imports: [
     MaterialModule,
     ReactiveFormsModule ,
@@ -19,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   exports: [
     NavBarComponent,
     CustomersAutoCompleteFieldComponent,
+    SearchBoxComponent,
     MaterialModule
   ]
 })

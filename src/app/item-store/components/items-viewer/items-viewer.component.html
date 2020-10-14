@@ -1,18 +1,23 @@
 
 <section class="inline--centred--spaced my4 p4">
 </section>
-<main class="column" >
-  <section class="full-width section-frame inline--centred--spaced list-action-bar">
-    <button color="primary" mat-flat-button>
-      <mat-icon class="mr2">tune</mat-icon>
-      <span>Filter</span>
+<section class="full-width section-frame inline--centred--spaced list-action-bar">
+  <button (click)="toggleFilter()" color="primary" mat-flat-button>
+    <mat-icon class="mr2">tune</mat-icon>
+    <span>Filter</span>
+  </button>
+  <div class="search-box-container">
+    <app-search-box (term)="onSearch($event)"></app-search-box>
 
-    </button>
-  </section *ngIf="isFilterActive" class="side-filter">
-  <section>
+  </div>
+</section>
+<main class="inline">
 
-  </section>
-<section>
+  <aside  [@sideTranslateAnimation] *ngIf="isFilterActive" class="p4 side-filter">
+    <app-items-filter></app-items-filter>
+  </aside>
+
+<section class="router-content">
   <router-outlet name="itemContentOutlet">
   </router-outlet>
 </section>
