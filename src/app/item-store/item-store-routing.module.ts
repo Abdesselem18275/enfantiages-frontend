@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { DepositFormComponent } from './components/deposit-form/deposit-form.component';
 import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 import { ItemStoreComponent } from './components/item-store/item-store.component';
 import { ItemsListComponent } from './components/items-list/items-list.component';
@@ -30,8 +31,11 @@ const routes: Routes = [{
           outlet: 'itemContentOutlet',
           resolve: {itemDetail : ItemDetailResolverService}
         }
-
       ]
+    },
+    {
+      path:'new-item',
+      component:DepositFormComponent,
     }
   ]
 }];

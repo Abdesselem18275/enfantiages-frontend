@@ -10,10 +10,11 @@ import { SharedModule } from '../shared/shared.module';
 import { SellFormDialogComponent } from './components/sell-form-dialog/sell-form-dialog.component';
 import { SellFormComponent } from './components/sell-form/sell-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DepositFormComponent } from './components/deposit-form/deposit-form.component';
 
 
 @NgModule({
-  declarations: [ItemStoreComponent, ItemsViewerComponent, ItemsListComponent, ItemDetailComponent, SellFormDialogComponent, SellFormComponent],
+  declarations: [ItemStoreComponent, ItemsViewerComponent, ItemsListComponent, ItemDetailComponent, SellFormDialogComponent, SellFormComponent, DepositFormComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule ,

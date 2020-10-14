@@ -4,19 +4,10 @@
   <p class="font--dark-grey mat-body">{{data.item.label}}</p>
 </header>
   <form mat-dialog-content [formGroup]="sellForm">
-    <mat-form-field class="full-width">
-      <mat-label>Buyer</mat-label>
-      <input [matAutocomplete]="auto"   formControlName="buyer" matInput maxlength="256" placeholder="Select a buyer">
-      <mat-autocomplete [displayWith]="displayFn" #auto="matAutocomplete">
-        <mat-option *ngFor="let customer of filteredCutomers$ | async" [value]="customer">
-            <small>{{customer.email}}</small>
-        </mat-option>
-      </mat-autocomplete>
-      <mat-hint align="start">Select a buyer</mat-hint>
-      <button matSuffix  mat-icon-button>
-        <mat-icon>person_add</mat-icon>
-        </button>
-    </mat-form-field>
+    <div class="full-width">
+      <app-customers-auto-complete-field  formControlName="buyer" [relatedFormGroup]="sellForm"></app-customers-auto-complete-field>
+
+    </div>
 
 
   <mat-form-field class="full-width">

@@ -1,0 +1,57 @@
+<h1 class="text-center mat-h1">New Deposition</h1>
+<form  (ngSubmit)="onSubmit()"  class="main-form" [formGroup]="depositForm">
+    <header class="inline--centred--spaced">
+        <h3 class="font--dark-grey mat-h3">DEPOSER</h3>
+    </header>
+    <mat-divider></mat-divider>
+      <div class="section-frame mt4 full-width">
+        <app-customers-auto-complete-field formControlName="deposer" [relatedFormGroup]="depositForm"></app-customers-auto-complete-field>
+
+      </div>
+    <div class="mt8">
+        <header class="inline--centred--spaced">
+            <h3 class="font--dark-grey mat-h3">{{itemsNumber() }} DEPOSED ITEMS</h3>
+        </header>
+        <mat-divider></mat-divider>
+        <div *ngFor="let depoForm of getDepositArray(); index as i" class="section-frame my4">
+            <header class="inline--centred--spaced">
+                <legend class="mat-caption">Item #{{i+1}}</legend>
+                <button (click)="removeDepositForm(i)" class="form__sub-group__close" mat-icon-button>
+                    <mat-icon > close</mat-icon>
+
+                </button>
+            </header>
+        <form class="sub-form"  [formGroup]="depoForm">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Label</mat-label>
+                <input type="text" required formControlName="label" matInput>
+                <mat-hint align="start">Item Label</mat-hint>
+
+              </mat-form-field> 
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>price</mat-label>
+                <input  min="0" type="number" required formControlName="price" matInput>
+                <mat-hint align="start">Set the item price</mat-hint>
+              </mat-form-field>    
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Gain ratio</mat-label>
+                <input min="0" max="100" type="number" required formControlName="gain_ratio" matInput>
+                <mat-hint align="start">Percentage of the item sale gain</mat-hint>
+              </mat-form-field> 
+      
+        </form>
+    </div>
+
+    </div>
+    <footer class="inline--centred--spaced">
+        <button color="primary" (click)="pushDepositForm()" mat-flat-button>
+            <mat-icon class="mr4">add</mat-icon>
+            <span>NEW ITEM</span>
+        </button>
+        <button [disabled]="!depositForm.valid" type="submit" color="primary"  mat-flat-button>
+            <mat-icon class="mr4">save</mat-icon>
+            <span>SAVE</span>
+        </button>
+    </footer>
+
+  </form>

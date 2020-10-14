@@ -1,0 +1,22 @@
+<ng-container [formGroup]="relatedFormGroup">
+  <mat-form-field class="full-width"  appearance="outline">
+    <mat-label>Buyer</mat-label>
+    <input 
+      [matAutocomplete]="auto" 
+      [formControlName]="formControlName" 
+      matInput 
+      required
+      type="text"
+      maxlength="256" 
+      placeholder="Select a customer">
+    <mat-autocomplete [displayWith]="displayFn" #auto="matAutocomplete">
+      <mat-option *ngFor="let customer of filteredCutomers$ | async" [value]="customer">
+          <small>{{customer.email}}</small>
+      </mat-option>
+    </mat-autocomplete>
+    <mat-hint align="start">Select a customer or add one</mat-hint>
+    <button matSuffix  mat-icon-button>
+      <mat-icon>person_add</mat-icon>
+      </button>
+  </mat-form-field>
+</ng-container>

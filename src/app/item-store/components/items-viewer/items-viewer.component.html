@@ -1,7 +1,17 @@
 
 <section class="inline--centred--spaced my4 p4">
 </section>
-<main>
+<main class="column" >
+  <section class="full-width section-frame inline--centred--spaced list-action-bar">
+    <button color="primary" mat-flat-button>
+      <mat-icon class="mr2">tune</mat-icon>
+      <span>Filter</span>
+
+    </button>
+  </section *ngIf="isFilterActive" class="side-filter">
+  <section>
+
+  </section>
 <section>
   <router-outlet name="itemContentOutlet">
   </router-outlet>

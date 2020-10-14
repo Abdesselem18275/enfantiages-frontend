@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./items-viewer.component.scss']
 })
 export class ItemsViewerComponent implements OnInit {
-
+  isFilterActive: boolean
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleFilter() {
+    this.isFilterActive = !this.isFilterActive
   }
 
 }
