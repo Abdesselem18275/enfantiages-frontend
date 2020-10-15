@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Data } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Item } from 'src/app/core/models/item-models';
-import { DialogHandlerService } from '../../service/dialog-handler.service';
-import { SellFormDialogComponent } from '../sell-form-dialog/sell-form-dialog.component';
+import { DialogHandlerService } from '../../../shared/service/dialog-handler.service';
 
 @Component({
   selector: 'app-item-detail',

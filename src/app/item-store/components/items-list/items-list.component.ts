@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppDataService} from '../../../shared/service/app-data.service';
 import {Item} from '../../../core/models/item-models';
-import {DialogHandlerService} from '../../service/dialog-handler.service'
+import {DialogHandlerService} from '../../../shared/service/dialog-handler.service'
 @Component({
   selector: 'app-items-list',
   templateUrl: './items-list.component.html',

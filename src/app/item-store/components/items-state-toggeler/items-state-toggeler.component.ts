@@ -27,6 +27,7 @@ export class ItemsStateToggelerComponent implements OnInit {
       queryParams : {
         [this.paramKey]:event.value
       },
+      skipLocationChange: true
     }
     this.router.navigate(['/item-store/items-viewer'],navExtra)
   }

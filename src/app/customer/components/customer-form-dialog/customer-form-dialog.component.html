@@ -1,0 +1,11 @@
+<header class="dialog-header" mat-dialog-title>
+    <h1 class="mat-h1">New Customer Form</h1>
+  </header>
+  <section class="p4"mat-dialog-content>
+       <app-new-customer-form #customerFormComp></app-new-customer-form>
+  </section>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onClose()">CANCEL</button>
+      <button mat-button (click)="onSubmit()" cdkFocusInitial>CREATE</button>
+    </div>
+  

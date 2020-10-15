@@ -1,0 +1,28 @@
+<form [formGroup]='customerForm'>
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>email</mat-label>
+        <input type="email" autocomplete="email" required formControlName="email" matInput>
+        <mat-hint align="start">Email address</mat-hint>    
+        <mat-icon matPrefix>email</mat-icon>
+    </mat-form-field> 
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>First name</mat-label>
+        <input type="text" autocomplete="name" required formControlName="first_name" matInput>
+    </mat-form-field> 
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>family name</mat-label>
+        <input type="text" autocomplete="cc-family-name" required formControlName="last_name" matInput>
+    </mat-form-field> 
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Civility</mat-label>
+        <mat-select formControlName="civility" name="Mr">
+            <mat-option value="Mr">
+              Mr
+            </mat-option>
+            <mat-option value="Mme">
+                Mme
+              </mat-option>
+          </mat-select>
+    </mat-form-field> 
+        
+</form>
