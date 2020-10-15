@@ -15,10 +15,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatMomentDateModule, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import { MAT_DATE_FORMATS, DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   exports: [MatCheckboxModule,MatMenuModule,MatSnackBarModule,MatAutocompleteModule,MatDialogModule,MatListModule,MatTableModule,MatDividerModule, MatButtonModule, MatDividerModule,
-            MatIconModule ,MatFormFieldModule,MatInputModule,MatDatepickerModule,
+            MatIconModule ,MatFormFieldModule,MatInputModule,MatDatepickerModule,MatButtonToggleModule,
             MatProgressBarModule,],
   providers: [
     {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true,strict: true}},

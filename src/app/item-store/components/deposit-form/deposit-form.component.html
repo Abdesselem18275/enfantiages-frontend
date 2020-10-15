@@ -4,8 +4,8 @@
         <h3 class="font--dark-grey mat-h3">DEPOSER</h3>
     </header>
     <mat-divider></mat-divider>
-      <div class="section-frame mt4 full-width">
-        <app-customers-auto-complete-field formControlName="deposer" [relatedFormGroup]="depositForm"></app-customers-auto-complete-field>
+      <div class=" mt4 full-width">
+        <app-customers-auto-complete-field relatedControlName="deposer" [relatedFormGroup]="depositForm"></app-customers-auto-complete-field>
 
       </div>
     <div class="mt8">
@@ -13,7 +13,7 @@
             <h3 class="font--dark-grey mat-h3">{{itemsNumber() }} DEPOSED ITEMS</h3>
         </header>
         <mat-divider></mat-divider>
-        <div *ngFor="let depoForm of getDepositArray(); index as i" class="section-frame my4">
+        <div *ngFor="let depoForm of getDepositArray(); index as i" class="column my4">
             <header class="inline--centred--spaced">
                 <legend class="mat-caption">Item #{{i+1}}</legend>
                 <button (click)="removeDepositForm(i)" class="form__sub-group__close" mat-icon-button>
@@ -38,7 +38,6 @@
                 <input min="0" max="100" type="number" required formControlName="gain_ratio" matInput>
                 <mat-hint align="start">Percentage of the item sale gain</mat-hint>
               </mat-form-field> 
-      
         </form>
     </div>
 

@@ -1,6 +1,6 @@
 @import '/src/styles/colors.scss';
-.item__el,.item-action-bar {
-  background-color: mat-color($enfantiages-app-accent,lighter);
+.item__el {
+  background-color: $extreme-light-grey-color;
   padding: 1rem;
   border-radius: 10px;
   margin: 1rem 0;
@@ -22,14 +22,10 @@
   z-index: 2;
 }
 
-.detail__header {
-    h2 {
-    text-align: center;
-    
-  }
-}
 .item-action-bar {
-  background-color: mat-color($enfantiages-app-accent);
   display: flex;
   justify-content: space-between;
+}
+.mat-h1 {
+  margin: 0;
 }

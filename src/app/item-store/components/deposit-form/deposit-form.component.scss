@@ -24,6 +24,7 @@ mat-form-field {
 }
 .sub-form {
     display: flex;
+    border-left: 3px solid mat-color($enfantiages-app-accent);
     mat-form-field {
         margin:0 1rem ;
     }

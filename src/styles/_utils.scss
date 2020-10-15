@@ -46,8 +46,19 @@
 .full-width {
   width: 100%;
 }
-.section-frame {
-  background-color: $extreme-light-grey-color;
-  padding: 0.5rem;
+.section-frame--outlined,.section-frame--fill {
+  padding: 1rem;
   border-radius: 10px;
+}
+.section-frame--fill {
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: $extreme-light-grey-color;
+}
+.section-frame--outlined {
+  border: mat-color($enfantiages-app-accent) 2px solid;
+
+}
+.el--center {
+   margin:0 auto;
 }

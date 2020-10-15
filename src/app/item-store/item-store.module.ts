@@ -11,10 +11,11 @@ import { SellFormDialogComponent } from './components/sell-form-dialog/sell-form
 import { ReactiveFormsModule } from '@angular/forms';
 import { DepositFormComponent } from './components/deposit-form/deposit-form.component';
 import { ItemsFilterComponent } from './components/items-filter/items-filter.component';
+import { ItemsStateToggelerComponent } from './components/items-state-toggeler/items-state-toggeler.component';
 
 
 @NgModule({
-  declarations: [ItemStoreComponent, ItemsViewerComponent, ItemsListComponent, ItemDetailComponent, SellFormDialogComponent, DepositFormComponent, ItemsFilterComponent],
+  declarations: [ItemStoreComponent, ItemsViewerComponent, ItemsListComponent, ItemDetailComponent, SellFormDialogComponent, DepositFormComponent, ItemsFilterComponent, ItemsStateToggelerComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule ,

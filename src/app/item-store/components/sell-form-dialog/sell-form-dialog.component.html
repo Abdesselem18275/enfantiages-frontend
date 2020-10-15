@@ -3,17 +3,17 @@
   <h3 class="mat-h3">{{data.item.reference}}</h3>
   <p class="font--dark-grey mat-body">{{data.item.label}}</p>
 </header>
-  <form mat-dialog-content [formGroup]="sellForm">
-    <div class="full-width">
-      <app-customers-auto-complete-field  formControlName="buyer" [relatedFormGroup]="sellForm"></app-customers-auto-complete-field>
+  <form  mat-dialog-content [formGroup]="sellForm">
+    <div class="mb2 full-width">
+      <app-customers-auto-complete-field  relatedControlName="buyer" [relatedFormGroup]="sellForm"></app-customers-auto-complete-field>
 
     </div>
 
 
-  <mat-form-field class="full-width">
+  <mat-form-field appearance="outline" class="full-width">
     <mat-label>Sale price</mat-label>
-    <input [min]="data.item.deposer_gain" type="number" formControlName="sale_price" matInput maxlength="256">
-
+    <input [min]="data.item.deposer_gain" type="number" formControlName="sale_price" matInput>
+    <mat-icon matPrefix>attach_money</mat-icon>
     <mat-hint align="start">Minimum sale price is {{data.item.deposer_gain  | currency :'TND'}}</mat-hint>
   </mat-form-field>
   </form>

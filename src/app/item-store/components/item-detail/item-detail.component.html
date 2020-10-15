@@ -1,23 +1,23 @@
-<header *ngIf="item$ |async as item" class="detail__header">
-  <h2 class="mat-h2">ITEM DETAILS</h2>
+<header *ngIf="item$ |async as item" class="my4 column--centred">
 
-  <div class="mat-elevation-z3  item-action-bar">
+  <div class="full-width   item-action-bar">
     <button 
     queryParamsHandling="merge"
     [routerLink]="['/item-store/items-viewer', { outlets: { itemContentOutlet: null } }]"
-    mat-raised-button>
-      <mat-icon class="mr2">arrow_back</mat-icon>
-      <span>Back to list</span>
+    mat-icon-button>
+      <mat-icon>arrow_back</mat-icon>
     </button>
+      <h1 class="mat-h1">ITEM DETAILS</h1>
+
     <button
     [matMenuTriggerData]="{item: item}"
-    [matMenuTriggerFor]="itemActionMenu" color="primary" mat-mini-fab>
+    [matMenuTriggerFor]="itemActionMenu" mat-icon-button>
       <mat-icon >more_vert</mat-icon>
     </button>
+
   </div>
 
 </header>
-
 <main *ngIf="item$ |async as item">
   <article class="mat-elevation-z3  item__el">
     <legend class="mat-h3">Identification</legend>

@@ -12,14 +12,14 @@ import { AppDataService } from '../service/app-data.service';
 })
 export class CustomersAutoCompleteFieldComponent implements OnInit {
   @Input() relatedFormGroup : FormGroup;
-  @Input() formControlName: string;
+  @Input() relatedControlName: string;
   filteredCutomers$ : Observable<Customer[]>
   constructor(private ads : AppDataService) { 
 
   }
 
   ngOnInit(): void {
-    this.filteredCutomers$ = this.relatedFormGroup.get(this.formControlName).valueChanges.pipe(
+    this.filteredCutomers$ = this.relatedFormGroup.get(this.relatedControlName).valueChanges.pipe(
       switchMap((value) =>this.ads.get<Customer[]>('profiles/').pipe(
         map(customers => 
           customers.filter((customer:Customer) => Object.values(customer).find(_value => 
@@ -29,8 +29,5 @@ export class CustomersAutoCompleteFieldComponent implements OnInit {
   }
   displayFn(customer: Customer): string {
     return customer && customer.first_name && customer.last_name ? customer.first_name + ' '+customer.last_name   : '';
-  }
-  getControl():FormControl {
-    return (this.relatedFormGroup.get(this.formControlName) as FormControl)
   }
 }

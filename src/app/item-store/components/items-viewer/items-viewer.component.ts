@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { sideTranslateAnimation } from '../../../animations';
 @Component({
   selector: 'app-items-viewer',
