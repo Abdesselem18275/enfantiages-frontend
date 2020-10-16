@@ -67,11 +67,11 @@
       </div>
       <div>
         <label class="mat-body-strong">Predifined Price</label>
-        <p class="mat-body-1">{{'32' | currency:'TND'}}</p>
+        <p class="mat-body-1">{{item.initial_sale_price | currency:'TND'}}</p>
       </div>
       <div>
-        <label class="mat-body-strong">Gain margin</label>
-        <p class="mat-body-1">{{'0.25' | percent}}</p>
+        <label class="mat-body-strong">Gain ratio</label>
+        <p class="mat-body-1">{{item.intial_gain_ratio | percent}}</p>
       </div>
 </section>
   </article>

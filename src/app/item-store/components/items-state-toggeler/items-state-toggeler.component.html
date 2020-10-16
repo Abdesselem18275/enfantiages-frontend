@@ -1,10 +1,8 @@
 <mat-button-toggle-group class="button-toggle-container">
     <mat-button-toggle 
     (change)="onChange($event)"
-    [routerLink]="['./item-store/item-viewer']"
-    [queryParams]="{paramKey: option}"
-    [checked]="(activeOption$ | async) === option" 
-    *ngFor="let option of toggelerData" [value]="option">
-      {{option | uppercase}}
+    [checked]="(activeOption$ | async) === option.value" 
+    *ngFor="let option of toggelerData" [value]="option.value">
+      {{option.key | uppercase}}
     </mat-button-toggle>
   </mat-button-toggle-group>

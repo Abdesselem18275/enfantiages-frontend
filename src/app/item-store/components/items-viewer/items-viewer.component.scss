@@ -12,6 +12,10 @@
 .side-filter {
   height: 100vh;
   min-width: 320px;
+  @media only screen and (max-width: 720px) {
+    min-width: 100%;
+
+  }
 }
 .search-box-container {
   max-width: 10rem;

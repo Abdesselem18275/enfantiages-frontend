@@ -19,7 +19,7 @@ export const PROFILE_ID = new InjectionToken<string>('ProfileId', {
 });
 export const APP_ITEM_STATE_QUERY_PARAM_KEY = new InjectionToken<string>('itemStateQueryParamKey', {
   providedIn: 'root',
-  factory: () =>'ItemState'
+  factory: () =>'availability'
 });
 // export function loadInitData(configService: ConfigService) {
 //   return ():Promise<any> => configService.loadInitials();

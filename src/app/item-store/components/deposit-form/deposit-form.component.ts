@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormArray, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Item } from 'src/app/core/models/item-models';
+import { AppDataService } from 'src/app/shared/service/app-data.service';
 import { ItemFormFactoryService } from '../../service/item-form-factory-service/item-form-factory.service';
 
 @Component({
@@ -10,9 +12,8 @@ import { ItemFormFactoryService } from '../../service/item-form-factory-service/
 })
 export class DepositFormComponent implements OnInit {
   depositForm : FormGroup
-  constructor(private _snackBar: MatSnackBar,private iffs : ItemFormFactoryService) {
+  constructor(private ads : AppDataService, private _snackBar: MatSnackBar,private iffs : ItemFormFactoryService) {
     this.depositForm = this.iffs.getDepositForm()
-    console.warn((this.depositForm.get('depositGroup') as FormArray).controls)
    }
 
   ngOnInit(): void {
@@ -37,8 +38,14 @@ export class DepositFormComponent implements OnInit {
     return (this.depositForm.get('depositGroup') as FormArray).length
   }
   onSubmit() {
-    const formArrayValues = JSON.stringify((this.depositForm.get('depositGroup') as FormArray).value.map(
-      obj => ({...obj,deposer:this.depositForm.get('deposer').value["id"]})))
-    console.warn(formArrayValues)
+    const formArrayValues = JSON.stringify((this.depositForm.get('depositGroup') as FormArray).value.
+    map(obj => ({...obj,
+      intial_gain_ratio : parseFloat(obj["intial_gain_ratio"])/100,
+      deposer:this.depositForm.get('deposer').value["id"]})))
+    this.ads.post<Item[]>('items/',formArrayValues).subscribe(
+      (items: Item[]) => this._snackBar.open(`${items.length} item deposed by ${items[0].deposer.first_name} added`,'', {
+        duration: 2000,
+      })
+    )
   }
 }

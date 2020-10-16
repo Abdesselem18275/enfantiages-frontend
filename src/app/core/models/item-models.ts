@@ -6,8 +6,16 @@ export interface Item {
   label : string,
   deposition_date :string,
   deposer_gain: number,
+  intial_gain_ratio:number,
+  initial_sale_price:number,
   sale_date: string,
-  sale_price: number,
+  actual_sale_price: number,
   deposer : Customer,
   buyer : Customer,
+  state: string
+}
+export enum ItemState {
+  SOLD = 'SO',
+  AVAILABLE ='AV',
+  ALL = ''
 }

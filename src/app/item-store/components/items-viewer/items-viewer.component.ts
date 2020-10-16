@@ -22,7 +22,7 @@ export class ItemsViewerComponent implements OnInit {
   onSearch(term) {
     const navExtra : NavigationExtras = {
       queryParams : {
-        q:term
+        search:term
       },
       queryParamsHandling: 'merge'
     }

@@ -4,12 +4,18 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration=production",
+    "build:dev": "ng build --watch",
+    "heroku-postbuild": "npm run build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
   "private": true,
+  "engines": {
+    "node": "14.10.1",
+    "npm": "6.14.8"
+  },
   "dependencies": {
     "@angular/animations": "~10.1.5",
     "@angular/cdk": "^10.2.4",
@@ -22,6 +28,8 @@
     "@angular/platform-browser": "~10.1.5",
     "@angular/platform-browser-dynamic": "~10.1.5",
     "@angular/router": "~10.1.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "moment": "^2.29.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
