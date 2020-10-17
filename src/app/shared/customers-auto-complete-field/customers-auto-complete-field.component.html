@@ -9,7 +9,7 @@
       placeholder="Select a customer">
     <mat-autocomplete [displayWith]="displayFn" #auto="matAutocomplete">
       <mat-option *ngFor="let customer of filteredCutomers$ | async" [value]="customer">
-          <small>{{customer.email}}</small>
+          <small>{{customer.email}} {{customer.first_name}} {{customer.last_name}}</small>
       </mat-option>
     </mat-autocomplete>
     <mat-hint align="start">Select a customer or add one</mat-hint>
