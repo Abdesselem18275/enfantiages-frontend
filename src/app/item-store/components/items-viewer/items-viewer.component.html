@@ -3,7 +3,7 @@
   <app-items-state-toggeler></app-items-state-toggeler>
 </section>
 <section class="full-width section-frame--fill inline--centred--spaced list-action-bar">
-  <button (click)="toggleFilter()" color="primary" mat-stroked-button>
+  <button (click)="drawer.toggle()" color="primary" mat-stroked-button>
     <mat-icon class="mr2">tune</mat-icon>
     <span>Filter</span>
   </button>
@@ -12,14 +12,14 @@
 
   </div>
 </section>
-<main class="inline">
+<mat-drawer-container hasBackdrop="unset">
 
-  <aside  [@sideTranslateAnimation] *ngIf="isFilterActive" class="p4 side-filter">
-    <app-items-filter></app-items-filter>
-  </aside>
+  <mat-drawer mode="push"#drawer class="p4 side-filter">
+    <app-items-filter class="mat-elevation-z10"  ></app-items-filter>
+  </mat-drawer>
 
-<section class="router-content">
+<mat-drawer-content class="router-content">
   <router-outlet name="itemContentOutlet">
   </router-outlet>
-</section>
-</main>
+</mat-drawer-content>
+</mat-drawer-container>

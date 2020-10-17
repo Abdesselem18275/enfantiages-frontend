@@ -32,7 +32,7 @@ export class ItemsFilterComponent  {
       console.warn(this.filterForm.value)
       let x = this.filterForm.value
       Object.keys(x).forEach(key => {
-        x[key] = x[key] ? x[key].format('YYYY-MM-DD') : x[key];
+        x[key] = x[key] && typeof(x[key])!=='string' ? x[key].format('YYYY-MM-DD') : x[key];
       })
   
       // x = {...Object.keys(x).reduce((acc,actual) => ({
