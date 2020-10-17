@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormArray, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { throttleTime } from 'rxjs/operators';
 import { Item } from 'src/app/core/models/item-models';
 import { AppDataService } from 'src/app/shared/service/app-data.service';
 import { ItemFormFactoryService } from '../../service/item-form-factory-service/item-form-factory.service';
@@ -12,7 +14,7 @@ import { ItemFormFactoryService } from '../../service/item-form-factory-service/
 })
 export class DepositFormComponent implements OnInit {
   depositForm : FormGroup
-  constructor(private ads : AppDataService, private _snackBar: MatSnackBar,private iffs : ItemFormFactoryService) {
+  constructor(private router :Router,private ads : AppDataService, private _snackBar: MatSnackBar,private iffs : ItemFormFactoryService) {
     this.depositForm = this.iffs.getDepositForm()
    }
 
@@ -41,11 +43,14 @@ export class DepositFormComponent implements OnInit {
     const formArrayValues = JSON.stringify((this.depositForm.get('depositGroup') as FormArray).value.
     map(obj => ({...obj,
       intial_gain_ratio : parseFloat(obj["intial_gain_ratio"])/100,
-      deposer:this.depositForm.get('deposer').value["id"]})))
-    this.ads.post<Item[]>('items/',formArrayValues).subscribe(
-      (items: Item[]) => this._snackBar.open(`${items.length} item deposed by ${items[0].deposer.first_name} added`,'', {
+      deposer:this.depositForm.get('deposer').value})))
+      console.warn(formArrayValues)
+    this.ads.post<Item[]>('items/',formArrayValues).pipe(throttleTime(300)).subscribe(
+      (items: Item[]) => {
+        this.router.navigate(['/item-store/items-viewer'])
+        this._snackBar.open(`${items.length} item deposed by ${items[0].deposer.first_name} added`,'', {
         duration: 2000,
-      })
+      })}
     )
   }
 }

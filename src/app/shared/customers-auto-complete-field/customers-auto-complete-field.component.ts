@@ -15,18 +15,13 @@ export class CustomersAutoCompleteFieldComponent implements OnInit {
   @Input() relatedFormGroup : FormGroup;
   @Input() relatedControlName: string;
   filteredCutomers$ : Observable<Customer[]>
-  constructor(private dhs : DialogHandlerService, private ads : AppDataService) { 
+  constructor(private dhs : DialogHandlerService, private ads : AppDataService) {
 
   }
 
   ngOnInit(): void {
-    this.filteredCutomers$ = this.relatedFormGroup.get(this.relatedControlName).valueChanges.pipe(
-      switchMap((value) => this.ads.get<Customer[]>('profiles/').pipe(
-        map(customers => 
-          customers.filter((customer:Customer) => Object.values(customer).find(_value => 
-            typeof _value === 'string' ? _value.includes(value) : false )
-          ))))
-    )
+    this.filteredCutomers$ = this.ads.get<Customer[]>('profiles/')
+
   }
   displayFn(customer: Customer): string {
     return customer && customer.first_name && customer.last_name ? customer.first_name + ' '+customer.last_name   : '';
