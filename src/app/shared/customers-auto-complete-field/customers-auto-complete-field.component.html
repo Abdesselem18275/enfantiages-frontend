@@ -1,14 +1,14 @@
   <mat-form-field [formGroup]="relatedFormGroup" class="full-width"  appearance="outline">
-    <mat-label>Buyer</mat-label>
+    <mat-label>{{relatedControlName|titlecase}}</mat-label>
       <mat-select [formControlName]="relatedControlName" required>
-        <mat-option>--</mat-option>
         <mat-option *ngFor="let customer of filteredCutomers$ |async" [value]="customer.id">
           <span>{{customer.email}} </span><span class="mat-caption">{{customer.first_name}} {{customer.last_name}} </span>
         </mat-option>
       </mat-select>
       <mat-icon matPrefix>account_circle</mat-icon>
-    <mat-hint align="start">Select a customer or add one</mat-hint>
+    <mat-hint class="inline--centred mat-body" align="start">
+      <span class="mat-caption"> Select a {{relatedControlName}} or add one </span>
+        <mat-icon class="ml2 cursor--pointer" (click)="openCustomerDialog()">person_add</mat-icon>
+    </mat-hint>
   </mat-form-field>
-  <button queryParamsHandling="merge" (click)="openCustomerDialog()" matSuffix  mat-icon-button>
-    <mat-icon>person_add</mat-icon>
-    </button>
+
