@@ -35,7 +35,34 @@
     <th mat-header-cell *matHeaderCellDef> Deposition date </th>
     <td mat-cell *matCellDef="let element"> {{element.deposition_date | date:'medium'}} </td>
   </ng-container>
+    <!-- buyer Column -->
+    <ng-container matColumnDef="buyer">
+      <th mat-header-cell *matHeaderCellDef> Buyer </th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="element.buyer else noData">
+          {{element.buyer.first_name}} {{element.buyer.last_name}}
+        </ng-container>
+         </td>
+    </ng-container>
+        <!-- actual_sale_price Column -->
+    <ng-container matColumnDef="actual_sale_price">
+      <th mat-header-cell *matHeaderCellDef> Real sale price </th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="element.actual_sale_price else noData">
+          {{element.actual_sale_price | currency :'TND'}}  
+        </ng-container>
+        </td>
+    </ng-container>
 
+    <ng-container matColumnDef="sale_date">
+      <th mat-header-cell *matHeaderCellDef> Sale date </th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="element.sale_date else noData">
+
+        {{element.sale_date | date:'medium'}}  
+        </ng-container>
+    </td>
+    </ng-container>
   <!-- action Column -->
   <ng-container matColumnDef="action" stickyEnd>
     <th mat-header-cell *matHeaderCellDef> Action </th>
@@ -52,6 +79,9 @@
   <tr
   queryParamsHandling="merge"
   mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;"></tr>
+  <ng-template #noData>
+ -
+  </ng-template>
 </table>
 
 <mat-nav-list class="item-stream--small-width">
@@ -64,7 +94,7 @@
     <p class="mat-caption" matLine>{{item.deposer.first_name}} {{item.deposer.last_name}} </p>
     <div class="meta-content mat-caption">
       <p>{{item.deposition_date | date:'mediumDate'}}</p>
-      <p>{{item.initial_sale_price | currency :'TND' }}</p>
+      <p>{{item.initial_sale_price | currency :'TND':'symbol':'4.0-0' }}</p>
     </div>
     <mat-divider></mat-divider>
   </mat-list-item>
