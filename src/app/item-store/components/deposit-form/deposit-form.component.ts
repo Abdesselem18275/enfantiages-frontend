@@ -40,17 +40,17 @@ export class DepositFormComponent implements OnInit {
     return (this.depositForm.get('depositGroup') as FormArray).length
   }
   onSubmit() {
-    const formArrayValues = (this.depositForm.get('depositGroup') as FormArray).value.
+    const formArrayValues = JSON.stringify((this.depositForm.get('depositGroup') as FormArray).value.
     map(obj => ({...obj,
       intial_gain_ratio : parseFloat(obj["intial_gain_ratio"])/100,
-      deposer:this.depositForm.get('deposer')}))
+      deposer:this.depositForm.get('deposer').value})))
       console.warn(formArrayValues)
-    // this.ads.post<Item[]>('items/',formArrayValues).pipe(throttleTime(300)).subscribe(
-    //   (items: Item[]) => {
-    //     this.router.navigate(['/item-store/items-viewer'])
-    //     this._snackBar.open(`${items.length} item deposed by ${items[0].deposer.first_name} added`,'', {
-    //     duration: 2000,
-    //   })}
-    // )
+    this.ads.post<Item[]>('items/',formArrayValues).pipe(throttleTime(300)).subscribe(
+      (items: Item[]) => {
+        this.router.navigate(['/item-store/items-viewer'])
+        this._snackBar.open(`${items.length} item deposed by ${items[0].deposer.first_name} added`,'', {
+        duration: 2000,
+      })}
+    )
   }
 }
