@@ -1,31 +1,42 @@
 @import '/src/styles/colors.scss';
-.item__el {
-  background-color: $extreme-light-grey-color;
-  padding: 1rem;
-  border-radius: 10px;
-  margin: 1rem 0;
-}
-.item__el__content {
-  display: flex;
-  flex-wrap: wrap;
-  div{
-    min-width: 15rem;
-    margin: 0.5rem 0;
-    flex: 0 0 33%;
-  }
-}
-.footer--bottom-sticked {
-  position: sticky;
-  position: -webkit-sticky;
-  bottom: 0;
-  left: 0;
-  z-index: 2;
-}
+
 
 .item-action-bar {
   display: flex;
   justify-content: space-between;
 }
-.mat-h1 {
+.mat-h2 {
   margin: 0;
 }
+.list-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  padding-inline-start:0;
+  .list-el {
+    min-width: 320px;
+    margin : 1%;
+    width: 48%;
+    padding: 1rem;
+    border: 1px solid $light-grey-color;
+    display: flex;
+    flex-direction: column;
+    @media only screen and (max-width: 800px) {
+      width: 98%;
+    }
+    .el__content {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      column-gap: 1rem;
+      .property__stretch {
+        grid-column-start : span 2;
+      }
+      @media only screen and (max-width: 1100px) {
+        grid-template-columns: 1fr 1fr;
+
+      }
+      }
+    }
+  }

@@ -7,7 +7,7 @@
     mat-icon-button>
       <mat-icon>arrow_back</mat-icon>
     </button>
-      <h1 class="mat-h1">ITEM DETAILS</h1>
+      <h2 class="mat-h2">ITEM DETAILS</h2>
 
     <button
     [matMenuTriggerData]="{item: item}"
@@ -19,63 +19,91 @@
 
 </header>
 <main *ngIf="item$ |async as item">
-  <article class="mat-elevation-z3  item__el">
-    <legend class="mat-h3">Identification</legend>
-    <mat-divider></mat-divider>
-    <section class="item__el__content">
+<ul class="list-container">
+  <li  class="list-el"> 
+    <header class="inline">
+
+      <mat-icon class="mr4">qr_code</mat-icon>
+      <h3 class="mat-h3">IDENTIFICATION</h3>
+    </header>
+    <section class="el__content">
       <div>
-        <label class="mat-body-strong">Reference</label>
-        <p class="mat-body-1">{{item.reference}}</p>
+        <label class="mat-body">Reference</label>
+        <p class="mat-body font--dark-grey">{{item.reference}}</p>
       </div>
       <div>
-        <label class="mat-body-strong">Label</label>
-        <p class="mat-body-1">{{item.label}}</p>
+        <label class="mat-body">Label</label>
+        <p class="mat-body font--dark-grey">{{item.label}}</p>
       </div>
       <div>
-        <label class="mat-body-strong">Status</label>
-        <p class="mat-body-1">SOLD</p>
+        <label class="mat-body">Status</label>
+        <p class="mat-body font--dark-grey">{{item.state}}</p>
+      </div>
+      <div>
+        <label class="mat-body">Desposition date</label>
+        <p class="mat-body font--dark-grey">{{item.deposition_date | date}}</p>
+      </div>
+      <div>
+        <label class="mat-body">Predifined sale price</label>
+        <p class="mat-body font--dark-grey">{{item.initial_sale_price | currency :'TND'}}</p>
+      </div>
+      <div>
+        <label class="mat-body">Gain ratio</label>
+        <p class="mat-body font--dark-grey">{{item.intial_gain_ratio | percent}}</p>
       </div>
     </section>
-
-  </article>
-  <article class="mat-elevation-z3  item__el">
-    <legend class="mat-h3">Deposer</legend>
-    <mat-divider></mat-divider>
-    <section class="item__el__content">
-      <div>
-        <label class="mat-body-strong">Name</label>
-        <p class="mat-body-1">{{item.deposer.first_name}} {{item.deposer.last_name}}</p>
-      </div>
-
-      <div>
-        <label class="mat-body-strong">Email adress</label>
-        <p class="mat-body-1">{{item.deposer.email}}</p>
-      </div>
-      <div>
-        <label class="mat-body-strong">Deposit date</label>
-        <p class="mat-body-1">{{item.deposition_date | date:'medium'}}</p>
-      </div>
-</section>
-  </article>
-  <article class="mat-elevation-z3  item__el">
-    <legend class="mat-h3">Price</legend>
-    <mat-divider></mat-divider>
-    <section class="item__el__content">
-      <div>
-        <label class="mat-body-strong">Minimum price</label>
-        <p class="mat-body-1">{{item.deposer_gain | currency:'TND'}}</p>
-      </div>
-      <div>
-        <label class="mat-body-strong">Predifined Price</label>
-        <p class="mat-body-1">{{item.initial_sale_price | currency:'TND'}}</p>
-      </div>
-      <div>
-        <label class="mat-body-strong">Gain ratio</label>
-        <p class="mat-body-1">{{item.intial_gain_ratio | percent}}</p>
-      </div>
-</section>
-  </article>
-
+     </li>
+     <li  class="list-el"> 
+      <header class="inline">
+  
+        <mat-icon class="mr4">qr_code</mat-icon>
+        <h3 class="mat-h3">DEPOSER</h3>
+      </header>
+      <section class="el__content">
+        <div>
+          <label class="mat-body">First name</label>
+          <p class="mat-body font--dark-grey">{{item.deposer.first_name}}</p>
+        </div>
+        <div>
+          <label class="mat-body">Last name</label>
+          <p class="mat-body font--dark-grey">{{item.deposer.last_name}}</p>
+        </div>
+        <div>
+          <label class="mat-body">Email</label>
+          <p class="mat-body font--dark-grey">{{item.deposer.email}}</p>
+        </div>
+        <div>
+          <label class="mat-body">Phone number</label>
+          <p class="mat-body font--dark-grey">0021650749854</p>
+        </div>
+        <div class="property__stretch">
+          <label class="mat-body">Adress</label>
+          <p class="mat-body font--dark-grey">1 Impasse moussa ibn noussair menzah 5</p>
+        </div>
+      </section>
+       </li>
+       <li *ngIf="item.buyer" class="list-el"> 
+        <header class="inline">
+    
+          <mat-icon class="mr4">money</mat-icon>
+          <h3 class="mat-h3">SELL</h3>
+        </header>
+        <section class="el__content">
+          <div>
+            <label class="mat-body">Buyer</label>
+            <p class="mat-body font--dark-grey">{{item.buyer.first_name}} {{item.buyer.last_name}}</p>
+          </div>
+          <div>
+            <label class="mat-body">Sale date</label>
+            <p class="mat-body font--dark-grey">{{item.sale_date |date}}</p>
+          </div>
+          <div>
+            <label class="mat-body">Real sale price</label>
+            <p class="mat-body font--dark-grey">{{item.actual_sale_price |currency:'TND'}}</p>
+          </div>
+        </section>
+         </li>     
+</ul>
 </main>
 <mat-menu #itemActionMenu="matMenu">
   <ng-template matMenuContent let-item="item">

@@ -84,7 +84,7 @@
   </ng-template>
 </table>
 
-<mat-nav-list class="item-stream--small-width">
+<mat-list class="item-stream--small-width">
   <mat-list-item
   queryParamsHandling="merge"
   [routerLink]="['./', { outlets: { itemContentOutlet: ['item-detail',item.id] } }]"
@@ -98,7 +98,7 @@
     </div>
     <mat-divider></mat-divider>
   </mat-list-item>
-</mat-nav-list>
+</mat-list>
 
 
 <mat-menu #itemActionMenu="matMenu">
