@@ -40,3 +40,9 @@
     }
   }
 }
+.link--active {
+  border-bottom: 2px solid mat-color($enfantiages-app-primary);
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+
+}
