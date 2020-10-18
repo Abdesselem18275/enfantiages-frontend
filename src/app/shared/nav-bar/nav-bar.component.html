@@ -1,4 +1,4 @@
-  <button class="menu__mobile-icon mr2" mat-icon-button>
+  <button (click)="toggelSideNav()" class="menu__mobile-icon mr2" mat-icon-button>
    <mat-icon>menu</mat-icon>
   </button>
   <p class="mat-h2 logo">
@@ -8,8 +8,8 @@
   </p>
   <section class="ml8 mat-body-strong menu__items inline--centred">
     <a routerLinkActive="link--active" mat-flat-button [routerLink]="['item-store']">Items</a>
-    <a routerLinkActive="link--active" mat-flat-button >Customers</a>
-    <a routerLinkActive="link--active" mat-flat-button >Stats</a>
+    <a routerLinkActive="link--active" mat-flat-button [routerLink]="['customers']">Customers</a>
+    <a routerLinkActive="link--active" mat-flat-button [routerLink]="['analytics']">Stats</a>
   </section>
   <section class="menu__icons">
     <button mat-icon-button>

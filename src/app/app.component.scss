@@ -6,3 +6,10 @@ nav {
   left: 0;
   background-color: white;
 }
+.side-content {
+  height: 100%;
+  width:min(320px,calc(100vw - 56px));
+}
+.outlet-content {
+  min-height: 840px;
+}

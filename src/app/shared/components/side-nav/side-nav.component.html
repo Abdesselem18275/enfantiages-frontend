@@ -1,0 +1,11 @@
+<header>
+  <h2 class="mat-h2">MENU</h2>
+</header>
+<mat-divider></mat-divider>
+<mat-nav-list >
+  <a mat-list-item [routerLink]="link.routerLink" *ngFor="let link of links">
+    <mat-icon matListIcon>{{link.icon}}</mat-icon>
+    <h3 matLine>{{ link.label }} </h3>
+
+  </a>
+</mat-nav-list>

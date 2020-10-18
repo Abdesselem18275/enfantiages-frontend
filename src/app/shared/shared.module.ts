@@ -6,10 +6,11 @@ import { RouterModule } from '@angular/router';
 import { CustomersAutoCompleteFieldComponent } from './customers-auto-complete-field/customers-auto-complete-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchBoxComponent } from './search-box/search-box.component';
-
+import { SideNavComponent } from './components/side-nav/side-nav.component';
+import {NotFountComponent} from './components/not-found/not-fount.component';
 
 @NgModule({
-  declarations: [NavBarComponent, CustomersAutoCompleteFieldComponent, SearchBoxComponent],
+  declarations: [NavBarComponent, CustomersAutoCompleteFieldComponent, SearchBoxComponent, SideNavComponent, NotFountComponent],
   imports: [
     MaterialModule,
     ReactiveFormsModule ,
@@ -21,6 +22,8 @@ import { SearchBoxComponent } from './search-box/search-box.component';
     NavBarComponent,
     CustomersAutoCompleteFieldComponent,
     SearchBoxComponent,
+    SideNavComponent,
+    NotFountComponent,
     MaterialModule
   ]
 })

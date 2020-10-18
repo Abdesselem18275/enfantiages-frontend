@@ -1,0 +1,9 @@
+@import '/src/styles/colors.scss';
+.logo {
+  color:mat-color($enfantiages-app-primary);
+  text-transform: uppercase;
+  border-bottom: 4px solid mat-color($enfantiages-app-accent);
+  span {
+    color: mat-color($enfantiages-app-accent);
+  }
+}

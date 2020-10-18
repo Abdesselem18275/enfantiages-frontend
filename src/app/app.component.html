@@ -1,4 +1,15 @@
-<nav class="mat-elevation-z2 global--gutters">
-  <app-nav-bar></app-nav-bar>
+<mat-sidenav-container>
+  <mat-sidenav class="p4 side-content" #drawer mode="over">
+      <app-side-nav></app-side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+<nav  class="mat-elevation-z2 global--gutters">
+  <app-nav-bar (sideNavToggeler)="toggleSideNav()"></app-nav-bar>
 </nav>
-<router-outlet></router-outlet>
+<div class="outlet-content">
+  <router-outlet></router-outlet>
+
+</div>
+
+</mat-sidenav-content>
+</mat-sidenav-container>
