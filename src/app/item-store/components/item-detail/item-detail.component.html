@@ -1,7 +1,7 @@
 <header *ngIf="item$ |async as item" class="my4 column--centred">
 
   <div class="full-width   item-action-bar">
-    <button 
+    <button
     queryParamsHandling="merge"
     [routerLink]="['/item-store/items-viewer', { outlets: { itemContentOutlet: null } }]"
     mat-icon-button>
@@ -20,7 +20,7 @@
 </header>
 <main *ngIf="item$ |async as item">
 <ul class="list-container">
-  <li  class="list-el"> 
+  <li  class="list-el">
     <header class="inline">
 
       <mat-icon class="mr4">qr_code</mat-icon>
@@ -53,9 +53,9 @@
       </div>
     </section>
      </li>
-     <li  class="list-el"> 
+     <li  class="list-el">
       <header class="inline">
-  
+
         <mat-icon class="mr4">qr_code</mat-icon>
         <h3 class="mat-h3">DEPOSER</h3>
       </header>
@@ -82,9 +82,9 @@
         </div>
       </section>
        </li>
-       <li *ngIf="item.buyer" class="list-el"> 
+       <li *ngIf="item.buyer" class="list-el">
         <header class="inline">
-    
+
           <mat-icon class="mr4">money</mat-icon>
           <h3 class="mat-h3">SELL</h3>
         </header>
@@ -102,16 +102,16 @@
             <p class="mat-body font--dark-grey">{{item.actual_sale_price |currency:'TND'}}</p>
           </div>
         </section>
-         </li>     
+         </li>
 </ul>
 </main>
 <mat-menu #itemActionMenu="matMenu">
   <ng-template matMenuContent let-item="item">
-    <button (click)="openSellDialog(item)" mat-menu-item>
+    <button [disabled]="item.buyer" (click)="openSellDialog(item)" mat-menu-item>
       <mat-icon>point_of_sale</mat-icon>
       <span>Sell</span>
     </button>
-    <button mat-menu-item>
+    <button [disabled]="item.buyer" mat-menu-item>
       <mat-icon>delete</mat-icon>
       <span>Remove</span>
     </button>
