@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { pipe } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { Customer } from 'src/app/core/models/profile-models';
+import { AppDataService } from 'src/app/shared/service/app-data.service';
+
 
 @Component({
   selector: 'app-new-customer-form',
@@ -8,12 +15,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class NewCustomerFormComponent implements OnInit {
   customerForm : FormGroup
-  constructor(private fb : FormBuilder) {
+  constructor(private router: Router,private _snackBar: MatSnackBar, private ads :AppDataService, private fb : FormBuilder) {
     this.customerForm = this.fb.group({
       email:['',[Validators.required,Validators.email]],
       first_name:['',Validators.required],
       last_name:['',Validators.required],
       civility:['Mr',Validators.required],
+      adress: ['',Validators.required],
+      phone_number : [null,Validators.required],
+      id_reference: ['',Validators.required],  
       password:['default_pass',Validators.required]
     })
    }
@@ -23,6 +33,22 @@ export class NewCustomerFormComponent implements OnInit {
 
   updateCustomerForm(formGroup :FormGroup):void {
     this.customerForm = formGroup
+  }
+  onSubmit():void {
+    if(this.customerForm.valid) {
+      this.ads.post<{token:string,profile:Customer}>('profiles/',JSON.stringify(this.customerForm.value)).
+      pipe(take(1)).subscribe((customer:{token:string,profile:Customer})=> {
+        this.router.navigate(['item-store'])
+        this._snackBar.open(`Customer ${customer.profile.first_name} ${customer.profile.last_name} added`,'', {
+        duration: 3000,
+      })},
+      (error) => {
+        this._snackBar.open(Object.values(error).join('\n'),'', {
+          duration: 3000,
+        })      
+      })
+    }
+
   }
 
 }

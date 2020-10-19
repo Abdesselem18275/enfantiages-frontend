@@ -1,28 +1,49 @@
-<form [formGroup]='customerForm'>
-    <mat-form-field appearance="outline" class="full-width">
-        <mat-label>email</mat-label>
-        <input type="email" autocomplete="email" required formControlName="email" matInput>
-        <mat-hint align="start">Email address</mat-hint>    
-        <mat-icon matPrefix>email</mat-icon>
-    </mat-form-field> 
-    <mat-form-field appearance="outline" class="full-width">
-        <mat-label>First name</mat-label>
-        <input type="text" autocomplete="name" required formControlName="first_name" matInput>
-    </mat-form-field> 
-    <mat-form-field appearance="outline" class="full-width">
-        <mat-label>family name</mat-label>
-        <input type="text" autocomplete="cc-family-name" required formControlName="last_name" matInput>
-    </mat-form-field> 
-    <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Civility</mat-label>
-        <mat-select formControlName="civility" name="Mr">
-            <mat-option value="Mr">
-              Mr
-            </mat-option>
-            <mat-option value="Mme">
-                Mme
-              </mat-option>
-          </mat-select>
-    </mat-form-field> 
+<header class="my8">
+    <h1 class="text-center  mat-h1">New Customer Form</h1>
+</header>
+
+<form  (ngSubmit)="onSubmit()" class="main-form" [formGroup]='customerForm'>
+
+        <mat-form-field appearance="standard" class="field-civility">
+            <mat-label>Civility</mat-label>
+            <mat-select formControlName="civility" name="Mr">
+                <mat-option value="Mr">
+                  Mr
+                </mat-option>
+                <mat-option value="Mme">
+                    Mme
+                  </mat-option>
+              </mat-select>
+        </mat-form-field> 
+        <mat-form-field appearance="standard" class="field-id_ref">
+            <mat-label>Id reference</mat-label>
+            <input type="text" autocomplete="name" required formControlName="id_reference" matInput>
+            <mat-hint>eg : 07409895 or T32658</mat-hint>
+        </mat-form-field> 
+        <mat-form-field appearance="standard" class="field-first-name">
+            <mat-label>First name</mat-label>
+            <input type="text" autocomplete="name" required formControlName="first_name" matInput>
+            <mat-hint>eg : Mohamed</mat-hint>
+        </mat-form-field> 
+        <mat-form-field appearance="standard" class="field-last-name">
+            <mat-label>family name</mat-label>
+            <input type="text" autocomplete="cc-family-name" required formControlName="last_name" matInput>
+            <mat-hint>eg : Ben mabrouk</mat-hint>
+
+        </mat-form-field> 
+        <mat-form-field appearance="standard" class="field-email">
+            <mat-label>email</mat-label>
+            <input type="email" autocomplete="email" required formControlName="email" matInput>
+            <mat-icon matPrefix>email</mat-icon>
+        </mat-form-field> 
+        <mat-form-field appearance="standard" class="field-phone">
+            <mat-label>Phone number</mat-label>
+            <input autocomplete="tel-national" type="text" formControlName="phone_number" autocomplete="name" required matInput>
+        </mat-form-field> 
+        <mat-form-field appearance="standard" class="field-adress">
+            <mat-label>Adress</mat-label>
+            <input type="text" autocomplete="address-line1" formControlName="adress" required matInput>
+        </mat-form-field> 
         
+        <button class="field-button" mat-flat-button type="submit" color="primary">CREATE USER</button>
 </form>

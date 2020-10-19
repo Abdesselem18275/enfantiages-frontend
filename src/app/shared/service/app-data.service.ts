@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
 import { catchError } from 'rxjs/operators';
 import {API_URL} from '../../injectables';
+import { leafNodes } from 'src/app/core/utils';
 @Injectable({
   providedIn: 'root'
 })
@@ -60,10 +61,10 @@ export class AppDataService {
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
+      
     }
     // Return an observable with a user-facing error message.
-    return throwError(
-      'Something bad happened; please try again later.');
+    return throwError(leafNodes(error.error));
   }
 
 }
