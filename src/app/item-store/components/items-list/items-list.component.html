@@ -25,6 +25,14 @@
     <th mat-header-cell *matHeaderCellDef> Deposer gain </th>
     <td mat-cell *matCellDef="let element"> {{element.deposer_gain | currency :'TND':'symbol':'1.0-2'}} </td>
   </ng-container>
+
+    <!-- shop_gain Column -->
+    <ng-container matColumnDef="shop_gain">
+      <th mat-header-cell *matHeaderCellDef> Shop gain </th>
+      <td mat-cell *matCellDef="let element"> {{element.initial_sale_price  - element.deposer_gain | currency :'TND':'symbol':'1.0-2'}} </td>
+    </ng-container>
+
+
   <!-- initial_sale_price Column -->
   <ng-container matColumnDef="initial_sale_price">
     <th mat-header-cell *matHeaderCellDef> Initial sale price </th>

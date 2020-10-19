@@ -21,7 +21,7 @@
 <main *ngIf="item$ |async as item">
 <ul class="list-container">
   <li  class="list-el">
-    <header class="inline">
+    <header class="inline--centred mb4">
 
       <mat-icon class="mr4">qr_code</mat-icon>
       <h3 class="mat-h3">IDENTIFICATION</h3>
@@ -54,9 +54,9 @@
     </section>
      </li>
      <li  class="list-el">
-      <header class="inline">
+      <header class="inline--centred mb4">
 
-        <mat-icon class="mr4">qr_code</mat-icon>
+        <mat-icon class="mr4">face</mat-icon>
         <h3 class="mat-h3">DEPOSER</h3>
       </header>
       <section class="el__content">
@@ -83,7 +83,7 @@
       </section>
        </li>
        <li *ngIf="item.buyer" class="list-el">
-        <header class="inline">
+        <header class="inline--centred mb4">
 
           <mat-icon class="mr4">money</mat-icon>
           <h3 class="mat-h3">SELL</h3>

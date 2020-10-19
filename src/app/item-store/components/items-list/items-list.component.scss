@@ -1,7 +1,11 @@
 table {
-  min-width: 1200px;
+  min-width: 1400px;
   width: 100%;
   overflow-x: auto;
+}
+.mat-column-label {
+  max-width: 160px;
+  text-overflow: ellipsis;
 }
 .item-stream--small-width {
   display: none;
