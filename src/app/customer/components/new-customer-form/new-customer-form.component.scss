@@ -4,20 +4,20 @@
     margin: 0 auto;
     overflow: hidden;
     padding: 3rem;
-    border: 1px solid $extreme-light-grey-color;
+    border: 1px solid $light-grey-color;
     border-radius: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
     column-gap: 1rem;
     row-gap: 1.5rem;
-    grid-template-areas: 
+    grid-template-areas:
     "email email civility id_ref"
     "first-name first-name last-name last-name"
     "phone adress adress adress"
     ". button button .";
     @media only screen and (max-width: 1024px) {
-        grid-template-areas: 
+        grid-template-areas:
         "email email email id_ref"
         "civility first-name first-name first-name"
         "last-name last-name last-name last-name"
@@ -25,14 +25,17 @@
         ". button button .";
     }
     @media only screen and (max-width: 520px) {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: 
-        "email email"
-        "civility id_ref"
-        "last-name first-name"
-        "adress adress"
-        "phone phone "
-        "button button";    
+        padding: 1rem;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "email"
+        "id_ref"
+        "civility"
+        "first-name"
+        "last-name"
+        "phone"
+        "adress"
+        "button";
     }
 }
 .field-last-name {
@@ -59,4 +62,7 @@
 }
 .field-id_ref {
     grid-area:id_ref ;
+}
+mat-form-field {
+  width: 100%;
 }

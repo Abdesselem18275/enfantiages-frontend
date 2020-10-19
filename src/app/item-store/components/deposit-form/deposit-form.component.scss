@@ -22,14 +22,19 @@ mat-form-field {
 }.form__sub-group__close:hover {
     opacity: 1;
 }
+.sub-form__container {
+  border : 1px solid $light-grey-color;
+  border-radius: 10px;
+  padding: 1rem;
+}
 .sub-form {
     display: flex;
-    border-left: 3px solid mat-color($enfantiages-app-accent);
     mat-form-field {
         margin:0 1rem ;
     }
     @media only screen and (max-width: 840px) {
         flex-direction: column;
+
         mat-form-field {
             margin:1rem 0 ;
 

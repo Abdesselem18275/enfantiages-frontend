@@ -28,28 +28,32 @@
     </header>
     <section class="el__content">
       <div>
-        <label class="mat-body">Reference</label>
+        <label class="mat-body-2">Reference</label>
         <p class="mat-body font--dark-grey">{{item.reference}}</p>
       </div>
       <div>
-        <label class="mat-body">Label</label>
+        <label class="mat-body-2">Label</label>
         <p class="mat-body font--dark-grey">{{item.label}}</p>
       </div>
       <div>
-        <label class="mat-body">Status</label>
+        <label class="mat-body-2">Status</label>
         <p class="mat-body font--dark-grey">{{item.state}}</p>
       </div>
       <div>
-        <label class="mat-body">Desposition date</label>
+        <label class="mat-body-2">Desposition date</label>
         <p class="mat-body font--dark-grey">{{item.deposition_date | date}}</p>
       </div>
       <div>
-        <label class="mat-body">Predifined sale price</label>
+        <label class="mat-body-2">Predifined sale price</label>
         <p class="mat-body font--dark-grey">{{item.initial_sale_price | currency :'TND'}}</p>
       </div>
       <div>
-        <label class="mat-body">Gain ratio</label>
+        <label class="mat-body-2">Gain ratio</label>
         <p class="mat-body font--dark-grey">{{item.intial_gain_ratio | percent}}</p>
+      </div>
+      <div>
+        <label class="mat-body-2">Shop Gain</label>
+        <p class="mat-body font--dark-grey">{{item.initial_sale_price - item.deposer_gain  | currency :'TND'}}</p>
       </div>
     </section>
      </li>
@@ -61,24 +65,25 @@
       </header>
       <section class="el__content">
         <div>
-          <label class="mat-body">First name</label>
-          <p class="mat-body font--dark-grey">{{item.deposer.first_name}}</p>
+          <label class="mat-body-2">Name</label>
+          <p class="mat-body font--dark-grey"> {{item.deposer.civility   |titlecase}} {{item.deposer.first_name|titlecase}} {{item.deposer.last_name|titlecase}}</p>
         </div>
         <div>
-          <label class="mat-body">Last name</label>
-          <p class="mat-body font--dark-grey">{{item.deposer.last_name}}</p>
+          <label class="mat-body-2">Email</label>
+          <p class="mat-body font--dark-grey">{{item.deposer.email|titlecase}}</p>
         </div>
         <div>
-          <label class="mat-body">Email</label>
-          <p class="mat-body font--dark-grey">{{item.deposer.email}}</p>
+          <label class="mat-body-2">Id reference</label>
+          <p class="mat-body font--dark-grey">{{item.deposer.id_reference}}</p>
         </div>
+
         <div>
-          <label class="mat-body">Phone number</label>
-          <p class="mat-body font--dark-grey">0021650749854</p>
+          <label class="mat-body-2">Phone number</label>
+          <p class="mat-body font--dark-grey">{{item.deposer.phone_number}}</p>
         </div>
         <div class="property__stretch">
-          <label class="mat-body">Adress</label>
-          <p class="mat-body font--dark-grey">1 Impasse moussa ibn noussair menzah 5</p>
+          <label class="mat-body-2">Adress</label>
+          <p class="mat-body font--dark-grey">{{item.deposer.adress}}</p>
         </div>
       </section>
        </li>
@@ -90,15 +95,15 @@
         </header>
         <section class="el__content">
           <div>
-            <label class="mat-body">Buyer</label>
+            <label class="mat-body-2">Buyer</label>
             <p class="mat-body font--dark-grey">{{item.buyer.first_name}} {{item.buyer.last_name}}</p>
           </div>
           <div>
-            <label class="mat-body">Sale date</label>
+            <label class="mat-body-2">Sale date</label>
             <p class="mat-body font--dark-grey">{{item.sale_date |date}}</p>
           </div>
           <div>
-            <label class="mat-body">Real sale price</label>
+            <label class="mat-body-2">Real sale price</label>
             <p class="mat-body font--dark-grey">{{item.actual_sale_price |currency:'TND'}}</p>
           </div>
         </section>
