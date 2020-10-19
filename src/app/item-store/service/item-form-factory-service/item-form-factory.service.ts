@@ -8,10 +8,10 @@ export class ItemFormFactoryService {
 
   constructor(private fb : FormBuilder) { }
 
-  getSellForm(min_price:number = 0) : FormGroup {
+  getSellForm(price :number  = null,min_price:number = 0) : FormGroup {
     return this.fb.group({
       buyer : ['',Validators.required],
-      actual_sale_price: ['', [Validators.required,Validators.min(min_price)]],
+      actual_sale_price: [price, [Validators.required,Validators.min(min_price)]],
     })
   }
   getDepositForm():FormGroup {
@@ -22,11 +22,11 @@ export class ItemFormFactoryService {
   }
   getDepositGroupForm():FormGroup {
     return this.fb.group({
-      intial_gain_ratio:[20,[Validators.required,Validators.min(0),Validators.max(100)]],
+      intial_gain_ratio:[25,[Validators.required,Validators.min(0),Validators.max(100)]],
       initial_sale_price:['',[Validators.required,Validators.min(0)]],
       label:['',[Validators.required]]
   })
-     
+
   }
   getDateRangeFilter():FormGroup {
     return this.fb.group({

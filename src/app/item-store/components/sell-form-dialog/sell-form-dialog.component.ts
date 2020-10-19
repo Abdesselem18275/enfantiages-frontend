@@ -15,9 +15,9 @@ export class SellFormDialogComponent  {
     private iffs : ItemFormFactoryService,
     public dialogRef: MatDialogRef<SellFormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {item : Item}) {
-      this.sellForm = this.iffs.getSellForm(data.item.deposer_gain)
+      this.sellForm = this.iffs.getSellForm(data.item.initial_sale_price,data.item.deposer_gain)
     }
-  
+
 
   onClose(): void {
     this.dialogRef.close();
