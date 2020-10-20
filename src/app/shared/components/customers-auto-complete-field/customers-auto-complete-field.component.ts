@@ -26,8 +26,7 @@ export class CustomersAutoCompleteFieldComponent implements OnInit {
    this.relatedFormGroup.get(this.relatedControlName).setAsyncValidators([this.customerAsyncValidator.validate.bind(this.customerAsyncValidator)])
 
     this.filteredCutomers$ = this.relatedFormGroup.get(this.relatedControlName).valueChanges.pipe(
-      debounceTime(300),
-      map(distinctUntilChanged),
+      debounceTime(200),
       map(value => value.toString().toLowerCase()),
       switchMap((value) => this.ads.get<Customer[]>('profiles/').pipe(
         map(customers =>
