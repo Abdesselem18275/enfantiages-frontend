@@ -1,4 +1,5 @@
 import { InjectionToken } from "@angular/core";
+import { InitDataService } from './shared/service/init-data.service';
 
 const APP_API_URL = () => 'http://ec2-15-188-104-88.eu-west-3.compute.amazonaws.com/enfantiages/api/';
 
@@ -21,6 +22,6 @@ export const APP_ITEM_STATE_QUERY_PARAM_KEY = new InjectionToken<string>('itemSt
   providedIn: 'root',
   factory: () =>'availability'
 });
-// export function loadInitData(configService: ConfigService) {
-//   return ():Promise<any> => configService.loadInitials();
-// }
+export function loadInitData(appInitService: InitDataService) {
+  return ():Promise<any> => appInitService.loadInitData();
+}

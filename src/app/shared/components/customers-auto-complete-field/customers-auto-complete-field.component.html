@@ -1,10 +1,17 @@
   <mat-form-field [formGroup]="relatedFormGroup" class="full-width"  appearance="outline">
     <mat-label>{{relatedControlName|titlecase}}</mat-label>
-      <mat-select [formControlName]="relatedControlName" required>
-        <mat-option *ngFor="let customer of filteredCutomers$ |async" [value]="customer.id">
-          <span>{{customer.email}} </span><span class="mat-caption">{{customer.first_name}} {{customer.last_name}} </span>
-        </mat-option>
-      </mat-select>
+    <input 
+      [matAutocomplete]="auto" 
+      [formControlName]="relatedControlName" 
+      matInput 
+      required
+      type="text"
+      placeholder="Select a customer">
+    <mat-autocomplete [displayWith]="displayFn" #auto="matAutocomplete">
+      <mat-option *ngFor="let customer of filteredCutomers$ | async" [value]="customer">
+          <small>{{customer.email}} {{customer.first_name}} {{customer.last_name}}</small>
+      </mat-option>
+    </mat-autocomplete>
       <mat-icon matPrefix>account_circle</mat-icon>
     <mat-hint class="inline--centred mat-body" align="start">
       <span class="mat-caption"> Select a {{relatedControlName}} or add one </span>

@@ -1,11 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, ControlContainer, Form, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, ControlContainer, Form, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { switchMap, map, startWith } from 'rxjs/operators';
-import { Customer } from 'src/app/core/models/profile-models';
-import { AppDataService } from '../service/app-data.service';
-import { DialogHandlerService } from '../service/dialog-handler.service';
+import { Observable, of } from 'rxjs';
+import { switchMap, map, startWith, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-customers-auto-complete-field',
@@ -16,13 +13,18 @@ export class CustomersAutoCompleteFieldComponent implements OnInit {
   @Input() relatedFormGroup : FormGroup;
   @Input() relatedControlName: string;
   filteredCutomers$ : Observable<Customer[]>
-  constructor(private router : Router,private dhs : DialogHandlerService, private ads : AppDataService) {
+  constructor(private router : Router, private ids : InitDataService) {
 
   }
 
-  ngOnInit(): void {
-    this.filteredCutomers$ = this.ads.get<Customer[]>('profiles/')
-
+  ngOnInit(): void {    
+    this.filteredCutomers$ = this.relatedFormGroup.get(this.relatedControlName).valueChanges.pipe(
+      tap(x => console.warn(this.relatedFormGroup)),
+      switchMap((value) => this.ids.customers.pipe(
+        map(customers => 
+          customers.filter((customer:Customer) =>filterOnObjectProperties(customer,value)
+          ))))
+    )
   }
   displayFn(customer: Customer): string {
     return customer && customer.first_name && customer.last_name ? customer.first_name + ' '+customer.last_name   : '';

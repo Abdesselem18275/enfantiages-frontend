@@ -1,0 +1,36 @@
+import { Directive, forwardRef, Injectable } from '@angular/core';
+import { AbstractControl, AsyncValidator, NG_ASYNC_VALIDATORS, ValidationErrors } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { isCustomerGuard } from 'src/app/core/models/profile-models';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CustomerAsyncValidator implements AsyncValidator {
+
+  constructor() { }
+  validate(control: AbstractControl): Promise<ValidationErrors> | Observable<ValidationErrors> {
+    return isCustomerGuard(control.value) ? of({'valid customer':true}) : of(null) 
+  }
+}
+
+@Directive({
+  selector: '[appValidCustomer]',
+  providers: [
+    {
+      provide: NG_ASYNC_VALIDATORS,
+      useExisting: forwardRef(() => CustomerAsyncValidator),
+      multi: true
+    }
+  ]
+})
+export class ValidCustomerDirective {
+
+  constructor(private validator: CustomerAsyncValidator) {
+
+   }
+
+   validate(control: AbstractControl) {
+    this.validator.validate(control);
+  }
+}

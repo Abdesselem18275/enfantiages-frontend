@@ -6,6 +6,7 @@ import { pipe } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Customer } from 'src/app/core/models/profile-models';
 import { AppDataService } from 'src/app/shared/service/app-data.service';
+import { InitDataService } from 'src/app/shared/service/init-data.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { AppDataService } from 'src/app/shared/service/app-data.service';
 })
 export class NewCustomerFormComponent implements OnInit {
   customerForm : FormGroup
-  constructor(private router: Router,private _snackBar: MatSnackBar, private ads :AppDataService, private fb : FormBuilder) {
+  constructor(private ids :InitDataService  ,private router: Router,private _snackBar: MatSnackBar, private ads :AppDataService, private fb : FormBuilder) {
     this.customerForm = this.fb.group({
       email:['',[Validators.required,Validators.email]],
       first_name:['',Validators.required],
@@ -38,6 +39,7 @@ export class NewCustomerFormComponent implements OnInit {
     if(this.customerForm.valid) {
       this.ads.post<{token:string,profile:Customer}>('profiles/',JSON.stringify(this.customerForm.value)).
       pipe(take(1)).subscribe((customer:{token:string,profile:Customer})=> {
+        this.ids.addCustomer(customer.profile)
         this.router.navigate(['item-store'])
         this._snackBar.open(`Customer ${customer.profile.first_name} ${customer.profile.last_name} added`,'', {
         duration: 3000,
