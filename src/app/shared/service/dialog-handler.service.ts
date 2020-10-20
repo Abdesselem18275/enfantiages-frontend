@@ -26,6 +26,7 @@ export class DialogHandlerService {
       filter(result => result ? true : false),
       map(result => JSON.stringify({
         ...result,
+        buyer: result["buyer"] ? result["buyer"].id : null,
         sale_date : new Date().toISOString()
       },sellFormValuereplacer)),
       switchMap(result => this.ads.patch<Item>('item/'+item.id.toString()+'/',result).pipe(take(1)))

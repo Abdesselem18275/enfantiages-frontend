@@ -10,3 +10,6 @@ export interface Customer {
 }
 
 export type Civility = 'Mr' | 'Mme'
+export function isCustomerGuard(value: any): value is Customer {
+  return (value as Customer).email !== undefined;
+}

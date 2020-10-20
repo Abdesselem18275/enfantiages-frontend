@@ -20,3 +20,9 @@ export const sellFormValuereplacer = (key, value) => {
     });
     return leaf;
   }
+
+  export const filterOnObjectProperties = <T>(obj:T,value:any):boolean => 
+    (Object.values(obj).find(_value => 
+      typeof _value === 'string' ? _value.includes(value) : false ))
+
+  
