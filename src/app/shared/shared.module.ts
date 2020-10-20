@@ -7,7 +7,8 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
 import {NotFountComponent} from './components/not-found/not-fount.component';
 import { ValidCustomerDirective } from './directive/valid-customer.directive';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-
+import { CustomersAutoCompleteFieldComponent}  from './components/customers-auto-complete-field/customers-auto-complete-field.component';
+import { SearchBoxComponent } from './components/search-box/search-box.component';
 @NgModule({
   declarations: [NavBarComponent, CustomersAutoCompleteFieldComponent, SearchBoxComponent, SideNavComponent, NotFountComponent, ValidCustomerDirective],
   imports: [

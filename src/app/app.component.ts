@@ -18,7 +18,10 @@ export class AppComponent implements AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.router.events.subscribe(() => {
-      this.drawer.close()
+      if(this.drawer) {
+        this.drawer.close()
+
+      }
    });
   }
   toggleSideNav() {

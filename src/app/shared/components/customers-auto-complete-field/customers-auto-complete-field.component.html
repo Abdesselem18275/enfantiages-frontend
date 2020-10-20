@@ -1,9 +1,9 @@
   <mat-form-field [formGroup]="relatedFormGroup" class="full-width"  appearance="outline">
     <mat-label>{{relatedControlName|titlecase}}</mat-label>
-    <input 
-      [matAutocomplete]="auto" 
-      [formControlName]="relatedControlName" 
-      matInput 
+    <input
+      [matAutocomplete]="auto"
+      [formControlName]="relatedControlName"
+      matInput
       required
       type="text"
       placeholder="Select a customer">
@@ -13,9 +13,17 @@
       </mat-option>
     </mat-autocomplete>
       <mat-icon matPrefix>account_circle</mat-icon>
+      <mat-icon matSuffix  class="ml2 cursor--pointer" (click)="openCustomerFormNewTab()" target="_blank" [routerLink]="['/customer']">person_add</mat-icon>
     <mat-hint class="inline--centred mat-body" align="start">
       <span class="mat-caption"> Select a {{relatedControlName}} or add one </span>
-        <mat-icon class="ml2 cursor--pointer" (click)="openCustomerFormNewTab()" target="_blank" [routerLink]="['/customer']">person_add</mat-icon>
     </mat-hint>
+    <mat-error *ngIf="customer.invalid">
+      <div *ngIf="customer.errors?.validCustomer">
+        This customer does not exist
+      </div>
+      <div *ngIf="customer.errors.required && (customer.dirty || customer.touched)">
+        This is a required field
+      </div>
+    </mat-error>
   </mat-form-field>
 

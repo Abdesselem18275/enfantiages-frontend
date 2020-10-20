@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -13,6 +13,7 @@ import { ItemFormFactoryService } from '../../service/item-form-factory-service/
 export class ItemsFilterComponent  {
   filterForm : FormGroup
   formSubscription : Subscription
+  @Output() activeFilterControls  = new EventEmitter<number>()
   constructor(private router: Router,private iffs : ItemFormFactoryService,private route:  ActivatedRoute) {
     this.filterForm = this.iffs.getDateRangeFilter()
 
@@ -34,12 +35,12 @@ export class ItemsFilterComponent  {
       Object.keys(x).forEach(key => {
         x[key] = x[key] && typeof(x[key])!=='string' ? x[key].format('YYYY-MM-DD') : x[key];
       })
-  
+
       // x = {...Object.keys(x).reduce((acc,actual) => ({
       //   ...acc,
       //   [actual] : Array.isArray(x[actual]) ? x[actual].join(',') : x[actual]
       // }),{})}
-  
+
        const navExtra : NavigationExtras = {
         queryParams : {
           ...x
@@ -48,6 +49,6 @@ export class ItemsFilterComponent  {
       }
       this.router.navigate(['/item-store/items-viewer'],navExtra)
     }
-  
-  } 
+
+  }
 }

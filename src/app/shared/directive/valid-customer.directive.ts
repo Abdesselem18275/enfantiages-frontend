@@ -10,10 +10,11 @@ export class CustomerAsyncValidator implements AsyncValidator {
 
   constructor() { }
   validate(control: AbstractControl): Promise<ValidationErrors> | Observable<ValidationErrors> {
-    return isCustomerGuard(control.value) ? of({'valid customer':true}) : of(null) 
+    console.warn(isCustomerGuard(control.value) )
+    return isCustomerGuard(control.value) ? of(null) : of({'validCustomer':true})
   }
 }
-
+/* For template driven forms */
 @Directive({
   selector: '[appValidCustomer]',
   providers: [
