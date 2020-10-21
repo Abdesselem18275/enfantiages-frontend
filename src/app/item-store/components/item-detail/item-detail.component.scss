@@ -28,7 +28,7 @@
     }
     .el__content {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: repeat(3,1fr);
       column-gap: 1rem;
       .property__stretch {
         grid-column-start : span 2;

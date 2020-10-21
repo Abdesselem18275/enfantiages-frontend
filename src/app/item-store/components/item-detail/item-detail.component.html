@@ -35,33 +35,26 @@
         <label class="mat-body-2">Label</label>
         <p class="mat-body font--dark-grey">{{item.label}}</p>
       </div>
+
       <div>
         <label class="mat-body-2">Status</label>
         <p class="mat-body font--dark-grey">{{item.state}}</p>
       </div>
       <div>
-        <label class="mat-body-2">Desposition date</label>
-        <p class="mat-body font--dark-grey">{{item.deposition_date | date}}</p>
-      </div>
+        <label class="mat-body-2">Brand</label>
+        <p class="mat-body font--dark-grey">{{item.brand}}</p>
+      </div>  
       <div>
-        <label class="mat-body-2">Predifined sale price</label>
-        <p class="mat-body font--dark-grey">{{item.initial_sale_price | currency :'TND'}}</p>
-      </div>
-      <div>
-        <label class="mat-body-2">Gain ratio</label>
-        <p class="mat-body font--dark-grey">{{item.intial_gain_ratio | percent}}</p>
-      </div>
-      <div>
-        <label class="mat-body-2">Shop Gain</label>
-        <p class="mat-body font--dark-grey">{{item.initial_sale_price - item.deposer_gain  | currency :'TND'}}</p>
-      </div>
+        <label class="mat-body-2">Size</label>
+        <p class="mat-body font--dark-grey">{{item.size}}</p>
+      </div>  
     </section>
      </li>
      <li  class="list-el">
       <header class="inline--centred mb4">
 
-        <mat-icon class="mr4">face</mat-icon>
-        <h3 class="mat-h3">DEPOSER</h3>
+        <mat-icon class="mr4">input</mat-icon>
+        <h3 class="mat-h3">DEPOSITION</h3>
       </header>
       <section class="el__content">
         <div>
@@ -69,21 +62,20 @@
           <p class="mat-body font--dark-grey"> {{item.deposer.civility   |titlecase}} {{item.deposer.first_name|titlecase}} {{item.deposer.last_name|titlecase}}</p>
         </div>
         <div>
-          <label class="mat-body-2">Email</label>
-          <p class="mat-body font--dark-grey">{{item.deposer.email|titlecase}}</p>
+          <label class="mat-body-2">Desposition date</label>
+          <p class="mat-body font--dark-grey">{{item.deposition_date | date}}</p>
         </div>
         <div>
-          <label class="mat-body-2">Id reference</label>
-          <p class="mat-body font--dark-grey">{{item.deposer.id_reference}}</p>
+          <label class="mat-body-2">Predifined sale price</label>
+          <p class="mat-body font--dark-grey">{{item.initial_sale_price | currency :'TND'}}</p>
         </div>
-
         <div>
-          <label class="mat-body-2">Phone number</label>
-          <p class="mat-body font--dark-grey">{{item.deposer.phone_number}}</p>
+          <label class="mat-body-2">Gain ratio</label>
+          <p class="mat-body font--dark-grey">{{item.intial_gain_ratio | percent}}</p>
         </div>
-        <div class="property__stretch">
-          <label class="mat-body-2">Adress</label>
-          <p class="mat-body font--dark-grey">{{item.deposer.adress}}</p>
+        <div>
+          <label class="mat-body-2">Shop Gain</label>
+          <p class="mat-body font--dark-grey">{{item.initial_sale_price - item.deposer_gain  | currency :'TND'}}</p>
         </div>
       </section>
        </li>
@@ -95,7 +87,7 @@
         </header>
         <section class="el__content">
           <div>
-            <label class="mat-body-2">Buyer</label>
+            <label class="mat-body-2 property__stretch">Buyer</label>
             <p class="mat-body font--dark-grey">{{item.buyer.first_name}} {{item.buyer.last_name}}</p>
           </div>
           <div>
