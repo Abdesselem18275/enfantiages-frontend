@@ -14,7 +14,7 @@ import { ItemFormFactoryService } from '../../service/item-form-factory-service/
   templateUrl: './deposit-form.component.html',
   styleUrls: ['./deposit-form.component.scss']
 })
-export class DepositFormComponent implements OnInit {
+export class DepositFormComponent  {
   depositForm : FormGroup
   sizes$ : Observable<Size[]>
   brands$ : Observable<Brand[]>
@@ -24,14 +24,18 @@ export class DepositFormComponent implements OnInit {
     this.brands$ = this.ids.brands
    }
 
-  ngOnInit(): void {
+  getBrandControl(index : number):AbstractControl {
+    return this.depositArray.at(index).get('brand')
   }
 
-  getDepositArray(): any[] {
-    return (this.depositForm.get('depositGroup') as FormArray).controls
+  get depositFormGroups() : FormGroup[] {
+    return (this.depositArray.controls as FormGroup[])
+  }
+  get depositArray(): FormArray {
+    return (this.depositForm.get('depositGroup') as FormArray)
   }
   pushDepositForm():void {
-    (this.depositForm.get('depositGroup') as FormArray).push(this.iffs.getDepositGroupForm())
+    this.depositArray.push(this.iffs.getDepositGroupForm())
   }
   removeDepositForm(index:number):void {
     if(this.itemsNumber() < 2) {

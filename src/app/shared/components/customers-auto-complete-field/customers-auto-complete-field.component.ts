@@ -17,14 +17,15 @@ import { InitDataService } from '../../service/init-data.service';
 export class CustomersAutoCompleteFieldComponent implements OnInit {
   @Input() relatedFormGroup : FormGroup;
   @Input() relatedControlName: string;
+
   filteredCutomers$ : Observable<Customer[]>
-  constructor(private customerAsyncValidator: CustomerAsyncValidator,private router : Router, private ads : AppDataService) {
+  constructor(private router : Router, private ads : AppDataService) {
 
   }
 
   ngOnInit(): void {
-   this.relatedFormGroup.get(this.relatedControlName).setAsyncValidators([this.customerAsyncValidator.validate.bind(this.customerAsyncValidator)])
 
+    
     this.filteredCutomers$ = this.relatedFormGroup.get(this.relatedControlName).valueChanges.pipe(
       debounceTime(200),
       map(value => value.toString().toLowerCase()),

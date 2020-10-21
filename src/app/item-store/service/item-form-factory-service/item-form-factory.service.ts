@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { CustomerAsyncValidator } from 'src/app/shared/directive/valid-customer.directive';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemFormFactoryService {
 
-  constructor(private fb : FormBuilder) { }
+  constructor(private customerAsyncValidator: CustomerAsyncValidator,private fb : FormBuilder) { }
 
   getSellForm(price :number  = null,min_price:number = 0) : FormGroup {
     return this.fb.group({
-      buyer : ['',Validators.required],
+      buyer : ['',Validators.required,[this.customerAsyncValidator.validate.bind(this.customerAsyncValidator)]],
       actual_sale_price: [price, [Validators.required,Validators.min(min_price)]],
     })
   }
   getDepositForm():FormGroup {
     return this.fb.group({
-      deposer : ['',Validators.required],
+      deposer : ['',Validators.required,[this.customerAsyncValidator.validate.bind(this.customerAsyncValidator)]],
       depositGroup: this.fb.array([this.getDepositGroupForm()]),
     })
   }
