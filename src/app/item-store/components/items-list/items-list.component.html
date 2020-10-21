@@ -13,12 +13,21 @@
       {{element.label | titlecase}}
     </td>
   </ng-container>
-
-  <!-- deposer Column -->
-  <ng-container matColumnDef="deposer">
-    <th mat-header-cell *matHeaderCellDef> deposer </th>
-    <td mat-cell *matCellDef="let element"> {{element.deposer.first_name | titlecase}} {{element.deposer.last_name| titlecase}} </td>
+  <!-- label Column -->
+  <ng-container matColumnDef="brand">
+    <th mat-header-cell *matHeaderCellDef> Brand </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.brand | titlecase}}
+    </td>
   </ng-container>
+  <!-- label Column -->
+  <ng-container matColumnDef="size">
+    <th mat-header-cell *matHeaderCellDef> Size </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.size | titlecase}}
+    </td>
+  </ng-container>
+
 
   <!-- operational_impact Column -->
   <ng-container matColumnDef="deposer_gain">
@@ -41,8 +50,13 @@
   <!-- deposition_date Column -->
   <ng-container matColumnDef="deposition_date">
     <th mat-header-cell *matHeaderCellDef> Deposition date </th>
-    <td mat-cell *matCellDef="let element"> {{element.deposition_date | date:'medium'}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.deposition_date | date:'short'}} </td>
   </ng-container>
+    <!-- deposer Column -->
+    <ng-container matColumnDef="deposer">
+      <th mat-header-cell *matHeaderCellDef> deposer </th>
+      <td mat-cell *matCellDef="let element"> {{element.deposer.first_name | titlecase}} {{element.deposer.last_name| titlecase}} </td>
+    </ng-container>
     <!-- buyer Column -->
     <ng-container matColumnDef="buyer">
       <th mat-header-cell *matHeaderCellDef> Buyer </th>
@@ -67,7 +81,7 @@
       <td mat-cell *matCellDef="let element">
         <ng-container *ngIf="element.sale_date else noData">
 
-        {{element.sale_date | date:'medium'}}
+        {{element.sale_date | date:'short'}}
         </ng-container>
     </td>
     </ng-container>
@@ -98,10 +112,10 @@
   [routerLink]="['./', { outlets: { itemContentOutlet: ['item-detail',item.id] } }]"
   *ngFor="let item of items$ | async">
     <p class="mat-body-2" matLine>{{item.reference}} </p>
-    <p class="mat-caption" matLine>{{item.label}} </p>
-    <p class="mat-caption" matLine>{{item.deposer.first_name}} {{item.deposer.last_name}} </p>
+    <p class="mat-caption" matLine>{{item.brand}} </p>
+    <p class="mat-caption" matLine>{{item.size}} </p>
     <div class="meta-content mat-caption">
-      <p>{{item.deposition_date | date:'mediumDate'}}</p>
+      <p>{{item.deposition_date | date:'short'}}</p>
       <p>{{item.initial_sale_price | currency :'TND':'symbol':'1.0-2' }}</p>
     </div>
     <mat-divider></mat-divider>

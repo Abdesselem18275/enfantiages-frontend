@@ -12,7 +12,7 @@ import { debounceTime, switchMap } from 'rxjs/operators';
 })
 export class ItemsListComponent  {
   items$ : Observable<Item[]>
-  displayedColumns = ['reference','label','deposer','initial_sale_price','shop_gain','deposer_gain','deposition_date','actual_sale_price','buyer','sale_date','action']
+  displayedColumns = ['reference','label','brand','size','initial_sale_price','shop_gain','deposer_gain','deposition_date','deposer','actual_sale_price','buyer','sale_date','action']
   constructor(private route : ActivatedRoute,  private dhs: DialogHandlerService,private ads : AppDataService) {
     this.items$ = this.route.queryParamMap.pipe(
       debounceTime(200),
