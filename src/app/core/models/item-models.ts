@@ -12,10 +12,21 @@ export interface Item {
   actual_sale_price: number,
   deposer : Customer,
   buyer : Customer,
-  state: string
+  state: string,
+  brand: string,
+  size: string,
 }
 export enum ItemState {
   SOLD = 'SO',
   AVAILABLE ='AV',
   ALL = ''
+}
+export interface Brand {
+  id : number,
+  label : string
+}
+export interface Size {
+  id : number,
+  months : number,
+  label : string
 }

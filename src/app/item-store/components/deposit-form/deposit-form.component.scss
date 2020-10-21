@@ -28,16 +28,24 @@ mat-form-field {
   padding: 1rem;
 }
 .sub-form {
-    display: flex;
-    mat-form-field {
-        margin:0 1rem ;
-    }
-    @media only screen and (max-width: 840px) {
-        flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    grid-template-areas: 
+    "label label size price gain";
+  
+}
+.field-label {
+  grid-area:label ;
+}
+.field-price {
+    grid-area:price ;
+}
+.field-gain {
+    grid-area:gain ;
 
-        mat-form-field {
-            margin:1rem 0 ;
-
-        }
-    }
+}
+.size-field {
+    grid-area:size;
 }

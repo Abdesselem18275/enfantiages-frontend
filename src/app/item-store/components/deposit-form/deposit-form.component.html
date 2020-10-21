@@ -22,21 +22,29 @@
                 </button>
             </header>
         <form class="sub-form"  [formGroup]="depoForm">
-            <mat-form-field appearance="outline" class="full-width">
+            <mat-form-field appearance="outline" class="field-label full-width">
                 <mat-label>Label</mat-label>
                 <input type="text" required formControlName="label" matInput>
                 <mat-hint align="start">Item Label</mat-hint>
 
               </mat-form-field>
-            <mat-form-field appearance="outline" class="full-width">
+            <mat-form-field appearance="outline" class="field-price full-width">
                 <mat-label>Initial sale price</mat-label>
                 <input  min="0" type="number" required formControlName="initial_sale_price" matInput>
               </mat-form-field>
-              <mat-form-field appearance="outline" class="full-width">
+              <mat-form-field appearance="outline" class="field-gain full-width">
                 <mat-label>Gain ratio</mat-label>
                 <input min="0" max="100" type="number" required formControlName="intial_gain_ratio" matInput>
                 <mat-hint align="start">Percentage of the item sale gain</mat-hint>
               </mat-form-field>
+              <mat-form-field class="size-field" appearance="outline">
+                <mat-label>Size</mat-label>
+                <mat-select formControlName="size" required>
+                  <mat-option *ngFor="let size of sizes$ | async" [value]="size.label">
+                    {{size.label}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>              
         </form>
     </div>
 

@@ -24,7 +24,9 @@ export class ItemFormFactoryService {
     return this.fb.group({
       intial_gain_ratio:[25,[Validators.required,Validators.min(0),Validators.max(100)]],
       initial_sale_price:['',[Validators.required,Validators.min(0)]],
-      label:['',[Validators.required]]
+      label:['',[Validators.required]],
+      brand:['',[Validators.required]],
+      size:['',[Validators.required]]
   })
 
   }

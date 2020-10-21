@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormArray, FormGroup } from '@angular/forms';
+import { AbstractControl, Form, FormArray, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
-import { Item } from 'src/app/core/models/item-models';
+import { Brand, Item, Size } from 'src/app/core/models/item-models';
 import { AppDataService } from 'src/app/shared/service/app-data.service';
+import { InitDataService } from 'src/app/shared/service/init-data.service';
 import { ItemFormFactoryService } from '../../service/item-form-factory-service/item-form-factory.service';
 
 @Component({
@@ -14,8 +16,12 @@ import { ItemFormFactoryService } from '../../service/item-form-factory-service/
 })
 export class DepositFormComponent implements OnInit {
   depositForm : FormGroup
-  constructor(private router :Router,private ads : AppDataService, private _snackBar: MatSnackBar,private iffs : ItemFormFactoryService) {
+  sizes$ : Observable<Size[]>
+  brands$ : Observable<Brand[]>
+  constructor(private ids : InitDataService, private router :Router,private ads : AppDataService, private _snackBar: MatSnackBar,private iffs : ItemFormFactoryService) {
     this.depositForm = this.iffs.getDepositForm()
+    this.sizes$ = this.ids.sizes
+    this.brands$ = this.ids.brands
    }
 
   ngOnInit(): void {

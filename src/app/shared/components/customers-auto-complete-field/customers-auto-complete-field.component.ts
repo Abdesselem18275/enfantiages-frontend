@@ -28,10 +28,7 @@ export class CustomersAutoCompleteFieldComponent implements OnInit {
     this.filteredCutomers$ = this.relatedFormGroup.get(this.relatedControlName).valueChanges.pipe(
       debounceTime(200),
       map(value => value.toString().toLowerCase()),
-      switchMap((value) => this.ads.get<Customer[]>('profiles/').pipe(
-        map(customers =>
-          customers.filter((customer:Customer) =>filterOnObjectProperties(customer,value)
-          ))))
+      switchMap((value) => this.ads.get<Customer[]>('profiles/',new Map().set('search',[value])))
     )
   }
   displayFn(customer: Customer): string {
