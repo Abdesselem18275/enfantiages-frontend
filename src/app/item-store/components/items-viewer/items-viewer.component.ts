@@ -2,7 +2,10 @@ import { ViewChild } from '@angular/core';
 import { AfterViewInit, Component, ContentChild, OnInit } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Item } from 'src/app/core/models/item-models';
 import { sideTranslateAnimation } from '../../../animations';
+import { ItemStoreStateService } from '../../service/item-store-state.service';
 @Component({
   selector: 'app-items-viewer',
   templateUrl: './items-viewer.component.html',
@@ -13,8 +16,11 @@ import { sideTranslateAnimation } from '../../../animations';
 })
 export class ItemsViewerComponent implements OnInit,AfterViewInit {
   isFilterActive: boolean
+  selectedItems$: Observable<Item[]>
   @ViewChild('drawer') drawer : MatDrawer
-  constructor(private router : Router,private route : ActivatedRoute) { }
+  constructor(private iss :ItemStoreStateService, private router : Router,private route : ActivatedRoute) {
+   this.selectedItems$ = this.iss.selectedItems
+   }
   ngAfterViewInit(): void {
     this.router.events.subscribe((val) => {
      this.drawer.close()

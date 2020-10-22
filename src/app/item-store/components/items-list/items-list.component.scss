@@ -3,6 +3,10 @@ table {
   width: 100%;
   overflow-x: auto;
 }
+.mat-column-select {
+  overflow: initial;
+  width: 4rem;
+}
 .mat-column-label {
   max-width: 160px;
   text-overflow: ellipsis;
