@@ -9,6 +9,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSelectionListChange } from '@angular/material/list';
 @Component({
   selector: 'app-items-list',
   templateUrl: './items-list.component.html',
@@ -54,9 +55,21 @@ export class ItemsListComponent implements OnDestroy  {
         this.itemsDataSource.data.forEach(row => this.selection.select(row));
   }
   rowSelectionChange(event,row):void {
+    console.warn(event)
     if (event) {
       this.selection.toggle(row) 
-      this.iss.setSelectedItems(this.selection.selected)
     }
+    this.iss.setSelectedItems(this.selection.selected)
+  }
+  masterSelectionChange(event) {
+    if (event) {
+      this.masterToggle() 
+    }
+    this.iss.setSelectedItems(this.selection.selected)
+
+  }
+  updateSelection(event :MatSelectionListChange) {
+    console.warn(event.source.selectedOptions)
+
   }
 }

@@ -1,6 +1,6 @@
 <header class="mb4 global--gutters inline--centred--spaced non-printable">
     <h3  class="mat-h3">{{(itemTickets$ | async).length}} item tickets to print</h3>
-        <button (click)="print()"mat-button>
+        <button color="primary" (click)="print()"mat-flat-button>
             <mat-icon class="mr4">print</mat-icon>
             <span>PRINT</span>
         </button>

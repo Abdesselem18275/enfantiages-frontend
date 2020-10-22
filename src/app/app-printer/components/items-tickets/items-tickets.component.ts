@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Item } from 'src/app/core/models/item-models';
-import { AppDataService } from 'src/app/shared/service/app-data.service';
+import { ItemStoreStateService } from 'src/app/item-store/service/item-store-state.service';
 
 @Component({
   selector: 'app-items-tickets',
@@ -11,8 +11,8 @@ import { AppDataService } from 'src/app/shared/service/app-data.service';
 })
 export class ItemsTicketsComponent implements OnInit {
   itemTickets$  :Observable<Item[]>
-  constructor(route: ActivatedRoute, private ads  :AppDataService) { 
-    this.itemTickets$ = this.ads.get<Item[]>('items/')
+  constructor(private iss :ItemStoreStateService) { 
+    this.itemTickets$ = this.iss.selectedItems
   }
 
   ngOnInit(): void {

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AppPrinterComponent } from './components/app-printer/app-printer.component';
 import { ItemsTicketsComponent } from './components/items-tickets/items-tickets.component';
-
+import { CanPrintTicketsGuard} from './guards/can-print-tickets.guard'
 const routes: Routes = [{ 
   path: '', 
   component: AppPrinterComponent,
@@ -15,6 +15,7 @@ const routes: Routes = [{
     {
       path:'item-tickets',
       component:ItemsTicketsComponent,
+      canActivate :[CanPrintTicketsGuard]
     }
   ]
 }];
