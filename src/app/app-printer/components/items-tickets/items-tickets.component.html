@@ -10,8 +10,9 @@
 <main class="tickets-grid">
 <article class="ticket inline" *ngFor="let itemTicket of itemTickets$ | async">
     <div class="left-content column">
-        <span class="mat-h3">{{itemTicket.reference}}</span>
-        <span  class="mat-body my2">{{itemTicket.brand | titlecase}}</span>
+        <span class="mat-body">{{itemTicket.reference}}</span>
+        <span class="mat-body">{{itemTicket.label| titlecase}}</span>
+        <span  class="mat-body">{{itemTicket.brand | titlecase}}</span>
         <span  class="mat-body">{{itemTicket.size | lowercase}}</span>
 
     </div>

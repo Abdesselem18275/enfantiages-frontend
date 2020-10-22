@@ -9,7 +9,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSelectionListChange } from '@angular/material/list';
+import { MatListOption, MatSelectionListChange } from '@angular/material/list';
 @Component({
   selector: 'app-items-list',
   templateUrl: './items-list.component.html',
@@ -69,7 +69,6 @@ export class ItemsListComponent implements OnDestroy  {
 
   }
   updateSelection(event :MatSelectionListChange) {
-    console.warn(event.source.selectedOptions)
-
+    this.iss.setSelectedItems(event.option.selectionList.selectedOptions.selected.map((item:MatListOption) =>(item.value as Item )))
   }
 }

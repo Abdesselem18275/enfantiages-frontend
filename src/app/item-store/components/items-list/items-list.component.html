@@ -123,7 +123,7 @@
     (selectionChange)="updateSelection($event)"
     class="item-stream--small-width">
   <mat-list-option
-
+   [value]="item"
   *ngFor="let item of items$ | async">
     <mat-icon   queryParamsHandling="merge"
     [routerLink]="['./', { outlets: { itemContentOutlet: ['item-detail',item.id] } }]" mat-list-icon>login</mat-icon>
