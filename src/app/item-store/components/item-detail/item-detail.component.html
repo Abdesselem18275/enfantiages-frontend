@@ -67,7 +67,7 @@
         </div>
         <div>
           <label class="mat-body-2">Predifined sale price</label>
-          <p class="mat-body font--dark-grey">{{item.initial_sale_price | currency :'TND'}}</p>
+          <p class="mat-body font--dark-grey">{{item.initial_sale_price | currency :'TND':'symbol':'1.0-2'}}</p>
         </div>
         <div>
           <label class="mat-body-2">Gain ratio</label>
@@ -75,7 +75,7 @@
         </div>
         <div>
           <label class="mat-body-2">Shop Gain</label>
-          <p class="mat-body font--dark-grey">{{item.initial_sale_price - item.deposer_gain  | currency :'TND'}}</p>
+          <p class="mat-body font--dark-grey">{{item.initial_sale_price - item.deposer_gain  |currency :'TND':'symbol':'1.0-2' }}</p>
         </div>
       </section>
        </li>

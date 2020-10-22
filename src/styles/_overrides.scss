@@ -13,3 +13,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       font-size: 12px;
     }
   }
+  @media print {
+    .non-printable   { display: none; }
+  }
+  @media screen {
+    .printable   {
+      display: none; 
+    }
+
+  }
+
+  .mat-drawer-container {
+    background-color: white;
+  }

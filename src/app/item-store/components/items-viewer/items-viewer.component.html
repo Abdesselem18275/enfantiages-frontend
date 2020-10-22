@@ -2,7 +2,7 @@
 <section class="column--centred my4 p4">
   <app-items-state-toggeler></app-items-state-toggeler>
 </section>
-<section class="full-width section-frame--fill inline--centred--spaced list-action-bar">
+<section class="full-width section-frame--fill inline--centred list-action-bar">
   <button (click)="drawer.toggle()" color="primary" mat-stroked-button>
     <mat-icon class="mr2">tune</mat-icon>
     <span>Filter</span>
@@ -11,6 +11,9 @@
     <app-search-box (term)="onSearch($event)"></app-search-box>
 
   </div>
+  <button [matMenuTriggerFor]="itemListActionMenu" mat-icon-button>
+    <mat-icon>more_vert</mat-icon>
+  </button>
 </section>
 <mat-drawer-container hasBackdrop="unset">
 
@@ -23,3 +26,12 @@
   </router-outlet>
 </mat-drawer-content>
 </mat-drawer-container>
+<mat-menu #itemListActionMenu="matMenu">
+
+    <button queryParamsHandling="merge" [routerLink]="['./', { outlets: { itemContentOutlet: ['item-tickets'] } }]" mat-menu-item>
+      <mat-icon>print</mat-icon>
+      <span>Print tickets</span>
+    </button>
+
+
+</mat-menu>

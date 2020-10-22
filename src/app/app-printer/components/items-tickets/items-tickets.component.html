@@ -1,0 +1,24 @@
+<header class="mb4 global--gutters inline--centred--spaced non-printable">
+    <h3  class="mat-h3">{{(itemTickets$ | async).length}} item tickets to print</h3>
+        <button (click)="print()"mat-button>
+            <mat-icon class="mr4">print</mat-icon>
+            <span>PRINT</span>
+        </button>
+</header>
+
+
+<main class="tickets-grid">
+<article class="ticket inline" *ngFor="let itemTicket of itemTickets$ | async">
+    <div class="left-content column">
+        <span class="mat-h3">{{itemTicket.reference}}</span>
+        <span  class="mat-body my2">{{itemTicket.brand | titlecase}}</span>
+        <span  class="mat-body">{{itemTicket.size | lowercase}}</span>
+
+    </div>
+    <div class="right-content">
+        <span class="mat-body-1">{{itemTicket.initial_sale_price | currency :'TND':'symbol':'1.0-2'}}</span>
+
+    </div>
+   
+</article>
+</main>

@@ -5,7 +5,8 @@ import { NotFountComponent } from './shared/components/not-found/not-fount.compo
 const routes: Routes = [
   { path: 'item-store', loadChildren: () => import('./item-store/item-store.module').then(m => m.ItemStoreModule) },
   { path: 'customer', loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule) },
-  { path:'**',component:NotFountComponent}
+  { path: 'app-printer', loadChildren: () => import('./app-printer/app-printer.module').then(m => m.AppPrinterModule)},
+  // { path:'**',component:NotFountComponent}
 ];
 
 @NgModule({
