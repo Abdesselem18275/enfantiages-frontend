@@ -4,7 +4,7 @@
         <h3 class="font--dark-grey mat-h3">DEPOSER</h3>
     </header>
     <mat-divider></mat-divider>
-      <div class=" mt4 full-width">
+      <div class=" mt4 ">
         <app-customers-auto-complete-field relatedControlName="deposer" [relatedFormGroup]="depositForm"></app-customers-auto-complete-field>
 
       </div>
@@ -22,23 +22,23 @@
                 </button>
             </header>
         <form class="sub-form"  [formGroup]="depoForm">
-            <mat-form-field appearance="outline" class="field-label full-width">
+            <mat-form-field appearance="outline" class="field-label ">
                 <mat-label class="mat-caption">Label</mat-label>
                 <input type="text" required formControlName="label" matInput>
                 <mat-icon matPrefix>label</mat-icon>
                  
               </mat-form-field>
-            <mat-form-field appearance="outline" class="field-price full-width">
+            <mat-form-field appearance="outline" class="field-price ">
                 <mat-label class="mat-caption">Initial sale price</mat-label>
                 <input  min="0" type="number" required formControlName="initial_sale_price" matInput>
                 <mat-icon matPrefix>label</mat-icon>
               </mat-form-field>
-              <mat-form-field appearance="outline" class="field-gain full-width">
+              <mat-form-field appearance="outline" class="field-gain ">
                 <mat-label>Gain ratio</mat-label>
                 <input min="0" max="100" type="number" required formControlName="intial_gain_ratio" matInput>
                 <mat-hint align="start">Percentage of the item sale gain</mat-hint>
               </mat-form-field>
-              <mat-form-field class="size-field" appearance="outline">
+              <!-- <mat-form-field class="size-field" appearance="outline">
                 <mat-label class="mat-caption">Size</mat-label>
                 <mat-select formControlName="size" required>
                   <mat-option *ngFor="let size of sizes$ | async" [value]="size.label">
@@ -46,18 +46,43 @@
                   </mat-option>
                 </mat-select>
                 <mat-icon matPrefix>format_size</mat-icon>
-              </mat-form-field>   
+              </mat-form-field>    -->
+              <mat-form-field  class="size-field"  appearance="outline">
+                <mat-label class="mat-caption">Size</mat-label>
+                <input
+                  [matAutocomplete]="autoSize"
+                  formControlName="size"
+                  matInput
+                  required
+                  type="text"
+                  placeholder="Select size">
+                <mat-autocomplete #autoSize="matAutocomplete">
+                  <mat-option *ngFor="let size of getSizeFiltredList(i)" [value]="size.label">
+                      <span class="mat-caption">{{size.label}}</span>
+                  </mat-option>
+                </mat-autocomplete>
+                  <mat-icon matPrefix>format_size</mat-icon>
+                <mat-hint class="inline--centred mat-body" align="start">
+                  <span class="mat-caption"> Select size or add one }}  </span>
+                </mat-hint>
+                <mat-error *ngIf="getSizeControl(i).invalid && getSizeControl(i).errors.required && (getSizeControl(i).dirty || getSizeControl(i).touched)">
+                  <div >
+                    This is a required field
+                  </div>
+                </mat-error>
+              </mat-form-field>
+
               <mat-form-field  class="brand-field"  appearance="outline">
                 <mat-label class="mat-caption">Brand</mat-label>
                 <input
-                  [matAutocomplete]="auto"
+                  [matAutocomplete]="autoBrand"
                   formControlName="brand"
                   matInput
                   required
                   type="text"
-                  placeholder="Select a customer">
-                <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option *ngFor="let brand of brands$ | async" [value]="brand.label">
+                  placeholder="Select a brand">
+                <mat-autocomplete #autoBrand="matAutocomplete">
+                  <mat-option *ngFor="let brand of getBrandFiltredList(i)" [value]="brand.label">
                       <span class="mat-caption">{{brand.label}}</span>
                   </mat-option>
                 </mat-autocomplete>

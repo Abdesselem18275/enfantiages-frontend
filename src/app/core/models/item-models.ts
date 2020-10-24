@@ -27,6 +27,5 @@ export interface Brand {
 }
 export interface Size {
   id : number,
-  months : number,
   label : string
 }

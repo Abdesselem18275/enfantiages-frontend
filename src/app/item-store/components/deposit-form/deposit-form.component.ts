@@ -3,7 +3,7 @@ import { AbstractControl, Form, FormArray, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { throttleTime } from 'rxjs/operators';
+import { debounceTime, tap,map, switchMap, throttleTime, first, startWith, take } from 'rxjs/operators';
 import { Brand, Item, Size } from 'src/app/core/models/item-models';
 import { AppDataService } from 'src/app/shared/service/app-data.service';
 import { InitDataService } from 'src/app/shared/service/init-data.service';
@@ -16,18 +16,30 @@ import { ItemFormFactoryService } from '../../service/item-form-factory-service/
 })
 export class DepositFormComponent  {
   depositForm : FormGroup
-  sizes$ : Observable<Size[]>
-  brands$ : Observable<Brand[]>
+  sizes : Size[]
+  brands : Brand[]
   constructor(private ids : InitDataService, private router :Router,private ads : AppDataService, private _snackBar: MatSnackBar,private iffs : ItemFormFactoryService) {
     this.depositForm = this.iffs.getDepositForm()
-    this.sizes$ = this.ids.sizes
-    this.brands$ = this.ids.brands
+    this.ids.sizes.pipe(take(1)).subscribe(sizes => this.sizes = sizes)
+    this.ids.brands.pipe(take(1)).subscribe(brands => this.brands = brands)
    }
 
+  getSizeFiltredList(index:number):Size[] {
+    const value =  this.getSizeControl(index).value
+    return value.trim() !== "" ? 
+    this.sizes.filter(size => size.label.toLowerCase().includes(value)): this.sizes
+  }
+  getBrandFiltredList(index:number):Size[] {
+    const value =  this.getBrandControl(index).value
+    return value.trim() !== "" ? 
+    this.brands.filter(brand => brand.label.toLowerCase().includes(value)): this.brands
+  }
   getBrandControl(index : number):AbstractControl {
     return this.depositArray.at(index).get('brand')
   }
-
+  getSizeControl(index : number):AbstractControl {
+    return this.depositArray.at(index).get('size')
+  }
   get depositFormGroups() : FormGroup[] {
     return (this.depositArray.controls as FormGroup[])
   }
