@@ -27,9 +27,7 @@ export class ItemsListComponent implements OnDestroy  {
     private dhs: DialogHandlerService,
     private iss: ItemStoreStateService,
     private ads : AppDataService) {
-    this.items$ = this.route.queryParamMap.pipe(
-      debounceTime(200),
-      switchMap((paramMap:ParamMap ) => this.ads.get<Item[]>('items/',paramMap)))
+    this.items$ = iss.items
       const initialSelection = [];
       const allowMultiSelect = true;
       this.subscribtion = this.items$.subscribe(items => {this.itemsDataSource.data = items})

@@ -17,9 +17,11 @@ import { ItemStoreStateService } from '../../service/item-store-state.service';
 export class ItemsViewerComponent implements OnInit,AfterViewInit {
   isFilterActive: boolean
   selectedItems$: Observable<Item[]>
+  itemsCount$: Observable<number>;
   @ViewChild('drawer') drawer : MatDrawer
-  constructor(private iss :ItemStoreStateService, private router : Router,private route : ActivatedRoute) {
-   this.selectedItems$ = this.iss.selectedItems
+  constructor(private iss :ItemStoreStateService, private router : Router) {
+   this.selectedItems$ = this.iss.selectedItems;
+   this.itemsCount$ = this.iss.ItemsCount;
    }
   ngAfterViewInit(): void {
     this.router.events.subscribe((val) => {

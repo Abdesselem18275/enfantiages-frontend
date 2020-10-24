@@ -2,16 +2,17 @@
   <app-items-state-toggeler></app-items-state-toggeler>
 </section>
 <section class="full-width section-frame--fill inline--centred list-action-bar">
-  <button (click)="drawer.toggle()" color="primary" mat-flat-button>
-    <mat-icon class="mr2">tune</mat-icon>
-    <span>Filter</span>
-  </button>
-  <div class="search-box-container">
+
+  <span class="ml4 mat-body-2">{{itemsCount$ | async}} items</span>
+  <div class="search-box-container mr4">
     <app-search-box (term)="onSearch($event)"></app-search-box>
 
   </div>
-  <button [matMenuTriggerFor]="itemListActionMenu" mat-icon-button>
+  <button color="primary" [matMenuTriggerFor]="itemListActionMenu" mat-icon-button>
     <mat-icon>more_vert</mat-icon>
+  </button>
+  <button (click)="drawer.toggle()" color="primary" mat-icon-button>
+    <mat-icon>tune</mat-icon>
   </button>
 </section>
 <mat-drawer-container hasBackdrop="unset">
