@@ -2,26 +2,27 @@
   <app-items-state-toggeler></app-items-state-toggeler>
 </section>
 <section class="full-width section-frame--fill inline--centred list-action-bar">
-
-  <span class="ml4 mat-body-2">{{itemsCount$ | async}} items</span>
-  <div class="search-box-container mr4">
+  <button (click)="drawer.toggle()"  mat-icon-button>
+    <mat-icon>tune</mat-icon>
+  </button>
+  <span class="mat-body-2">{{itemsCount$ | async}} items</span>
+  <div class="search-box-container">
     <app-search-box (term)="onSearch($event)"></app-search-box>
 
   </div>
-  <button color="primary" [matMenuTriggerFor]="itemListActionMenu" mat-icon-button>
+  <button [matMenuTriggerFor]="itemListActionMenu" mat-icon-button>
     <mat-icon>more_vert</mat-icon>
   </button>
-  <button (click)="drawer.toggle()" color="primary" mat-icon-button>
-    <mat-icon>tune</mat-icon>
-  </button>
+ 
 </section>
 <mat-drawer-container hasBackdrop="unset">
 
-  <mat-drawer mode="over" #drawer class="p4 side-filter">
+  <mat-drawer  mode="over" #drawer class="p4 side-filter">
     <app-items-filter class="mat-elevation-z10"  ></app-items-filter>
   </mat-drawer>
 
 <mat-drawer-content class="router-content">
+  <mat-progress-bar *ngIf="IsLoading$ | async" mode="indeterminate"></mat-progress-bar>
   <router-outlet name="itemContentOutlet">
   </router-outlet>
 </mat-drawer-content>

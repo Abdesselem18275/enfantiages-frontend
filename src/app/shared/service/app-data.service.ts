@@ -2,17 +2,19 @@ import { Inject, Injectable } from '@angular/core';
 import { ParamMap } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import {API_URL} from '../../injectables';
 import { leafNodes } from 'src/app/core/utils';
+import { GlobalStateService } from './global-state.service';
 @Injectable({
   providedIn: 'root'
 })
 export class AppDataService {
 
-  constructor(@Inject(API_URL) private apiUrl: string, private http: HttpClient) {}
+  constructor(@Inject(API_URL) private apiUrl: string,private gss: GlobalStateService, private http: HttpClient) {}
 
   get<T>(endPoint: string, paramMap?: Map<string, string[]>|ParamMap): Observable<T> {
+    this.gss.setIsLoading(true);
     const query: string = [this.apiUrl, endPoint].join('');
     let options = {};
     if (paramMap) {
@@ -29,7 +31,7 @@ export class AppDataService {
 
       options = { params: httpParams };
     }
-    return this.http.get<T>(query, options);
+    return this.http.get<T>(query, options).pipe(tap(() =>this.gss.setIsLoading(false)));
   }
   post<T>(endPoint: string, payload: any): Observable<T> {
     const httpOptions = {

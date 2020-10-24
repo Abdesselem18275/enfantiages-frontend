@@ -9,7 +9,6 @@ import { Item} from '../../core/models/item-models';
 })
 export class ItemStoreStateService {
   private _selectedItemsSubject = new BehaviorSubject<Item[]>([])
-  private _items = new BehaviorSubject<Item[]>([])
   constructor(private ads : AppDataService ,private route : ActivatedRoute) {
 
   
@@ -17,6 +16,7 @@ export class ItemStoreStateService {
   setSelectedItems(items:Item[]):void {
     this._selectedItemsSubject.next(items)
   }
+ 
   get selectedItems():Observable<Item[]> {
     return this._selectedItemsSubject.asObservable()
   }
@@ -26,7 +26,7 @@ export class ItemStoreStateService {
       switchMap((paramMap:ParamMap ) => this.ads.get<Item[]>('items/',paramMap)))
   }
   get ItemsCount():Observable<number> {
-    return this.items.pipe(
+    return this.items.pipe( 
       map((items:Item[]) => items.length))
   }
 

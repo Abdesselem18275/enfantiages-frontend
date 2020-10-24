@@ -4,6 +4,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Item } from 'src/app/core/models/item-models';
+import { GlobalStateService } from 'src/app/shared/service/global-state.service';
 import { sideTranslateAnimation } from '../../../animations';
 import { ItemStoreStateService } from '../../service/item-store-state.service';
 @Component({
@@ -16,12 +17,14 @@ import { ItemStoreStateService } from '../../service/item-store-state.service';
 })
 export class ItemsViewerComponent implements OnInit,AfterViewInit {
   isFilterActive: boolean
+  IsLoading$ : Observable<boolean>
   selectedItems$: Observable<Item[]>
   itemsCount$: Observable<number>;
   @ViewChild('drawer') drawer : MatDrawer
-  constructor(private iss :ItemStoreStateService, private router : Router) {
+  constructor(private gss : GlobalStateService,private iss :ItemStoreStateService, private router : Router) {
    this.selectedItems$ = this.iss.selectedItems;
    this.itemsCount$ = this.iss.ItemsCount;
+   this.IsLoading$ = this.gss.isLoading
    }
   ngAfterViewInit(): void {
     this.router.events.subscribe((val) => {
