@@ -14,7 +14,7 @@
     grid-template-areas:
     "email email email id_ref id_ref"
     "civility first-name first-name last-name last-name"
-    "phone phone adress adress adress"
+    "phone birth adress adress adress"
     ". button button button .";
     @media only screen and (max-width: 520px) {
         padding: 1rem;
@@ -24,6 +24,7 @@
         "civility id_ref"
         "first-name last-name"
         "phone phone"
+        "birth birth"
         "adress adress"
         "button button";
     }
@@ -52,6 +53,10 @@
 }
 .field-id_ref {
     grid-area:id_ref ;
+}
+.field-birth {
+    grid-area:birth ;
+
 }
 mat-form-field {
   width: 100%;

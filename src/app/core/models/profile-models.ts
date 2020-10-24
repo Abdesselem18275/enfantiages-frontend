@@ -5,8 +5,9 @@ export interface Customer {
   last_name: string,
   civility: Civility,
   id_reference:string,
-  phone_number:string
-  adress:string
+  phone_number:string,
+  adress:string,
+  birth_date:string,
 }
 
 export type Civility = 'Mr' | 'Mme'
