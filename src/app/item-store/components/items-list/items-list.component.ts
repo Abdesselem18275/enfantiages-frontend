@@ -56,7 +56,6 @@ export class ItemsListComponent implements OnDestroy  {
         this.itemsDataSource.data.forEach(row => this.selection.select(row));
   }
   rowSelectionChange(event,row):void {
-    console.warn(event)
     if (event) {
       this.selection.toggle(row) 
     }

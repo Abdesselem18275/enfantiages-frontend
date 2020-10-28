@@ -1,0 +1,74 @@
+.edit-form {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0, 1fr));
+    grid-template-rows: auto;
+    column-gap: 1rem;
+    row-gap: 2rem;
+    grid-template-areas: 
+    "deposition-group deposition-group deposition-group"
+    "deposer    label   brand"
+    "size   price  gain"
+    "sale-group sale-group sale-group"
+    "buyer   sale-price  sale-date "
+    ". button .";
+    @media only screen and (max-width: 720px) {
+        grid-template-columns: repeat(2,minmax(0, 1fr));
+        grid-template-areas: 
+        "label label"
+        "size brand"
+        "price gain";
+      }  
+      @media only screen and (max-width: 420px) {
+        grid-template-areas: 
+        "label label"
+        "size size"
+        "brand brand"
+        "price gain";
+      }  
+}
+.field-label {
+  grid-area:label ;
+}
+.field-price {
+    grid-area:price ;
+}
+.field-gain {
+    grid-area:gain ;
+
+}
+.size-field {
+    grid-area:size;
+}
+.brand-field {
+    grid-area:brand;
+
+}
+.deposer-field {
+    grid-area: deposer;
+}
+.buyer-field {
+    grid-area: buyer;
+
+}
+.sale-price-field {
+    grid-area: sale-price;
+
+}
+.sale-date-field {
+    grid-area : sale-date;
+}
+.sale-sub-group {
+    grid-area: sale-group;
+    mat-error {
+        min-height: 1.5rem;
+    }
+}
+.deposition-sub-group {
+    grid-area: deposition-group;
+    mat-error {
+        min-height: 1.5rem;
+    }
+}
+.field-button {
+    grid-area: button;
+}

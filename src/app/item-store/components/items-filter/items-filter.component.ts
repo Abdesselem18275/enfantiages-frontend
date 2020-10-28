@@ -28,9 +28,7 @@ export class ItemsFilterComponent  {
 
    }
   onSubmit(): void {
-    console.warn(this.filterForm)
     if(this.filterForm.valid) {
-      console.warn(this.filterForm.value)
       let x = this.filterForm.value
       Object.keys(x).forEach(key => {
         x[key] = x[key] && typeof(x[key])!=='string' ? x[key].format('YYYY-MM-DD') : x[key];

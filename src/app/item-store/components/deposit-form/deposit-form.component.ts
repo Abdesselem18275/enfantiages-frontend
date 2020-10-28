@@ -66,7 +66,6 @@ export class DepositFormComponent  {
     map(obj => ({...obj,
       intial_gain_ratio : parseFloat(obj["intial_gain_ratio"])/100,
       deposer:this.depositForm.get('deposer').value.id})))
-      console.warn(formArrayValues)
     this.ads.post<Item[]>('items/',formArrayValues).pipe(throttleTime(300)).subscribe(
       (items: Item[]) => {
         this.router.navigate(['/item-store/items-viewer'])

@@ -140,7 +140,12 @@
 
     <button queryParamsHandling="merge" [routerLink]="['./', { outlets: { itemContentOutlet: ['item-detail',item.id] } }]" mat-menu-item>
       <mat-icon>list_alt</mat-icon>
-      <span>Item details</span>
+      <span>Item detail</span>
+    </button>
+    <button queryParamsHandling="merge" [routerLink]="['/item-store/items-viewer', { outlets: { itemContentOutlet: ['item-edit',item.id] } }]"
+    mat-menu-item>
+      <mat-icon>edit</mat-icon>
+      <span>Edit</span>
     </button>
     <button [disabled]="item.buyer" (click)="openItemSellDialog(item)" mat-menu-item>
       <mat-icon>point_of_sale</mat-icon>

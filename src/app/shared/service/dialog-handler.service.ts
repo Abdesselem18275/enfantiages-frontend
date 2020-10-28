@@ -64,13 +64,11 @@ export class DialogHandlerService {
         take(1),
       )))
       .subscribe((customer:{token:string,profile:Customer})=> {
-        console.warn(customer)
         this._snackBar.open(`Customer ${customer.profile.first_name} ${customer.profile.last_name} added`,'', {
         duration: 2000,
       })},
       (error) => {
         dialogRef.disableClose = false
-        console.warn(error)
   })
   }
 }

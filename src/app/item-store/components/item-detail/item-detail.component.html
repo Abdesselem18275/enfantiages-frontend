@@ -108,9 +108,9 @@
       <mat-icon>point_of_sale</mat-icon>
       <span>Sell</span>
     </button>
-    <button [disabled]="item.buyer" mat-menu-item>
-      <mat-icon>delete</mat-icon>
-      <span>Remove</span>
+    <button queryParamsHandling="merge" [routerLink]="['/item-store/items-viewer', { outlets: { itemContentOutlet: ['item-edit',item.id] } }]" mat-menu-item>
+      <mat-icon>edit</mat-icon>
+      <span>Edit</span>
     </button>
   </ng-template>
 

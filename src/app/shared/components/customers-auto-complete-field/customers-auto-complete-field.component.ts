@@ -1,13 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, ControlContainer, Form, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { switchMap, map, startWith, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { switchMap, map,debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Customer } from 'src/app/core/models/profile-models';
-import { filterOnObjectProperties } from 'src/app/core/utils';
-import { CustomerAsyncValidator } from '../../directive/valid-customer.directive';
+
 import { AppDataService } from '../../service/app-data.service';
-import { InitDataService } from '../../service/init-data.service';
 
 @Component({
   selector: 'app-customers-auto-complete-field',
@@ -17,7 +15,7 @@ import { InitDataService } from '../../service/init-data.service';
 export class CustomersAutoCompleteFieldComponent implements OnInit {
   @Input() relatedFormGroup : FormGroup;
   @Input() relatedControlName: string;
-
+  @Input() required? = true
   filteredCutomers$ : Observable<Customer[]>
   constructor(private router : Router, private ads : AppDataService) {
 

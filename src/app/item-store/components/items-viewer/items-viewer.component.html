@@ -22,7 +22,10 @@
   </mat-drawer>
 
 <mat-drawer-content class="router-content">
-  <mat-progress-bar *ngIf="IsLoading$ | async" mode="indeterminate"></mat-progress-bar>
+  <section class="prog-bar-container">
+    <mat-progress-bar *ngIf="IsLoading$ | async" mode="indeterminate"></mat-progress-bar>
+
+  </section>
   <router-outlet name="itemContentOutlet">
   </router-outlet>
 </mat-drawer-content>

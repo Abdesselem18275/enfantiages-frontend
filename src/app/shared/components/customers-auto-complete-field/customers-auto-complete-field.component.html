@@ -4,7 +4,7 @@
       [matAutocomplete]="auto"
       [formControlName]="relatedControlName"
       matInput
-      required
+      [required]="required"
       type="text"
       placeholder="Select a customer">
     <mat-autocomplete [displayWith]="displayFn" #auto="matAutocomplete">

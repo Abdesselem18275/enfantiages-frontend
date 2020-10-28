@@ -10,8 +10,7 @@ export class CustomerAsyncValidator implements AsyncValidator {
 
   constructor() { }
   validate(control: AbstractControl): Promise<ValidationErrors> | Observable<ValidationErrors> {
-    console.warn(isCustomerGuard(control.value) )
-    return isCustomerGuard(control.value) ? of(null) : of({'validCustomer':true})
+    return isCustomerGuard(control.value) || !control.value  ? of(null) : of({'validCustomer':true})
   }
 }
 /* For template driven forms */

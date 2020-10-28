@@ -16,7 +16,6 @@ export class ItemsStateToggelerComponent implements OnInit {
   constructor(private router : Router,@Inject(APP_ITEM_STATE_QUERY_PARAM_KEY) private paramKey: string,private route : ActivatedRoute) { 
     this.activeOption$ = this.route.queryParamMap.pipe(
       take(1),
-      tap(params => console.warn(params.has(this.paramKey) ? params.get(this.paramKey): ItemState.ALL )),
       map(params => params.has(this.paramKey) ? params.get(this.paramKey): ItemState.ALL )
     )
   }

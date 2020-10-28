@@ -13,10 +13,11 @@ import { DepositFormComponent } from './components/deposit-form/deposit-form.com
 import { ItemsFilterComponent } from './components/items-filter/items-filter.component';
 import { ItemsStateToggelerComponent } from './components/items-state-toggeler/items-state-toggeler.component';
 import { ItemDeleteDialogComponent } from './components/item-delete-dialog/item-delete-dialog.component';
+import { ItemEditFormComponent } from './components/item-edit-form/item-edit-form.component';
 
 
 @NgModule({
-  declarations: [ItemStoreComponent, ItemsViewerComponent, ItemsListComponent, ItemDetailComponent, SellFormDialogComponent, DepositFormComponent, ItemsFilterComponent, ItemsStateToggelerComponent, ItemDeleteDialogComponent],
+  declarations: [ItemStoreComponent, ItemsViewerComponent, ItemsListComponent, ItemDetailComponent, SellFormDialogComponent, DepositFormComponent, ItemsFilterComponent, ItemsStateToggelerComponent, ItemDeleteDialogComponent, ItemEditFormComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule ,

@@ -38,15 +38,6 @@
                 <input min="0" max="100" type="number" required formControlName="intial_gain_ratio" matInput>
                 <mat-hint align="start">Percentage of the item sale gain</mat-hint>
               </mat-form-field>
-              <!-- <mat-form-field class="size-field" appearance="outline">
-                <mat-label class="mat-caption">Size</mat-label>
-                <mat-select formControlName="size" required>
-                  <mat-option *ngFor="let size of sizes$ | async" [value]="size.label">
-                    {{size.label}}
-                  </mat-option>
-                </mat-select>
-                <mat-icon matPrefix>format_size</mat-icon>
-              </mat-form-field>    -->
               <mat-form-field  class="size-field"  appearance="outline">
                 <mat-label class="mat-caption">Size</mat-label>
                 <input
@@ -90,7 +81,7 @@
                 <mat-hint class="inline--centred mat-body" align="start">
                   <span class="mat-caption"> Select a brand or add one </span>
                 </mat-hint>
-                <mat-error *ngIf="getBrandControl(i).invalid && getBrandControl(i).errors.required && (getBrandControl(i).dirty || getBrandControl(i).touched)">
+                <mat-error  *ngIf="getBrandControl(i).invalid && getBrandControl(i).errors.required && (getBrandControl(i).dirty || getBrandControl(i).touched)">
                   <div >
                     This is a required field
                   </div>

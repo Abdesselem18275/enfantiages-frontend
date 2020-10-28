@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DepositFormComponent } from './components/deposit-form/deposit-form.component';
 import { ItemDetailComponent } from './components/item-detail/item-detail.component';
+import { ItemEditFormComponent } from './components/item-edit-form/item-edit-form.component';
 import { ItemStoreComponent } from './components/item-store/item-store.component';
 import { ItemsListComponent } from './components/items-list/items-list.component';
 import { ItemsViewerComponent } from './components/items-viewer/items-viewer.component';
@@ -28,6 +29,12 @@ const routes: Routes = [{
         {
           path:'item-detail/:id',
           component:ItemDetailComponent,
+          outlet: 'itemContentOutlet',
+          resolve: {itemDetail : ItemDetailResolverService}
+        },
+        {
+          path:'item-edit/:id',
+          component:ItemEditFormComponent,
           outlet: 'itemContentOutlet',
           resolve: {itemDetail : ItemDetailResolverService}
         }
