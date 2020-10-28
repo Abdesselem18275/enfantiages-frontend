@@ -53,6 +53,12 @@ export class AppDataService {
     return this.http.patch<T>(query, payload, httpOptions).pipe(
       catchError(error => this.handleError(error)));
   }
+
+  delete(endPoint: string):Observable<any> {
+    const query: string = [this.apiUrl, endPoint].join('');
+    return this.http.delete(query).pipe(
+      catchError(error => this.handleError(error))); 
+  }
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

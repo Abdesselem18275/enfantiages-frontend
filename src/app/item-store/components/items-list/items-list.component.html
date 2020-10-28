@@ -142,11 +142,11 @@
       <mat-icon>list_alt</mat-icon>
       <span>Item details</span>
     </button>
-    <button [disabled]="item.buyer" (click)="openSellDialog(item)" mat-menu-item>
+    <button [disabled]="item.buyer" (click)="openItemSellDialog(item)" mat-menu-item>
       <mat-icon>point_of_sale</mat-icon>
       <span>Sell</span>
     </button>
-    <button [disabled]="item.buyer"  mat-menu-item>
+    <button  (click)="openItemDeleteDialog(item)" mat-menu-item>
       <mat-icon>delete</mat-icon>
       <span>Remove</span>
     </button>

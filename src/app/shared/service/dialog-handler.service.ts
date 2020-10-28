@@ -8,6 +8,7 @@ import {sellFormValuereplacer} from '../../core/utils';
 import { CustomerFormDialogComponent } from 'src/app/customer/components/customer-form-dialog/customer-form-dialog.component';
 import { Customer } from 'src/app/core/models/profile-models';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ItemDeleteDialogComponent } from 'src/app/item-store/components/item-delete-dialog/item-delete-dialog.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -31,6 +32,21 @@ export class DialogHandlerService {
       },sellFormValuereplacer)),
       switchMap(result => this.ads.patch<Item>('item/'+item.id.toString()+'/',result).pipe(take(1)))
       ).subscribe((item:Item) => this._snackBar.open(`Item succesfully sold to ${item.buyer.first_name}`,'', {
+        duration: 2000,
+      }))
+  }
+
+  openItemDeleteDialog(item:Item) {
+    const dialogRef = this.dialog.open(ItemDeleteDialogComponent, {
+      width: '320px',
+      data: {item}
+    });
+
+    dialogRef.beforeClosed().pipe(
+      take(1),
+      filter(result => result ? true : false),
+      switchMap(result => this.ads.delete('item/'+item.id.toString()+'/').pipe(take(1)))
+      ).subscribe(() => this._snackBar.open(`Item ${item.reference} succesfully deleted `,'', {
         duration: 2000,
       }))
   }

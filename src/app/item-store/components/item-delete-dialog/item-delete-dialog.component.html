@@ -1,0 +1,12 @@
+<header class="dialog-header" mat-dialog-title>
+    <h2 class="mat-h2">DELETE CONFIRMATION</h2>
+  </header>
+    <section class="column mb8" mat-dialog-content>
+        <p class="mat-body">Confirm item <strong>{{data.item.reference}} </strong>deletion</p>
+        <p class="mat-caption full-width">This operation can't be undone</p>
+    </section>
+    <div mat-dialog-actions>
+        <button mat-button color="warn" type="submit" (click)="onSubmit()" cdkFocusInitial>DELETE</button>
+      <button mat-button (click)="onClose()">CANCEL</button>
+    </div>
+  

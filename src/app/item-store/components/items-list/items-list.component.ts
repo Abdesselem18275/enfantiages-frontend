@@ -37,8 +37,11 @@ export class ItemsListComponent implements OnDestroy  {
   ngOnDestroy(): void {
     this.subscribtion.unsubscribe()
   }
-  openSellDialog(item):void {
+  openItemSellDialog(item):void {
     this.dhs.openSellDialog(item)
+  }
+  openItemDeleteDialog(item):void {
+    this.dhs.openItemDeleteDialog(item)
   }
   isAllSelected() {
     const numSelected = this.selection.selected.length;
