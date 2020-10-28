@@ -19,8 +19,8 @@ export class ItemDetailComponent  {
    openSellDialog(item: Item) {
      this.dhs.openSellDialog(item)
   }
-
-  getValue() {
-    
+  openItemDeleteDialog(item):void {
+    this.dhs.openItemDeleteDialog(item)
   }
+
 }

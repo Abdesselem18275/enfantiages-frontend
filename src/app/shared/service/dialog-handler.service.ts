@@ -9,12 +9,17 @@ import { CustomerFormDialogComponent } from 'src/app/customer/components/custome
 import { Customer } from 'src/app/core/models/profile-models';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ItemDeleteDialogComponent } from 'src/app/item-store/components/item-delete-dialog/item-delete-dialog.component';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class DialogHandlerService {
 
-  constructor(private _snackBar: MatSnackBar,private ads : AppDataService,private dialog: MatDialog) { }
+  constructor(
+    private _snackBar: MatSnackBar,
+    private router : Router,
+    private ads : AppDataService,
+    private dialog: MatDialog) { }
 
   openSellDialog(item: Item) {
     const dialogRef = this.dialog.open(SellFormDialogComponent, {
@@ -46,9 +51,12 @@ export class DialogHandlerService {
       take(1),
       filter(result => result ? true : false),
       switchMap(result => this.ads.delete('item/'+item.id.toString()+'/').pipe(take(1)))
-      ).subscribe(() => this._snackBar.open(`Item ${item.reference} succesfully deleted `,'', {
+      ).subscribe(() => {
+        this.router.navigate(['/item-store/items-viewer', { outlets: { itemContentOutlet: null } }])
+        this._snackBar.open(`Item ${item.reference} succesfully deleted `,'', {
         duration: 2000,
-      }))
+      })}
+      )
   }
 
   openNewCustomerDialog() {
