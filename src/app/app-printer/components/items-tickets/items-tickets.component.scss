@@ -1,17 +1,18 @@
 @import '../../../../styles/colors.scss';
 .tickets-grid {
-    padding-top: 0.45cm;
     margin: 0 auto;
+
+}
+.tickets-grid__page {
     display: grid;
     grid-template-columns: repeat(3,minmax(0,7cm));
     grid-template-rows: auto;
+    padding: 0.45cm 0;
 }
 .ticket {
     justify-content: space-between;
     padding: 1rem;
     height: 3.2cm;
-    border: 0.0005cm gray dashed;
-
 }
 :host {
     display: flex;

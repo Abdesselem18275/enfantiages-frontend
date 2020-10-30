@@ -1,5 +1,5 @@
 <header class="mb4 global--gutters inline--centred--spaced non-printable">
-    <h3  class="mat-h3">{{(itemTickets$ | async).length}} item tickets to print</h3>
+    <h3  class="mat-h3">{{itemsCount$ | async}} item tickets to print</h3>
         <button color="primary" (click)="print()"mat-flat-button>
             <mat-icon class="mr4">print</mat-icon>
             <span>PRINT</span>
@@ -7,8 +7,10 @@
 </header>
 
 
-<main class="tickets-grid">
-<article class="ticket inline" *ngFor="let itemTicket of itemTickets$ | async">
+<main class="tickets-grid" >
+   <ng-container *ngFor="let page of itemTickets$ | async | keyvalue">
+       <section class="tickets-grid__page">
+<article class="ticket inline" *ngFor="let itemTicket of page.value">
     <div class="left-content column">
         <span class="mat-body">{{itemTicket.reference}}</span>
         <span class="mat-body">{{itemTicket.label| titlecase}}</span>
@@ -22,4 +24,6 @@
     </div>
    
 </article>
+</section>
+</ng-container> 
 </main>
