@@ -6,25 +6,40 @@
     row-gap: 2rem;
     grid-template-areas: 
     "deposition-group deposition-group deposition-group"
-    "deposer    label   brand"
-    "size   price  gain"
+    "deposer  label   brand"
+    "size price  gain"
     "sale-group sale-group sale-group"
     "buyer   sale-price  sale-date "
     ". button .";
     @media only screen and (max-width: 720px) {
         grid-template-columns: repeat(2,minmax(0, 1fr));
         grid-template-areas: 
+        "deposition-group deposition-group"
+        "deposer deposer"
         "label label"
         "size brand"
-        "price gain";
+        "price gain"
+        "sale-group sale-group"
+        "buyer buyer"
+        "sale-price sale-date"
+        "button button";
       }  
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 500px) {
+        grid-template-columns: repeat(1,minmax(0, 1fr));
         grid-template-areas: 
-        "label label"
-        "size size"
-        "brand brand"
-        "price gain";
-      }  
+        "deposition-group"
+        "deposer"
+        "label"
+        "size"
+        "brand"
+        "price"
+        "gain"
+        "sale-group"
+        "buyer"
+        "sale-price"
+        "sale-date"
+        "button";   
+      }
 }
 .field-label {
   grid-area:label ;

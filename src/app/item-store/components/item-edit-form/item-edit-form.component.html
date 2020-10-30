@@ -1,5 +1,4 @@
 <form (ngSubmit)="onSubmit()" class="p8 edit-form" *ngIf="editForm"  [formGroup]="editForm">
-  <app-customers-auto-complete-field class="deposer-field" relatedControlName="deposer" [relatedFormGroup]="editForm"></app-customers-auto-complete-field>
   <header class="deposition-sub-group">
     <h3 class="mat-h3">DEPOSITION INFORMATIONS</h3>
     <mat-error>
@@ -9,6 +8,8 @@
     <mat-divider></mat-divider>
 
   </header>
+  <app-customers-auto-complete-field class="deposer-field" relatedControlName="deposer" [relatedFormGroup]="editForm"></app-customers-auto-complete-field>
+
     <mat-form-field appearance="outline" class="field-label ">
         <mat-label class="mat-caption">Label</mat-label>
         <input type="text" required formControlName="label" matInput>
