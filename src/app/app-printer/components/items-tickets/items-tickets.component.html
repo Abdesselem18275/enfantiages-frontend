@@ -12,10 +12,10 @@
        <section class="tickets-grid__page">
 <article class="ticket inline" *ngFor="let itemTicket of page.value">
     <div class="left-content column">
-        <span class="mat-body">{{itemTicket.reference}}</span>
-        <span class="mat-body">{{itemTicket.label| titlecase}}</span>
+        <span class="mat-subheading-2">{{itemTicket.reference}}</span>
+        <span class="mat-body">{{itemTicket.category| titlecase}}</span>
         <span  class="mat-body">{{itemTicket.brand | titlecase}}</span>
-        <span  class="mat-body">{{itemTicket.size | lowercase}}</span>
+        <span  class="mat-body">{{itemTicket.size | lowercase}} - {{itemTicket.gender | lowercase}}</span>
 
     </div>
     <div class="right-content">
