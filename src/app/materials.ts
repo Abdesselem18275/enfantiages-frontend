@@ -18,10 +18,11 @@ import { MAT_DATE_FORMATS, DateAdapter, MAT_DATE_LOCALE } from '@angular/materia
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   exports: [MatCheckboxModule,MatMenuModule,MatSnackBarModule,MatAutocompleteModule,MatDialogModule,MatListModule,MatTableModule,MatDividerModule, MatButtonModule, MatDividerModule,
-            MatIconModule ,MatFormFieldModule,MatInputModule,MatDatepickerModule,MatButtonToggleModule,
+            MatIconModule ,MatPaginatorModule,MatFormFieldModule,MatInputModule,MatDatepickerModule,MatButtonToggleModule,
             MatProgressBarModule,MatSelectModule,MatSidenavModule],
   providers: [
     {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true,strict: true}},

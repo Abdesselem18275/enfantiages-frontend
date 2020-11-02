@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { debounceTime, map, switchMap, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, switchMap, take, tap, throttleTime } from 'rxjs/operators';
 import { AppDataService } from 'src/app/shared/service/app-data.service';
 import { Item} from '../../core/models/item-models';
+import {PaginatedResponseType} from '../../core/models/shared';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,14 +21,18 @@ export class ItemStoreStateService {
   get selectedItems():Observable<Item[]> {
     return this._selectedItemsSubject.asObservable()
   }
+  private itemsRawResponse():Observable<PaginatedResponseType<Item>> {
+    return  this.route.queryParamMap.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap((paramMap:ParamMap ) => this.ads.get<PaginatedResponseType<Item>>('items/',paramMap)
+      ))
+  }
   get items(): Observable<Item[]> {
-     return  this.route.queryParamMap.pipe(
-      debounceTime(200),
-      switchMap((paramMap:ParamMap ) => this.ads.get<Item[]>('items/',paramMap)))
+    return this.itemsRawResponse().pipe(map(response => response.results))
   }
   get ItemsCount():Observable<number> {
-    return this.items.pipe( 
-      map((items:Item[]) => items.length))
+    return this.itemsRawResponse().pipe(map(response => response.count))
   }
 
 }
