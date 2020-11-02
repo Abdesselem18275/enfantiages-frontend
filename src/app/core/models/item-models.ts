@@ -16,6 +16,7 @@ export interface Item {
   brand: string,
   category:string,
   size: string,
+  gender:string
 }
 export enum ItemState {
   SOLD = 'Sold',

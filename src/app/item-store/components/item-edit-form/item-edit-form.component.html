@@ -116,6 +116,15 @@
         <input  type="datetime-local"  formControlName="sale_date" matInput>
         <mat-error></mat-error>
       </mat-form-field>   
+      <mat-form-field  class="gender-field"  appearance="outline">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender">
+         <mat-option value="Neutral">Neutral </mat-option>
+         <mat-option value="Boy">Boy </mat-option>
+         <mat-option value="Girl">Girl </mat-option>
+
+        </mat-select>
+      </mat-form-field>
       <button  class="field-button" mat-flat-button type="submit" color="primary">UPDATE</button>
 
 </form>

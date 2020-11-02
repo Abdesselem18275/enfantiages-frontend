@@ -6,8 +6,9 @@
     row-gap: 2rem;
     grid-template-areas: 
     "deposition-group deposition-group deposition-group deposition-group"
-    "deposer label   category category"
-    "brand size price  gain"
+    "deposer label gender size"
+    "brand brand category category"
+    "price  gain . ."
     "sale-group sale-group sale-group sale-group"
     "buyer   sale-price  sale-date sale-date "
     ". button button .";
@@ -18,7 +19,8 @@
         "deposer deposer"
         "label label"
         "category category"
-        "size brand"
+        "brand brand"
+        "size gender"
         "price gain"
         "sale-group sale-group"
         "buyer buyer"
@@ -34,6 +36,7 @@
         "category"
         "size"
         "brand"
+        "gender"
         "price"
         "gain"
         "sale-group"
@@ -77,6 +80,9 @@
 }
 .sale-date-field {
     grid-area : sale-date;
+}
+.gender-field {
+    grid-area: gender;
 }
 .sale-sub-group {
     grid-area: sale-group;

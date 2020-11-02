@@ -56,7 +56,7 @@
                 </mat-autocomplete>
                   <mat-icon matPrefix>format_size</mat-icon>
                 <mat-hint class="inline--centred mat-body" align="start">
-                  <span class="mat-caption"> Select size or add one }}  </span>
+                  <span class="mat-caption"> Select size or add one </span>
                 </mat-hint>
                 <mat-error>
 
@@ -105,7 +105,15 @@
                 <mat-error >
                 </mat-error>
               </mat-form-field>
-                   
+              <mat-form-field  class="gender-field"  appearance="outline">
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender">
+                 <mat-option value="Neutral">Neutral </mat-option>
+                 <mat-option value="Boy">Boy </mat-option>
+                 <mat-option value="Girl">Girl </mat-option>
+
+                </mat-select>
+              </mat-form-field>
         </form>
     </div>
 

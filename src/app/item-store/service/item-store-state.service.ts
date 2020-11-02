@@ -32,6 +32,11 @@ export class ItemStoreStateService {
   setItemsCount(count:number):void {
     this._itemsCountSubject.next(count)
   }
+  deleteItem(id:number):void {
+    const items : Item[] = this._itemsSubject.getValue().filter(item => item.id !== id)
+    this.setItems(items)
+    this.setItemsCount(this._itemsCountSubject.getValue()-1)
+  }
   get selectedItems():Observable<Item[]> {
     return this._selectedItemsSubject.asObservable()
   }

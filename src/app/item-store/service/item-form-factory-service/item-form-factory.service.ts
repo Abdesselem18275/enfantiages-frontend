@@ -34,6 +34,7 @@ export class ItemFormFactoryService {
       buyer:[item.buyer ? item.buyer : "" ,[],[this.customerAsyncValidator.validate.bind(this.customerAsyncValidator)]],
       actual_sale_price:[item.actual_sale_price ? item.actual_sale_price : ""],
       sale_date:[item.sale_date? item.sale_date.replace('Z','') : ""],
+      gender:[item.gender,[Validators.required]],
   },{validators:this._saleIntegrityValidator})
   }
   getDepositGroupForm():FormGroup {
@@ -43,7 +44,8 @@ export class ItemFormFactoryService {
       label:['',[Validators.required]],
       brand:['',[Validators.required]],
       category:['',[Validators.required]],
-      size:['',[Validators.required]]
+      size:['',[Validators.required]],
+      gender:['Neutral',[Validators.required]]
   })
 
   }
