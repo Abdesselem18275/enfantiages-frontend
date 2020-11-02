@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ContentChild, OnInit } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Item } from 'src/app/core/models/item-models';
 import { GlobalStateService } from 'src/app/shared/service/global-state.service';
 import { sideTranslateAnimation } from '../../../animations';
@@ -19,11 +20,11 @@ export class ItemsViewerComponent implements OnInit,AfterViewInit {
   isFilterActive: boolean
   IsLoading$ : Observable<boolean>
   selectedItems$: Observable<Item[]>
-  itemsCount$: Observable<number>;
+  selectedItemsCount$: Observable<number>;
   @ViewChild('drawer') drawer : MatDrawer
   constructor(private gss : GlobalStateService,private iss :ItemStoreStateService, private router : Router) {
    this.selectedItems$ = this.iss.selectedItems;
-   this.itemsCount$ = this.iss.ItemsCount;
+   this.selectedItemsCount$ = this.iss.selectedItems.pipe(map(items => items.length));
    this.IsLoading$ = this.gss.isLoading
    }
   ngAfterViewInit(): void {

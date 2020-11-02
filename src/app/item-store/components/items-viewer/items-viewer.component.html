@@ -5,7 +5,7 @@
   <button (click)="drawer.toggle()"  mat-icon-button>
     <mat-icon>tune</mat-icon>
   </button>
-  <span class="mat-body-2">{{itemsCount$ | async}} items</span>
+  <span *ngIf='selectedItemsCount$ | async' class="mat-body-2">{{selectedItemsCount$ | async}} selected Items</span>
   <div class="search-box-container">
     <app-search-box (term)="onSearch($event)"></app-search-box>
 

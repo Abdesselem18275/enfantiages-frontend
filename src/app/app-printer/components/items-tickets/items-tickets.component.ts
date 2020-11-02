@@ -16,7 +16,7 @@ export class ItemsTicketsComponent implements OnInit {
   itemTickets$  :Observable<Map<number,Item[]>>
   itemsCount$ : Observable<number>
   constructor(private ads : AppDataService,private iss :ItemStoreStateService) { 
-    this.itemsCount$  = this.iss.ItemsCount
+    this.itemsCount$  = this.iss.selectedItems.pipe(map(items => items.length))
     this.itemTickets$ = this.iss.selectedItems.pipe(
       map((items:Item[] )=> (items.reduce(
         (acc: Map<number,Item[]>, currentValue: Item, currentIndex: number) => 
