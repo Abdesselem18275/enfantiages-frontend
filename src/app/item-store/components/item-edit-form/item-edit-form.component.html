@@ -51,6 +51,28 @@
         </mat-error>
       </mat-form-field>
 
+      <mat-form-field appControlValidatorMessage class="category-field"  appearance="outline">
+        <mat-label class="mat-caption">Category</mat-label>
+        <input
+          [matAutocomplete]="autoCategory"
+          formControlName="category"
+          matInput
+          required
+          type="text"
+          placeholder="Select a brand">
+        <mat-autocomplete  #autoCategory="matAutocomplete">
+          <mat-option *ngFor="let cat of getCategoryFiltredList()" [value]="cat.label">
+              <span class="mat-caption">{{cat.label}}</span>
+          </mat-option>
+        </mat-autocomplete>
+          <mat-icon matPrefix>categories</mat-icon>
+        <mat-hint class="inline--centred mat-body" align="start">
+          <span class="mat-caption"> Select a category or add one </span>
+        </mat-hint>
+        <mat-error >
+        </mat-error>
+      </mat-form-field>
+
       <mat-form-field appControlValidatorMessage class="brand-field"  appearance="outline">
         <mat-label class="mat-caption">Brand</mat-label>
         <input

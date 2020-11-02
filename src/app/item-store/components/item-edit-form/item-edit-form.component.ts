@@ -29,6 +29,7 @@ export class ItemEditFormComponent  {
     route.data.pipe(take(1),map((x:Data) =>x.itemDetail)).subscribe((item => {
       this.editForm = this.ffs.getItemEditForm(item);
       this.item = item;
+      console.warn(this.editForm);
     }))
     this.ids.sizes.pipe(take(1)).subscribe(sizes => this.sizes = sizes)
     this.ids.brands.pipe(take(1)).subscribe(brands => this.brands = brands)
@@ -37,18 +38,18 @@ export class ItemEditFormComponent  {
    }
 
    getSizeFiltredList():Size[] {
-    const value =  (this.getSizeControl().value as string).toLowerCase()
-    return value.trim() !== "" ? 
+    const value = this.getSizeControl().value && (this.getSizeControl().value as string).toLowerCase()
+    return value && value.trim() !== "" ? 
     this.sizes && this.sizes.filter(size => size.label.toLowerCase().includes(value)): this.sizes
   }
   getBrandFiltredList():Brand[] {
-    const value =  (this.getBrandControl().value as string).toLowerCase()
-    return value.trim() !== "" ? 
+    const value =  this.getBrandControl().value && (this.getBrandControl().value as string).toLowerCase()
+    return value && value.trim() !== "" ? 
     this.brands && this.brands.filter(brand => brand.label.toLowerCase().includes(value)): this.brands
   }
   getCategoryFiltredList():Category[] {
-    const value =  (this.getCategoryControl().value as string).toLowerCase()
-    return value.trim() !== "" ? 
+    const value = this.getCategoryControl().value && (this.getCategoryControl().value as string).toLowerCase()
+    return value && value.trim() !== "" ? 
     this.categories && this.categories.filter(cat => cat.label.toLowerCase().includes(value)): this.categories
   }
   getBrandControl():AbstractControl {

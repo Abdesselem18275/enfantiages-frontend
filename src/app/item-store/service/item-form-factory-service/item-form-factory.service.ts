@@ -23,13 +23,13 @@ export class ItemFormFactoryService {
     })
   }
   getItemEditForm(item:Item):FormGroup {
-    console.warn(item.sale_date ? item.sale_date : '')
     return this.fb.group({
       intial_gain_ratio:[item.intial_gain_ratio*100,[Validators.required,Validators.min(0),Validators.max(100)]],
       initial_sale_price:[item.initial_sale_price,[Validators.required,Validators.min(0)]],
       label:[item.label,[Validators.required]],
       brand:[item.brand,[Validators.required]],
       size:[item.size,[Validators.required]],
+      category:[item.category,[Validators.required]],
       deposer:[item.deposer,[Validators.required],,[this.customerAsyncValidator.validate.bind(this.customerAsyncValidator)]],
       buyer:[item.buyer ? item.buyer : "" ,[],[this.customerAsyncValidator.validate.bind(this.customerAsyncValidator)]],
       actual_sale_price:[item.actual_sale_price ? item.actual_sale_price : ""],

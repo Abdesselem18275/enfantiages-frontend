@@ -18,8 +18,8 @@ export interface Item {
   size: string,
 }
 export enum ItemState {
-  SOLD = 'SO',
-  AVAILABLE ='AV',
+  SOLD = 'Sold',
+  AVAILABLE ='Available',
   ALL = ''
 }
 export type Brand =  { id : number,label : string}
