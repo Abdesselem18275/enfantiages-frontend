@@ -3,7 +3,7 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { map, take, throttleTime } from 'rxjs/operators';
-import { Brand, Item, Size } from 'src/app/core/models/item-models';
+import { Brand, Category, Item, Size } from 'src/app/core/models/item-models';
 import { AppDataService } from 'src/app/shared/service/app-data.service';
 import { InitDataService } from 'src/app/shared/service/init-data.service';
 import { ItemFormFactoryService } from '../../service/item-form-factory-service/item-form-factory.service';
@@ -18,6 +18,7 @@ export class ItemEditFormComponent  {
   editForm:FormGroup
   sizes : Size[]
   brands : Brand[]
+  categories: Category[]
   constructor(
     private ads : AppDataService,
     private ids : InitDataService,
@@ -31,25 +32,38 @@ export class ItemEditFormComponent  {
     }))
     this.ids.sizes.pipe(take(1)).subscribe(sizes => this.sizes = sizes)
     this.ids.brands.pipe(take(1)).subscribe(brands => this.brands = brands)
+    this.ids.categories.pipe(take(1)).subscribe(categories => this.categories = categories)
+
    }
 
    getSizeFiltredList():Size[] {
-    const value =  this.getSizeControl().value
+    const value =  (this.getSizeControl().value as string).toLowerCase()
     return value.trim() !== "" ? 
-    this.sizes.filter(size => size.label.toLowerCase().includes(value)): this.sizes
+    this.sizes && this.sizes.filter(size => size.label.toLowerCase().includes(value)): this.sizes
   }
-  getBrandFiltredList():Size[] {
-    const value =  this.getBrandControl().value
+  getBrandFiltredList():Brand[] {
+    const value =  (this.getBrandControl().value as string).toLowerCase()
     return value.trim() !== "" ? 
-    this.brands.filter(brand => brand.label.toLowerCase().includes(value)): this.brands
+    this.brands && this.brands.filter(brand => brand.label.toLowerCase().includes(value)): this.brands
+  }
+  getCategoryFiltredList():Category[] {
+    const value =  (this.getCategoryControl().value as string).toLowerCase()
+    return value.trim() !== "" ? 
+    this.categories && this.categories.filter(cat => cat.label.toLowerCase().includes(value)): this.categories
   }
   getBrandControl():AbstractControl {
     return this.editForm.get('brand')
+  }
+  getCategoryControl():AbstractControl {
+    return this.editForm.get('category')
   }
   getSizeControl():AbstractControl {
     return this.editForm.get('size')
   }
   onSubmit() {
+    this.editForm.markAllAsTouched()
+    this.editForm.enable()
+    if(this.editForm.valid) {
     const values = this.editForm.value
     const payload = JSON.stringify({...values,
       intial_gain_ratio : parseFloat(values["intial_gain_ratio"])/100,
@@ -64,5 +78,5 @@ export class ItemEditFormComponent  {
         duration: 2000,
       })}
     )
-  }
+  }}
 }

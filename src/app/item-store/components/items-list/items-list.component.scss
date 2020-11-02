@@ -8,7 +8,11 @@ table {
   width: 4rem;
 }
 .mat-column-label {
-  max-width: 160px;
+  max-width: 120px;
+  text-overflow: ellipsis;
+}
+.mat-column-brand {
+  max-width: 120px;
   text-overflow: ellipsis;
 }
 .item-stream--small-width {

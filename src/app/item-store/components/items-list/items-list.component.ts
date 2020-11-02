@@ -19,7 +19,7 @@ export class ItemsListComponent implements OnDestroy  {
   items$ : Observable<Item[]>
   selection:SelectionModel<Item>
   @Output() selectedItems = new EventEmitter<Item[]>();
-  displayedColumns = ['select','reference','label','brand','size','initial_sale_price','shop_gain','deposer_gain','deposition_date','deposer','actual_sale_price','buyer','sale_date','action']
+  displayedColumns = ['select','reference','category','label','brand','size','initial_sale_price','gain_ratio','shop_gain','deposition_date','deposer','sale_date','action']
   itemsDataSource = new MatTableDataSource<Item>();
   private subscribtion : Subscription
   constructor(

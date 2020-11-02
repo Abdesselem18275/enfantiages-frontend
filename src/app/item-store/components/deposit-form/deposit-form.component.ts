@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { debounceTime, tap,map, switchMap, throttleTime, first, startWith, take } from 'rxjs/operators';
-import { Brand, Item, Size } from 'src/app/core/models/item-models';
+import { Brand, Category, Item, Size } from 'src/app/core/models/item-models';
 import { AppDataService } from 'src/app/shared/service/app-data.service';
 import { InitDataService } from 'src/app/shared/service/init-data.service';
 import { ItemFormFactoryService } from '../../service/item-form-factory-service/item-form-factory.service';
@@ -18,27 +18,37 @@ export class DepositFormComponent  {
   depositForm : FormGroup
   sizes : Size[]
   brands : Brand[]
+  categories: Category[]
   constructor(private ids : InitDataService, private router :Router,private ads : AppDataService, private _snackBar: MatSnackBar,private iffs : ItemFormFactoryService) {
     this.depositForm = this.iffs.getDepositForm()
     this.ids.sizes.pipe(take(1)).subscribe(sizes => this.sizes = sizes)
     this.ids.brands.pipe(take(1)).subscribe(brands => this.brands = brands)
+    this.ids.categories.pipe(take(1)).subscribe(categories => this.categories = categories)
    }
 
   getSizeFiltredList(index:number):Size[] {
-    const value =  this.getSizeControl(index).value
+    const value =  (this.getSizeControl(index).value as string).toLowerCase()
     return value.trim() !== "" ? 
-    this.sizes.filter(size => size.label.toLowerCase().includes(value)): this.sizes
+    this.sizes && this.sizes.filter(size => size.label.toLowerCase().includes(value)): this.sizes
   }
-  getBrandFiltredList(index:number):Size[] {
-    const value =  this.getBrandControl(index).value
+  getBrandFiltredList(index:number):Brand[] {
+    const value =  (this.getBrandControl(index).value as string).toLowerCase()
     return value.trim() !== "" ? 
-    this.brands.filter(brand => brand.label.toLowerCase().includes(value)): this.brands
+    this.brands && this.brands.filter(brand => brand.label.toLowerCase().includes(value)): this.brands
+  }
+  getCategoryFiltredList(index:number):Category[] {
+    const value =  (this.getCategoryControl(index).value as string).toLowerCase()
+    return value.trim() !== "" ? 
+    this.categories && this.categories.filter(cat => cat.label.toLowerCase().includes(value)): this.categories
   }
   getBrandControl(index : number):AbstractControl {
     return this.depositArray.at(index).get('brand')
   }
   getSizeControl(index : number):AbstractControl {
     return this.depositArray.at(index).get('size')
+  }
+  getCategoryControl(index : number):AbstractControl {
+    return this.depositArray.at(index).get('category')
   }
   get depositFormGroups() : FormGroup[] {
     return (this.depositArray.controls as FormGroup[])

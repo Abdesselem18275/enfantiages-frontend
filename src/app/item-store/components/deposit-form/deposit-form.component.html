@@ -28,15 +28,17 @@
                 <mat-icon matPrefix>label</mat-icon>
                 <mat-error></mat-error>
               </mat-form-field>
-            <mat-form-field appearance="outline" class="field-price ">
+            <mat-form-field appControlValidatorMessage appearance="outline" class="field-price ">
                 <mat-label class="mat-caption">Initial sale price</mat-label>
                 <input  min="0" type="number" required formControlName="initial_sale_price" matInput>
                 <mat-icon matPrefix>label</mat-icon>
+                <mat-error></mat-error>
               </mat-form-field>
-              <mat-form-field appearance="outline" class="field-gain ">
+              <mat-form-field appControlValidatorMessage appearance="outline" class="field-gain ">
                 <mat-label>Gain ratio</mat-label>
                 <input min="0" max="100" type="number" required formControlName="intial_gain_ratio" matInput>
                 <mat-hint align="start">Percentage of the item sale gain</mat-hint>
+                <mat-error></mat-error>
               </mat-form-field>
               <mat-form-field appControlValidatorMessage  class="size-field"  appearance="outline">
                 <mat-label class="mat-caption">Size</mat-label>
@@ -78,6 +80,27 @@
                   <mat-icon matPrefix>branding_watermark</mat-icon>
                 <mat-hint class="inline--centred mat-body" align="start">
                   <span class="mat-caption"> Select a brand or add one </span>
+                </mat-hint>
+                <mat-error >
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field  appControlValidatorMessage class="category-field"  appearance="outline">
+                <mat-label class="mat-caption">Category</mat-label>
+                <input
+                  [matAutocomplete]="autoCategory"
+                  formControlName="category"
+                  matInput
+                  required
+                  type="text"
+                  placeholder="Select a category">
+                <mat-autocomplete #autoCategory="matAutocomplete">
+                  <mat-option *ngFor="let cat of getCategoryFiltredList(i)" [value]="cat.label">
+                      <span class="mat-caption">{{cat.label}}</span>
+                  </mat-option>
+                </mat-autocomplete>
+                  <mat-icon matPrefix>category</mat-icon>
+                <mat-hint class="inline--centred mat-body" align="start">
+                  <span class="mat-caption"> Select a category or add one </span>
                 </mat-hint>
                 <mat-error >
                 </mat-error>

@@ -42,6 +42,7 @@ export class ItemFormFactoryService {
       initial_sale_price:['',[Validators.required,Validators.min(0)]],
       label:['',[Validators.required]],
       brand:['',[Validators.required]],
+      category:['',[Validators.required]],
       size:['',[Validators.required]]
   })
 

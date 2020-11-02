@@ -14,6 +14,7 @@ export interface Item {
   buyer : Customer,
   state: string,
   brand: string,
+  category:string,
   size: string,
 }
 export enum ItemState {
@@ -21,11 +22,6 @@ export enum ItemState {
   AVAILABLE ='AV',
   ALL = ''
 }
-export interface Brand {
-  id : number,
-  label : string
-}
-export interface Size {
-  id : number,
-  label : string
-}
+export type Brand =  { id : number,label : string}
+export type Size = Brand
+export type Category = Brand

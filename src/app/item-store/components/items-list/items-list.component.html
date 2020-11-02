@@ -26,14 +26,21 @@
       {{element.label | titlecase}}
     </td>
   </ng-container>
-  <!-- label Column -->
+    <!-- label Column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Category </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.category | titlecase}}
+      </td>
+    </ng-container>
+  <!-- brand Column -->
   <ng-container matColumnDef="brand">
     <th mat-header-cell *matHeaderCellDef> Brand </th>
     <td mat-cell *matCellDef="let element">
       {{element.brand | titlecase}}
     </td>
   </ng-container>
-  <!-- label Column -->
+  <!-- size Column -->
   <ng-container matColumnDef="size">
     <th mat-header-cell *matHeaderCellDef> Size </th>
     <td mat-cell *matCellDef="let element">
@@ -43,9 +50,9 @@
 
 
   <!-- operational_impact Column -->
-  <ng-container matColumnDef="deposer_gain">
-    <th mat-header-cell *matHeaderCellDef> Deposer gain </th>
-    <td mat-cell *matCellDef="let element"> {{element.deposer_gain | currency :'TND':'symbol':'1.0-2'}} </td>
+  <ng-container matColumnDef="gain_ratio">
+    <th mat-header-cell *matHeaderCellDef> Gain Ratio </th>
+    <td mat-cell *matCellDef="let element"> {{element.initial_gain_ration | percent}} </td>
   </ng-container>
 
     <!-- shop_gain Column -->
@@ -57,12 +64,12 @@
 
   <!-- initial_sale_price Column -->
   <ng-container matColumnDef="initial_sale_price">
-    <th mat-header-cell *matHeaderCellDef> Initial sale price </th>
+    <th mat-header-cell *matHeaderCellDef> Sale price </th>
     <td mat-cell *matCellDef="let element"> {{element.initial_sale_price | currency :'TND':'symbol':'1.0-2'}} </td>
   </ng-container>
   <!-- deposition_date Column -->
   <ng-container matColumnDef="deposition_date">
-    <th mat-header-cell *matHeaderCellDef> Deposition date </th>
+    <th mat-header-cell *matHeaderCellDef> Deposit date </th>
     <td mat-cell *matCellDef="let element"> {{element.deposition_date | date:'short'}} </td>
   </ng-container>
     <!-- deposer Column -->
@@ -70,24 +77,7 @@
       <th mat-header-cell *matHeaderCellDef> deposer </th>
       <td mat-cell *matCellDef="let element"> {{element.deposer.first_name | titlecase}} {{element.deposer.last_name| titlecase}} </td>
     </ng-container>
-    <!-- buyer Column -->
-    <ng-container matColumnDef="buyer">
-      <th mat-header-cell *matHeaderCellDef> Buyer </th>
-      <td mat-cell *matCellDef="let element">
-        <ng-container *ngIf="element.buyer else noData">
-          {{element.buyer.first_name | titlecase}} {{element.buyer.last_name| titlecase}}
-        </ng-container>
-         </td>
-    </ng-container>
-        <!-- actual_sale_price Column -->
-    <ng-container matColumnDef="actual_sale_price">
-      <th mat-header-cell *matHeaderCellDef> Real sale price </th>
-      <td mat-cell *matCellDef="let element">
-        <ng-container *ngIf="element.actual_sale_price else noData">
-          {{element.actual_sale_price | currency :'TND':'symbol':'1.0-2'}}
-        </ng-container>
-        </td>
-    </ng-container>
+
 
     <ng-container matColumnDef="sale_date">
       <th mat-header-cell *matHeaderCellDef> Sale date </th>
