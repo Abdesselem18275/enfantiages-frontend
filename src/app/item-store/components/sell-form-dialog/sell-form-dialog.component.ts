@@ -24,6 +24,7 @@ export class SellFormDialogComponent  {
     }
   onSubmit():void {
     this.sellForm.markAllAsTouched()
+    this.sellForm.enable()
     if(this.sellForm.valid) {
       this.dialogRef.close(this.sellForm.value);
     }

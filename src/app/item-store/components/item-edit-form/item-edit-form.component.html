@@ -10,23 +10,26 @@
   </header>
   <app-customers-auto-complete-field class="deposer-field" relatedControlName="deposer" [relatedFormGroup]="editForm"></app-customers-auto-complete-field>
 
-    <mat-form-field appearance="outline" class="field-label ">
+    <mat-form-field appControlValidatorMessage appearance="outline" class="field-label ">
         <mat-label class="mat-caption">Label</mat-label>
         <input type="text" required formControlName="label" matInput>
         <mat-icon matPrefix>label</mat-icon>
-         
+         <mat-error></mat-error>
       </mat-form-field>
-    <mat-form-field appearance="outline" class="field-price ">
+    <mat-form-field appControlValidatorMessage appearance="outline" class="field-price ">
         <mat-label class="mat-caption">Initial sale price</mat-label>
         <input  min="0" type="number" required formControlName="initial_sale_price" matInput>
         <mat-icon matPrefix>label</mat-icon>
+        <mat-error></mat-error>
       </mat-form-field>
-      <mat-form-field appearance="outline" class="field-gain ">
+      <mat-form-field appControlValidatorMessage appearance="outline" class="field-gain ">
         <mat-label>Gain ratio</mat-label>
         <input min="0" max="100" type="number" required formControlName="intial_gain_ratio" matInput>
         <mat-hint align="start">Percentage of the item sale gain</mat-hint>
+        <mat-error></mat-error>
+
       </mat-form-field>
-      <mat-form-field  class="size-field"  appearance="outline">
+      <mat-form-field appControlValidatorMessage class="size-field"  appearance="outline">
         <mat-label class="mat-caption">Size</mat-label>
         <input
           [matAutocomplete]="autoSize"
@@ -44,14 +47,11 @@
         <mat-hint class="inline--centred mat-body" align="start">
           <span class="mat-caption"> Select size or add one  </span>
         </mat-hint>
-        <mat-error *ngIf="getSizeControl().invalid && getSizeControl().errors.required && (getSizeControl().dirty || getSizeControl().touched)">
-          <div >
-            This is a required field
-          </div>
+        <mat-error >
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field  class="brand-field"  appearance="outline">
+      <mat-form-field appControlValidatorMessage class="brand-field"  appearance="outline">
         <mat-label class="mat-caption">Brand</mat-label>
         <input
           [matAutocomplete]="autoBrand"
@@ -60,7 +60,7 @@
           required
           type="text"
           placeholder="Select a brand">
-        <mat-autocomplete #autoBrand="matAutocomplete">
+        <mat-autocomplete  #autoBrand="matAutocomplete">
           <mat-option *ngFor="let brand of getBrandFiltredList()" [value]="brand.label">
               <span class="mat-caption">{{brand.label}}</span>
           </mat-option>
@@ -69,10 +69,7 @@
         <mat-hint class="inline--centred mat-body" align="start">
           <span class="mat-caption"> Select a brand or add one </span>
         </mat-hint>
-        <mat-error *ngIf="getBrandControl().invalid && getBrandControl().errors.required && (getBrandControl().dirty || getBrandControl().touched)">
-          <div >
-            This is a required field
-          </div>
+        <mat-error >
         </mat-error>
       </mat-form-field>
       <header class="sale-sub-group">
@@ -85,14 +82,17 @@
         <mat-divider></mat-divider>
       </header>
       <app-customers-auto-complete-field [required]="false" class="buyer-field" relatedControlName="buyer" [relatedFormGroup]="editForm"></app-customers-auto-complete-field>
-      <mat-form-field appearance="outline" class="sale-price-field">
+      <mat-form-field appControlValidatorMessage appearance="outline" class="sale-price-field">
         <mat-label class="mat-caption">Sale price</mat-label>
         <input  min="0" type="number"  formControlName="actual_sale_price" matInput>
         <mat-icon matPrefix>label</mat-icon>
+        <mat-error></mat-error>
+
       </mat-form-field>     
-      <mat-form-field appearance="outline" class="sale-date-field">
+      <mat-form-field  appControlValidatorMessage appearance="outline" class="sale-date-field">
         <mat-label class="mat-caption">Sale date</mat-label>
         <input  type="datetime-local"  formControlName="sale_date" matInput>
+        <mat-error></mat-error>
       </mat-form-field>   
       <button [disabled]="!editForm.valid" class="field-button" mat-flat-button type="submit" color="primary">UPDATE</button>
 

@@ -1,4 +1,4 @@
-  <mat-form-field [formGroup]="relatedFormGroup" class="full-width"  appearance="outline">
+  <mat-form-field appControlValidatorMessage [formGroup]="relatedFormGroup" class="full-width"  appearance="outline">
     <mat-label>{{relatedControlName|titlecase}}</mat-label>
     <input
       [matAutocomplete]="auto"
@@ -17,13 +17,7 @@
     <mat-hint class="inline--centred mat-body" align="start">
       <span class="mat-caption"> Select a {{relatedControlName}} or add one </span>
     </mat-hint>
-    <mat-error *ngIf="customer.invalid">
-      <div *ngIf="customer.errors?.validCustomer">
-        This customer does not exist
-      </div>
-      <div *ngIf="customer.errors.required && (customer.dirty || customer.touched)">
-        This is a required field
-      </div>
+    <mat-error>
     </mat-error>
   </mat-form-field>
 

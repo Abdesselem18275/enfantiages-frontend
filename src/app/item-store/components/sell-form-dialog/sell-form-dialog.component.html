@@ -10,11 +10,12 @@
     </div>
 
 
-  <mat-form-field appearance="outline" class="full-width">
+  <mat-form-field appControlValidatorMessage appearance="outline" class="full-width">
     <mat-label>Sale price</mat-label>
-    <input [min]="data.item.deposer_gain" type="number" formControlName="actual_sale_price" matInput>
+    <input required [min]="data.item.deposer_gain" type="number" formControlName="actual_sale_price" matInput>
     <mat-icon matPrefix>attach_money</mat-icon>
     <mat-hint align="start">Minimum sale price is {{data.item.deposer_gain  | currency :'TND':'symbol':'1.0-2'}}</mat-hint>
+    <mat-error></mat-error>
   </mat-form-field>
   </form>
   <div mat-dialog-actions>

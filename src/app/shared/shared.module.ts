@@ -9,8 +9,10 @@ import { ValidCustomerDirective } from './directive/valid-customer.directive';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { CustomersAutoCompleteFieldComponent}  from './components/customers-auto-complete-field/customers-auto-complete-field.component';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
+import { ControlErrorMessageComponent } from './components/control-error-message/control-error-message.component';
+import { ControlValidatorMessageDirective } from './directive/control-validator-message.directive';
 @NgModule({
-  declarations: [NavBarComponent, CustomersAutoCompleteFieldComponent, SearchBoxComponent, SideNavComponent, NotFountComponent, ValidCustomerDirective],
+  declarations: [NavBarComponent, CustomersAutoCompleteFieldComponent, SearchBoxComponent, SideNavComponent, NotFountComponent, ValidCustomerDirective, ControlErrorMessageComponent, ControlValidatorMessageDirective],
   imports: [
     MaterialModule,
     ReactiveFormsModule ,
@@ -24,6 +26,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     SearchBoxComponent,
     SideNavComponent,
     NotFountComponent,
+    ControlValidatorMessageDirective,
     MaterialModule
   ]
 })

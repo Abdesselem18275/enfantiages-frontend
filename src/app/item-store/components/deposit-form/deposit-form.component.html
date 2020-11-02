@@ -22,11 +22,11 @@
                 </button>
             </header>
         <form class="sub-form"  [formGroup]="depoForm">
-            <mat-form-field appearance="outline" class="field-label ">
+            <mat-form-field appControlValidatorMessage  appearance="outline" class="field-label ">
                 <mat-label class="mat-caption">Label</mat-label>
                 <input type="text" required formControlName="label" matInput>
                 <mat-icon matPrefix>label</mat-icon>
-                 
+                <mat-error></mat-error>
               </mat-form-field>
             <mat-form-field appearance="outline" class="field-price ">
                 <mat-label class="mat-caption">Initial sale price</mat-label>
@@ -38,7 +38,7 @@
                 <input min="0" max="100" type="number" required formControlName="intial_gain_ratio" matInput>
                 <mat-hint align="start">Percentage of the item sale gain</mat-hint>
               </mat-form-field>
-              <mat-form-field  class="size-field"  appearance="outline">
+              <mat-form-field appControlValidatorMessage  class="size-field"  appearance="outline">
                 <mat-label class="mat-caption">Size</mat-label>
                 <input
                   [matAutocomplete]="autoSize"
@@ -56,14 +56,12 @@
                 <mat-hint class="inline--centred mat-body" align="start">
                   <span class="mat-caption"> Select size or add one }}  </span>
                 </mat-hint>
-                <mat-error *ngIf="getSizeControl(i).invalid && getSizeControl(i).errors.required && (getSizeControl(i).dirty || getSizeControl(i).touched)">
-                  <div >
-                    This is a required field
-                  </div>
+                <mat-error>
+
                 </mat-error>
               </mat-form-field>
 
-              <mat-form-field  class="brand-field"  appearance="outline">
+              <mat-form-field  appControlValidatorMessage class="brand-field"  appearance="outline">
                 <mat-label class="mat-caption">Brand</mat-label>
                 <input
                   [matAutocomplete]="autoBrand"
@@ -81,10 +79,7 @@
                 <mat-hint class="inline--centred mat-body" align="start">
                   <span class="mat-caption"> Select a brand or add one </span>
                 </mat-hint>
-                <mat-error  *ngIf="getBrandControl(i).invalid && getBrandControl(i).errors.required && (getBrandControl(i).dirty || getBrandControl(i).touched)">
-                  <div >
-                    This is a required field
-                  </div>
+                <mat-error >
                 </mat-error>
               </mat-form-field>
                    
@@ -97,7 +92,7 @@
             <mat-icon class="mr4">add</mat-icon>
             <span>NEW ITEM</span>
         </button>
-        <button [disabled]="!depositForm.valid" type="submit" color="primary"  mat-flat-button>
+        <button  type="submit" color="primary"  mat-flat-button>
             <mat-icon class="mr4">save</mat-icon>
             <span>SAVE</span>
         </button>
