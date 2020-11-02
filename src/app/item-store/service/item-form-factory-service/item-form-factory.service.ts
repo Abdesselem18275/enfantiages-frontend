@@ -49,8 +49,8 @@ export class ItemFormFactoryService {
   }
   getDateRangeFilter():FormGroup {
     return this.fb.group({
-      deposed_before : ['',Validators.required],
-      deposed_after: ['',Validators.required]},{validators:this._dateRangeOrderValidator})
+      deposed_before : [''],
+      deposed_after: ['']},{validators:this._dateRangeOrderValidator})
   }
 
   private _dateRangeOrderValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {

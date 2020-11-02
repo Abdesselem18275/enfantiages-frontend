@@ -10,29 +10,36 @@ import {PaginatedResponseType} from '../../core/models/shared';
 })
 export class ItemStoreStateService {
   private _selectedItemsSubject = new BehaviorSubject<Item[]>([])
-  constructor(private ads : AppDataService ,private route : ActivatedRoute) {
+  private _itemsSubject = new BehaviorSubject<Item[]>([])
+  private _itemsCountSubject = new BehaviorSubject<number>(0)
 
+  constructor(private ads : AppDataService ,private route : ActivatedRoute) {
+    this.route.queryParamMap.pipe(
+      debounceTime(300),
+      switchMap((paramMap:ParamMap ) => this.ads.get<PaginatedResponseType<Item>>('items/',paramMap)
+      )).subscribe(response => {
+        this.setItems(response.results)
+        this.setItemsCount(response.count)
+      })
   
   }
   setSelectedItems(items:Item[]):void {
     this._selectedItemsSubject.next(items)
   }
- 
+  setItems(items:Item[]):void {
+    this._itemsSubject.next(items)
+  }
+  setItemsCount(count:number):void {
+    this._itemsCountSubject.next(count)
+  }
   get selectedItems():Observable<Item[]> {
     return this._selectedItemsSubject.asObservable()
   }
-  private itemsRawResponse():Observable<PaginatedResponseType<Item>> {
-    return  this.route.queryParamMap.pipe(
-      debounceTime(500),
-      distinctUntilChanged(),
-      switchMap((paramMap:ParamMap ) => this.ads.get<PaginatedResponseType<Item>>('items/',paramMap)
-      ))
-  }
   get items(): Observable<Item[]> {
-    return this.itemsRawResponse().pipe(map(response => response.results))
+    return this._itemsSubject.asObservable()
   }
   get ItemsCount():Observable<number> {
-    return this.itemsRawResponse().pipe(map(response => response.count))
+    return this._itemsCountSubject.asObservable()
   }
 
 }
