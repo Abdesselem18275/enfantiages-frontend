@@ -10,10 +10,11 @@
   </header>
   <app-customers-auto-complete-field class="deposer-field" relatedControlName="deposer" [relatedFormGroup]="editForm"></app-customers-auto-complete-field>
 
-    <mat-form-field appControlValidatorMessage appearance="outline" class="field-label ">
-        <mat-label class="mat-caption">Label</mat-label>
-        <input type="text" required formControlName="label" matInput>
-        <mat-icon matPrefix>label</mat-icon>
+    <mat-form-field appControlValidatorMessage appearance="outline" class="field-description">
+        <mat-label class="mat-caption">Description</mat-label>
+        <textarea rows="2" type="text" formControlName="description" matInput>
+          </textarea>
+        <mat-hint>Enter any additional information</mat-hint>
          <mat-error></mat-error>
       </mat-form-field>
     <mat-form-field appControlValidatorMessage appearance="outline" class="field-price ">
@@ -65,7 +66,7 @@
               <span class="mat-caption">{{cat.label}}</span>
           </mat-option>
         </mat-autocomplete>
-          <mat-icon matPrefix>categories</mat-icon>
+          <mat-icon matPrefix>category</mat-icon>
         <mat-hint class="inline--centred mat-body" align="start">
           <span class="mat-caption"> Select a category or add one </span>
         </mat-hint>
@@ -123,6 +124,12 @@
          <mat-option value="Boy">Boy </mat-option>
          <mat-option value="Girl">Girl </mat-option>
 
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field  class="color-field"  appearance="outline">
+        <mat-label>Color</mat-label>
+        <mat-select required multiple formControlName="colors">
+         <mat-option *ngFor="let option of colors$ | async" [value]="option.id">{{option.label}} </mat-option>
         </mat-select>
       </mat-form-field>
       <button  class="field-button" mat-flat-button type="submit" color="primary">UPDATE</button>

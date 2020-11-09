@@ -31,10 +31,7 @@
         <label class="mat-body-2">Reference</label>
         <p class="mat-body font--dark-grey">{{item.reference}}</p>
       </div>
-      <div>
-        <label class="mat-body-2">Label</label>
-        <p class="mat-body font--dark-grey">{{item.label}}</p>
-      </div>
+
       <div>
         <label class="mat-body-2">Category</label>
         <p class="mat-body font--dark-grey">{{item.category}}</p>
@@ -55,7 +52,16 @@
       <div>
         <label class="mat-body-2">Size</label>
         <p class="mat-body font--dark-grey">{{item.size}}</p>
-      </div>  
+      </div> 
+      <div class="property__stretch" *ngIf="item.colors">
+        <label class="mat-body-2">colors</label>
+        <p class="mat-body  font--dark-grey">
+          <span *ngFor="let color of item.colors">{{color.label}} </span></p>
+      </div>   
+      <div class="property__full-stretch"  *ngIf="item.description">
+        <label class="mat-body-2">Description</label>
+        <p class="mat-body font--dark-grey">{{item.description}}</p>
+      </div>
     </section>
      </li>
      <li  class="list-el">
@@ -65,13 +71,13 @@
         <h3 class="mat-h3">DEPOSITION</h3>
       </header>
       <section class="el__content">
-        <div>
+        <div class="property__full-stretch">
           <label class="mat-body-2">Name</label>
           <p class="mat-body font--dark-grey"> {{item.deposer.civility   |titlecase}} {{item.deposer.first_name|titlecase}} {{item.deposer.last_name|titlecase}}</p>
         </div>
-        <div>
+        <div class="property__full-stretch">
           <label class="mat-body-2">Desposition date</label>
-          <p class="mat-body font--dark-grey">{{item.deposition_date | date}}</p>
+          <p class="mat-body font--dark-grey">{{item.deposition_date | date:'medium'}}</p>
         </div>
         <div>
           <label class="mat-body-2">Predifined sale price</label>
@@ -94,13 +100,13 @@
           <h3 class="mat-h3">SELL</h3>
         </header>
         <section class="el__content">
-          <div>
-            <label class="mat-body-2 property__stretch">Buyer</label>
+          <div class="property__stretch">
+            <label class="mat-body-2">Buyer</label>
             <p class="mat-body font--dark-grey">{{item.buyer.first_name}} {{item.buyer.last_name}}</p>
           </div>
-          <div>
+          <div class="property__stretch">
             <label class="mat-body-2">Sale date</label>
-            <p class="mat-body font--dark-grey">{{item.sale_date |date}}</p>
+            <p class="mat-body font--dark-grey">{{item.sale_date |date:'medium'}}</p>
           </div>
           <div>
             <label class="mat-body-2">Real sale price</label>

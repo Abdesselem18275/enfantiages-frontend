@@ -10,19 +10,19 @@
 <main class="tickets-grid" >
    <ng-container *ngFor="let page of itemTickets$ | async | keyvalue">
        <section class="tickets-grid__page">
-<article class="ticket inline" *ngFor="let itemTicket of page.value">
-    <div class="left-content column">
-        <span class="mat-subheading-2">{{itemTicket.reference}}</span>
+<article class="ticket column" *ngFor="let itemTicket of page.value">
+        <div class="inline--centred--spaced">
+            <span class="mat-subheading-2">{{itemTicket.reference}}</span>
+            <span class="mat-body-1">{{itemTicket.initial_sale_price | currency :'TND':'symbol':'1.0-2'}}</span>
+        </div>
         <span class="mat-body">{{itemTicket.category| titlecase}}</span>
         <span  class="mat-body">{{itemTicket.brand | titlecase}}</span>
         <span  class="mat-body">{{itemTicket.size | lowercase}} - {{itemTicket.gender | lowercase}}</span>
-
-    </div>
-    <div class="right-content">
-        <span class="mat-body-1">{{itemTicket.initial_sale_price | currency :'TND':'symbol':'1.0-2'}}</span>
-
-    </div>
-   
+        <!-- <p *ngIf="itemTicket.colors" class="mat-body">
+            <span *ngFor="let color of itemTicket.colors;first as isFirst;last as isLast">{{color.label}}
+                <span *ngIf="isFirst && !isLast">,</span>
+            </span>
+        </p> -->
 </article>
 </section>
 </ng-container> 

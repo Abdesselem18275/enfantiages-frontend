@@ -6,9 +6,9 @@
     row-gap: 2rem;
     grid-template-areas: 
     "deposition-group deposition-group deposition-group deposition-group"
-    "deposer label gender size"
-    "brand brand category category"
-    "price  gain . ."
+    "deposer category brand size"
+    "color gender price gain"
+    "description  description description description"
     "sale-group sale-group sale-group sale-group"
     "buyer   sale-price  sale-date sale-date "
     ". button button .";
@@ -17,7 +17,7 @@
         grid-template-areas: 
         "deposition-group deposition-group"
         "deposer deposer"
-        "label label"
+        "description description"
         "category category"
         "brand brand"
         "size gender"
@@ -32,7 +32,7 @@
         grid-template-areas: 
         "deposition-group"
         "deposer"
-        "label"
+        "description"
         "category"
         "size"
         "brand"
@@ -46,8 +46,8 @@
         "button";   
       }
 }
-.field-label {
-  grid-area:label ;
+.field-description {
+  grid-area:description ;
 }
 .field-price {
     grid-area:price ;
@@ -77,6 +77,9 @@
 .sale-price-field {
     grid-area: sale-price;
 
+}
+.color-field {
+    grid-area:color;
 }
 .sale-date-field {
     grid-area : sale-date;

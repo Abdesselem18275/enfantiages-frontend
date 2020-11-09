@@ -14,13 +14,6 @@
     padding: 1rem;
     height: 3.2cm;
     max-height: 3.2cm;
-    .left-content {
-        .mat-subheading-2 {
-            margin: 0;
-            font-weight: 500;
-        }
-
-    }
 }
 :host {
     display: flex;
@@ -32,4 +25,8 @@ header {
 }
 .mat-h3 {
     margin: 0;
+}
+.mat-subheading-2 {
+    margin: 0;
+    font-weight: 500;
 }

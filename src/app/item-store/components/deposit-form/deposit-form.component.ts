@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { debounceTime, tap,map, switchMap, throttleTime, first, startWith, take } from 'rxjs/operators';
-import { Brand, Category, Item, Size } from 'src/app/core/models/item-models';
+import { Brand, Category, Color, Item, Size } from 'src/app/core/models/item-models';
 import { AppDataService } from 'src/app/shared/service/app-data.service';
 import { InitDataService } from 'src/app/shared/service/init-data.service';
 import { ItemFormFactoryService } from '../../service/item-form-factory-service/item-form-factory.service';
@@ -19,11 +19,13 @@ export class DepositFormComponent  {
   sizes : Size[]
   brands : Brand[]
   categories: Category[]
+  colors$:Observable<Color[]>
   constructor(private ids : InitDataService, private router :Router,private ads : AppDataService, private _snackBar: MatSnackBar,private iffs : ItemFormFactoryService) {
     this.depositForm = this.iffs.getDepositForm()
     this.ids.sizes.pipe(take(1)).subscribe(sizes => this.sizes = sizes)
     this.ids.brands.pipe(take(1)).subscribe(brands => this.brands = brands)
     this.ids.categories.pipe(take(1)).subscribe(categories => this.categories = categories)
+    this.colors$ = this.ids.colors
    }
 
   getSizeFiltredList(index:number):Size[] {

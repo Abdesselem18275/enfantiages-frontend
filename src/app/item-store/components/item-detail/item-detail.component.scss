@@ -33,6 +33,9 @@
       .property__stretch {
         grid-column-start : span 2;
       }
+      .property__full-stretch {
+        grid-column-start : span 3;
+      }
       @media only screen and (max-width: 1100px) {
         grid-template-columns: 1fr 1fr;
 

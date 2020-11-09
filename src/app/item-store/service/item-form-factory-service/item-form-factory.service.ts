@@ -26,10 +26,11 @@ export class ItemFormFactoryService {
     return this.fb.group({
       intial_gain_ratio:[item.intial_gain_ratio*100,[Validators.required,Validators.min(0),Validators.max(100)]],
       initial_sale_price:[item.initial_sale_price,[Validators.required,Validators.min(0)]],
-      label:[item.label,[Validators.required]],
+      description:[item.description],
       brand:[item.brand,[Validators.required]],
       size:[item.size,[Validators.required]],
       category:[item.category,[Validators.required]],
+      colors:[item.colors ?item.colors.map(color => color.id):[] ,[Validators.required]],
       deposer:[item.deposer,[Validators.required],,[this.customerAsyncValidator.validate.bind(this.customerAsyncValidator)]],
       buyer:[item.buyer ? item.buyer : "" ,[],[this.customerAsyncValidator.validate.bind(this.customerAsyncValidator)]],
       actual_sale_price:[item.actual_sale_price ? item.actual_sale_price : ""],
@@ -41,10 +42,11 @@ export class ItemFormFactoryService {
     return this.fb.group({
       intial_gain_ratio:[25,[Validators.required,Validators.min(0),Validators.max(100)]],
       initial_sale_price:['',[Validators.required,Validators.min(0)]],
-      label:['',[Validators.required]],
+      description:[''],
       brand:['',[Validators.required]],
       category:['',[Validators.required]],
       size:['',[Validators.required]],
+      colors:[[],[Validators.required]],
       gender:['Neutral',[Validators.required]]
   })
 

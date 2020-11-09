@@ -3,7 +3,7 @@ import { Customer } from "./profile-models";
 export interface Item {
   id : number,
   reference : string,
-  label : string,
+  description : string,
   deposition_date :string,
   deposer_gain: number,
   intial_gain_ratio:number,
@@ -16,7 +16,8 @@ export interface Item {
   brand: string,
   category:string,
   size: string,
-  gender:string
+  gender:string,
+  colors:Color[]
 }
 export enum ItemState {
   SOLD = 'Sold',
@@ -26,3 +27,4 @@ export enum ItemState {
 export type Brand =  { id : number,label : string}
 export type Size = Brand
 export type Category = Brand
+export type Color = {id:number,label:string,value:string}
