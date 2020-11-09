@@ -129,7 +129,10 @@
       <mat-form-field  class="color-field"  appearance="outline">
         <mat-label>Color</mat-label>
         <mat-select required multiple formControlName="colors">
-         <mat-option *ngFor="let option of colors$ | async" [value]="option.id">{{option.label}} </mat-option>
+         <mat-option *ngFor="let option of colors$ | async" [value]="option.id">
+          <span [style.color]="option.label !== 'Blanc' ? option.value : 'rgb(0, 0, 0)'">
+            {{option.label}}</span> 
+          </mat-option>
         </mat-select>
       </mat-form-field>
       <button  class="field-button" mat-flat-button type="submit" color="primary">UPDATE</button>

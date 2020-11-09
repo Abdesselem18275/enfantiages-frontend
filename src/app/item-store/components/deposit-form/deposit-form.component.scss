@@ -37,21 +37,23 @@ mat-form-field {
     "category brand brand item_size"
     "color gender price gain"
     "description description description description";
-    @media only screen and (max-width: 720px) {
+    @media only screen and (max-width: 800px) {
         grid-template-columns: repeat(2,minmax(0, 1fr));
         grid-template-areas: 
-        "gender category"
-        "item_size brand"
+        "brand brand"
+        "category item_size"
+        "color gender"
         "price gain"
-        "label label";
+        "description description";
       }  
       @media only screen and (max-width: 420px) {
         grid-template-areas: 
         "brand brand"
         "category category"
-        "item_size gender"
+        "item_size item_size"
+        "gender color"
         "price gain"
-        "label label";
+        "description description";
       }  
 }
 .field-description {
