@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import * as moment from 'moment';
 import { Item } from 'src/app/core/models/item-models';
 import { CustomerAsyncValidator } from 'src/app/shared/directive/valid-customer.directive';
 
@@ -23,6 +24,7 @@ export class ItemFormFactoryService {
     })
   }
   getItemEditForm(item:Item):FormGroup {
+    console.warn(moment(item.sale_date).format(moment.HTML5_FMT.DATETIME_LOCAL))
     return this.fb.group({
       intial_gain_ratio:[item.intial_gain_ratio*100,[Validators.required,Validators.min(0),Validators.max(100)]],
       initial_sale_price:[item.initial_sale_price,[Validators.required,Validators.min(0)]],
@@ -34,7 +36,7 @@ export class ItemFormFactoryService {
       deposer:[item.deposer,[Validators.required],,[this.customerAsyncValidator.validate.bind(this.customerAsyncValidator)]],
       buyer:[item.buyer ? item.buyer : "" ,[],[this.customerAsyncValidator.validate.bind(this.customerAsyncValidator)]],
       actual_sale_price:[item.actual_sale_price ? item.actual_sale_price : ""],
-      sale_date:[item.sale_date? item.sale_date.replace('Z','') : ""],
+      sale_date:[item.sale_date? moment(item.sale_date).format(moment.HTML5_FMT.DATETIME_LOCAL) : ""],
       gender:[item.gender,[Validators.required]],
   },{validators:this._saleIntegrityValidator})
   }
