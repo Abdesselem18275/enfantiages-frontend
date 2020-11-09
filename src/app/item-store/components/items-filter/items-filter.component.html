@@ -1,13 +1,28 @@
-<h2 class="mat-h2">Items Filter</h2>
-<form class="column" (ngSubmit)="onSubmit()"  [formGroup]="filterForm">
-<mat-form-field  appearance="outline">
-    <mat-label>Select a date range</mat-label>
-    <mat-date-range-input  [rangePicker]="picker">
-      <input matStartDate formControlName="deposed_after"  placeholder="Start date">
-      <input matEndDate  formControlName="deposed_before" placeholder="End date">
-    </mat-date-range-input>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-date-range-picker #picker></mat-date-range-picker>
+<h3 class="mat-h3">ITEM FILTERS</h3>
+<mat-divider></mat-divider>
+<ng-container appFormGroupValidatorMessage>
+  <mat-error class="my4"></mat-error>
+  <form   (ngSubmit)="onSubmit()" class="column" [formGroup]="filterForm">
+    <span class="my4 mat-body-2">Filter by deposition date</span>
+    <mat-form-field  appearance="outline">
+      <mat-label>After date</mat-label>
+        <input type="date" matInput formControlName="deposed_after" placeholder="Start date">
+    </mat-form-field>
+    <mat-form-field  appearance="outline">
+      <mat-label>Before date</mat-label>
+        <input type="date" matInput formControlName="deposed_before" placeholder="end date">
+    </mat-form-field>
+    <!-- <span class="my4 mat-body-2">Filter by meta's</span> -->
+    <mat-form-field appearance="outline" class="my4">
+      <mat-label>Filter by category</mat-label>
+
+   <mat-select multiple formControlName="category">
+     <mat-option [value]="option.id" *ngFor="let option of categories$ | async">
+            {{option.label}}
+     </mat-option>
+   </mat-select>
   </mat-form-field>
-<button color="primary" mat-flat-button>SUBMIT</button>
-</form>
+  <button class="mt8" color="accent" type="submit" mat-flat-button>SUBMIT</button>
+
+  </form>
+</ng-container>

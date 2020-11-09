@@ -11,7 +11,7 @@ export class ControlErrorMessageComponent implements OnChanges {
   @Input() error : ValidationErrors;
   constructor() { }
   ngOnChanges(changes: SimpleChanges): void {
-    
+
   }
 
   getErrorMessage(error:string,value:any) {
@@ -30,6 +30,9 @@ export class ControlErrorMessageComponent implements OnChanges {
   }
   case 'min': {
     return `Minimum value is ${value['min']}`
+  }
+  case 'dateRangeOrderValidator': {
+    return `The before date must be greater or equal than the after date`
   }
     }
     return '';

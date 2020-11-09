@@ -11,8 +11,9 @@ import { CustomersAutoCompleteFieldComponent}  from './components/customers-auto
 import { SearchBoxComponent } from './components/search-box/search-box.component';
 import { ControlErrorMessageComponent } from './components/control-error-message/control-error-message.component';
 import { ControlValidatorMessageDirective } from './directive/control-validator-message.directive';
+import { FormGroupValidatorMessageDirective } from './directive/form-group-validator-message.directive';
 @NgModule({
-  declarations: [NavBarComponent, CustomersAutoCompleteFieldComponent, SearchBoxComponent, SideNavComponent, NotFountComponent, ValidCustomerDirective, ControlErrorMessageComponent, ControlValidatorMessageDirective],
+  declarations: [NavBarComponent, CustomersAutoCompleteFieldComponent, SearchBoxComponent, SideNavComponent, NotFountComponent, ValidCustomerDirective, ControlErrorMessageComponent, ControlValidatorMessageDirective, FormGroupValidatorMessageDirective],
   imports: [
     MaterialModule,
     ReactiveFormsModule ,
@@ -27,6 +28,7 @@ import { ControlValidatorMessageDirective } from './directive/control-validator-
     SideNavComponent,
     NotFountComponent,
     ControlValidatorMessageDirective,
+    FormGroupValidatorMessageDirective,
     MaterialModule
   ]
 })

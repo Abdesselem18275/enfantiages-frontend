@@ -53,17 +53,23 @@ export class ItemFormFactoryService {
   })
 
   }
-  getDateRangeFilter():FormGroup {
+  getFilterForm():FormGroup {
     return this.fb.group({
       deposed_before : [''],
-      deposed_after: ['']},{validators:this._dateRangeOrderValidator})
+      deposed_after: [''],
+      category: [],
+      size: [],
+      brand:[],
+      color:[],
+      gender:[],
+
+    },{validators:this._dateRangeOrderValidator})
   }
 
   private _dateRangeOrderValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
     const beforeDate = control.get('deposed_before');
     const afterDate = control.get('deposed_after');
-
-    return beforeDate && afterDate && Date.parse(afterDate.value) > Date.parse(beforeDate.value) ? { dateRangeOrderValidator: true } : null;
+    return beforeDate.value && afterDate.value && moment(afterDate.value).isAfter(moment(beforeDate.value)) ? { dateRangeOrderValidator: true } : null;
   }
   private _saleIntegrityValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
     const actual_sale_price = control.get('actual_sale_price').value;
@@ -71,7 +77,7 @@ export class ItemFormFactoryService {
     const buyer = control.get('buyer').value;
     if(actual_sale_price && sale_date && buyer) {
       return null
-    } 
+    }
     else if (!actual_sale_price && !sale_date && !buyer) {
       return null
     }

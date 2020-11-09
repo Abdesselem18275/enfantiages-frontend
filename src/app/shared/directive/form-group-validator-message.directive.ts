@@ -1,41 +1,40 @@
-import { AfterContentInit, ComponentFactoryResolver, ContentChild, Directive, OnDestroy, ViewContainerRef } from '@angular/core';
+import { ComponentFactoryResolver } from '@angular/core';
+import { AfterContentInit, ContentChild, Directive, OnDestroy, ViewContainerRef } from '@angular/core';
+import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { MatError } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
 import { Subscription } from 'rxjs';
 import { ControlErrorMessageComponent } from '../components/control-error-message/control-error-message.component';
 
 @Directive({
-  selector: '[appControlValidatorMessage]'
+  selector: '[appFormGroupValidatorMessage]'
 })
-export class ControlValidatorMessageDirective implements OnDestroy, AfterContentInit {
-  @ContentChild(MatInput,{static: false})
-  inputEl :  MatInput;
-
+export class FormGroupValidatorMessageDirective implements OnDestroy, AfterContentInit{
   @ContentChild(MatError,{read: ViewContainerRef})
   errorMsgContainerEl :  ViewContainerRef ;
   private subscription : Subscription;
+  @ContentChild(FormGroupDirective,{static: false})
+  formGroup :  FormGroupDirective
+  ;
   constructor(
     private resolver: ComponentFactoryResolver) {
-    }
+  }
   ngOnDestroy(): void {
     this.subscription ? this.subscription.unsubscribe() : null
-
   }
   ngAfterContentInit(): void {
+    console.warn(this.formGroup)
     const factory = this.resolver.resolveComponentFactory<ControlErrorMessageComponent>(ControlErrorMessageComponent);
-    this.inputEl.ngControl.control.statusChanges.subscribe(x =>
+    this.subscription  =this.formGroup && this.formGroup.statusChanges.subscribe(x =>
       {
         console.warn(x)
         this.errorMsgContainerEl.clear()
         if(x === 'INVALID') {
           const compRef = this.errorMsgContainerEl.createComponent(factory)
-          compRef.instance.error = this.inputEl.ngControl.control.errors
+          compRef.instance.error = this.formGroup.errors
         } else {
           this.errorMsgContainerEl.clear()
         }
       })
   }
-
-
 
 }
