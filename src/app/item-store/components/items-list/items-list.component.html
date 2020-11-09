@@ -120,13 +120,15 @@
     (selectionChange)="updateSelection($event)"
     class="item-stream--small-width">
   <mat-list-option
+  checkboxPosition="after"
    [value]="item"
   *ngFor="let item of items$ | async">
-    <mat-icon   queryParamsHandling="merge"
-    [routerLink]="['./', { outlets: { itemContentOutlet: ['item-detail',item.id] } }]" mat-list-icon>login</mat-icon>
     <p class="mat-body-2" matLine>{{item.reference}} </p>
+    <p class="mat-caption" matLine>{{item.category}} </p>
     <p class="mat-caption" matLine>{{item.brand}} </p>
     <p class="mat-caption" matLine>{{item.size}} </p>
+    <mat-icon [matMenuTriggerData]="{item: item}"
+    [matMenuTriggerFor]="itemActionMenu" mat-list-icon>more_vert</mat-icon>
     <mat-divider></mat-divider>
   </mat-list-option>
 </mat-selection-list>
