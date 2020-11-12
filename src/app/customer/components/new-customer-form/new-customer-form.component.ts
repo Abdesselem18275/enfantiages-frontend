@@ -24,8 +24,8 @@ export class NewCustomerFormComponent implements OnInit {
       civility:['Mr',Validators.required],
       adress: ['',Validators.required],
       phone_number : [null,Validators.required],
-      id_reference: ['',Validators.required],  
-      birth_date: [''],  
+      id_reference: [''],
+      birth_date: [''],
       password:['default_pass',Validators.required]
     })
    }
@@ -37,6 +37,8 @@ export class NewCustomerFormComponent implements OnInit {
     this.customerForm = formGroup
   }
   onSubmit():void {
+    this.customerForm.markAsTouched()
+    this.customerForm.enable()
     if(this.customerForm.valid) {
       this.ads.post<{token:string,profile:Customer}>('profiles/',JSON.stringify(this.customerForm.value)).
       pipe(take(1)).subscribe((customer:{token:string,profile:Customer})=> {
@@ -48,7 +50,7 @@ export class NewCustomerFormComponent implements OnInit {
       (error) => {
         this._snackBar.open(Object.values(error).join('\n'),'', {
           duration: 3000,
-        })      
+        })
       })
     }
 
