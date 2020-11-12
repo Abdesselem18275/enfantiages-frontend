@@ -25,7 +25,7 @@ export class NewCustomerFormComponent implements OnInit {
       adress: ['',Validators.required],
       phone_number : [null,Validators.required],
       id_reference: [''],
-      birth_date: [''],
+      birth_date: [null],
       password:['default_pass',Validators.required]
     })
    }
