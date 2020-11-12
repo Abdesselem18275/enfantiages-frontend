@@ -57,11 +57,10 @@ export class ItemFormFactoryService {
     return this.fb.group({
       deposed_before : [''],
       deposed_after: [''],
-      category: [],
-      size: [],
-      brand:[],
-      color:[],
-      gender:[],
+      category__in: [],
+      size__in: [],
+      brand__in:[],
+      // gender:[],
 
     },{validators:this._dateRangeOrderValidator})
   }
