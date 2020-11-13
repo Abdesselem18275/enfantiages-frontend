@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { debounceTime, take } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 import { Brand, Category, Color, Size } from 'src/app/core/models/item-models';
 import { Customer } from 'src/app/core/models/profile-models';
 import { InitDataService } from 'src/app/shared/service/init-data.service';
@@ -13,7 +13,7 @@ import { ItemFormFactoryService } from '../../service/item-form-factory-service/
   templateUrl: './items-filter.component.html',
   styleUrls: ['./items-filter.component.scss']
 })
-export class ItemsFilterComponent  {
+export class ItemsFilterComponent implements OnInit  {
   filterForm : FormGroup
   formSubscription : Subscription
   sizes$ : Observable<Size[]>
@@ -21,6 +21,7 @@ export class ItemsFilterComponent  {
   brands$ : Observable<Brand[]>
   colors$ : Observable<Color[]>
   categories$:Observable<Category[]>
+  private subscribtion :Subscription
   @Output() activeFilterControls  = new EventEmitter<number>()
   constructor(private iis : InitDataService, private router: Router,private iffs : ItemFormFactoryService,private route:  ActivatedRoute) {
     this.filterForm = this.iffs.getFilterForm()
@@ -29,6 +30,8 @@ export class ItemsFilterComponent  {
     this.brands$ =this.iis.brands
     this.colors$ =this.iis.colors
     this.categories$ = this.iis.categories
+   }
+  ngOnInit(): void {
     this.route.queryParamMap.pipe(
       take(1)).subscribe((queryParam : ParamMap) => {
         Object.keys(this.filterForm.controls).forEach(key => {
@@ -38,15 +41,16 @@ export class ItemsFilterComponent  {
             this.filterForm.controls[key].setValue(value)
           }
         })
-    })
-   }
+    })  }
   onSubmit(): void {
     this.filterForm.markAsDirty()
     this.filterForm.enable()
     if(this.filterForm.valid) {
       let x = this.filterForm.value
       Object.keys(x).forEach((key) => {
-        x[key] = Array.isArray(x[key]) ? (x[key] as string[]).join(',').concat(','): x[key]
+        x[key] = Array.isArray(x[key]) ?
+          (x[key] as string[]).join(','):
+          x[key]
       })
       console.warn(x)
        const navExtra : NavigationExtras = {
