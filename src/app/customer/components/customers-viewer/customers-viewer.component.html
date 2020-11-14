@@ -1,0 +1,39 @@
+
+  <section class="full-width section-frame--fill inline--centred list-action-bar">
+    <button (click)="drawer.toggle()"  mat-icon-button>
+      <mat-icon>tune</mat-icon>
+    </button>
+    <span *ngIf='selectedCustomersCount$ | async' class="mat-body-2">{{selectedCustomersCount$ | async}} selected Customers</span>
+    <div class="search-box-container">
+      <app-search-box (term)="onSearch($event)"></app-search-box>
+  
+    </div>
+    <button [matMenuTriggerFor]="customerListActionMenu" mat-icon-button>
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  
+  </section>
+  <mat-drawer-container hasBackdrop="unset">
+  
+    <mat-drawer  mode="over" #drawer class="py4 pl4 pr8 side-filter">
+      <!-- <app-items-filter class="mat-elevation-z10"></app-items-filter> -->
+    </mat-drawer>
+  
+  <mat-drawer-content class="router-content">
+    <section class="prog-bar-container">
+      <mat-progress-bar *ngIf="IsLoading$ | async" mode="indeterminate"></mat-progress-bar>
+  
+    </section>
+    <router-outlet name="customerContentOutlet">
+    </router-outlet>
+  </mat-drawer-content>
+  </mat-drawer-container>
+  <mat-menu #customerListActionMenu="matMenu">
+  
+      <button mat-menu-item>
+        <mat-icon>table_chart </mat-icon>
+        <span>Export csv</span>
+      </button>
+  
+  </mat-menu>
+  

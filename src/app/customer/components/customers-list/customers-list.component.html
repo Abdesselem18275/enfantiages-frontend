@@ -1,0 +1,106 @@
+<mat-paginator 
+              #paginator
+              [length]="customersCounts$ | async"
+              [pageSize]="50"
+              (page)="updatePage($event)"
+              [pageSizeOptions]="[50,100,150]">
+</mat-paginator>
+<table mat-table [dataSource]="customersDataSource">
+  <ng-container sticky matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="masterSelectionChange($event)"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="rowSelectionChange($event,row)"
+                    [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+  <!-- reference Column -->
+  <ng-container  matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.first_name | titlecase}} {{element.last_name | titlecase}} </td>
+  </ng-container>
+
+  <ng-container  matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> email</th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+  
+  <ng-container  matColumnDef="phone_number">
+    <th mat-header-cell *matHeaderCellDef> phone number</th>
+    <td mat-cell *matCellDef="let element"> {{element.phone_number}} </td>
+  </ng-container>
+  <ng-container  matColumnDef="total_due_amount">
+    <th mat-header-cell *matHeaderCellDef> Amount due </th>
+    <td mat-cell *matCellDef="let element"> {{element.total_due_amount|currency:'TND'}} </td>
+  </ng-container>
+  <ng-container  matColumnDef="total_gain_amount">
+    <th mat-header-cell *matHeaderCellDef> Total gains</th>
+    <td mat-cell *matCellDef="let element"> {{element.total_gain_amount|currency:'TND'}} </td>
+  </ng-container>
+  <!-- action Column -->
+  <ng-container matColumnDef="action" stickyEnd>
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element">
+      <button
+      [matMenuTriggerData]="{customer: element}"
+      [matMenuTriggerFor]="customerActionMenu" mat-icon-button>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+       </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+  queryParamsHandling="merge"
+  mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;"></tr>
+  <ng-template #noData>
+ -
+  </ng-template>
+</table>
+
+<mat-selection-list   
+    (selectionChange)="updateSelection($event)"
+    class="customer-stream--small-width">
+  <mat-list-option
+  checkboxPosition="after"
+   [value]="customer"
+  *ngFor="let customer of customers$ | async">
+    <p class="mat-body-2" matLine>{{customer.first_name}} {{customer.last_name}} </p>
+    <p class="mat-caption" matLine>{{customer.email}} </p>
+    <p class="mat-caption" matLine>{{customer.phone_number}} </p>
+    <mat-icon 
+    [matMenuTriggerData]="{customer: customer}"
+    [matMenuTriggerFor]="customerActionMenu" mat-list-icon>more_vert</mat-icon>
+    <mat-divider></mat-divider>
+  </mat-list-option>
+</mat-selection-list>
+
+
+<mat-menu #customerActionMenu="matMenu">
+    <ng-template matMenuContent let-customer="customer">
+  
+      <button queryParamsHandling="merge" [routerLink]="['./', { outlets: { customerContentOutlet: ['customer-detail',customer.id] } }]" mat-menu-item>
+        <mat-icon>list_alt</mat-icon>
+        <span>Item detail</span>
+      </button>
+      <button queryParamsHandling="merge" [routerLink]="['/customer/customers-viewer', { outlets: { customerContentOutlet: ['customer-edit',customer.id] } }]"
+      mat-menu-item>
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+      <button  (click)="openCustomerDeleteDialog(customer)" mat-menu-item>
+        <mat-icon>delete</mat-icon>
+        <span>Remove</span>
+      </button>
+    </ng-template>
+  
+  </mat-menu>
+<button color="primary"  [routerLink]="['/customer/new-customer']"  class="button--floating" mat-fab>
+  <mat-icon>add</mat-icon>
+  </button>

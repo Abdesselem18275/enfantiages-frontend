@@ -1,0 +1,22 @@
+@import '/src/styles/colors.scss';
+
+:host {
+  display:block;
+}
+
+.router-content {
+  width : 100%;
+  min-height: 80vh
+
+}
+.side-filter {
+  height: 100%;
+  width:min(320px,calc(100vw-20px));
+}
+.search-box-container {
+  max-width: 8rem;
+  margin-left: auto;
+}
+.prog-bar-container {
+  min-height: 0.25rem;
+}
