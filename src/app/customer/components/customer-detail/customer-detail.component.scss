@@ -1,0 +1,57 @@
+@import '/src/styles/colors.scss';
+
+
+.item-action-bar {
+  display: flex;
+  justify-content: space-between;
+}
+.mat-h2 {
+  margin: 0;
+}
+.list-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  padding-inline-start:0;
+  .list-el {
+    min-width: 320px;
+    margin : 1%;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid $light-grey-color;
+    display: flex;
+    flex-direction: column;
+    @media only screen and (max-width: 800px) {
+      width: 98%;
+    }
+    .el__content {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      column-gap: 1rem;
+      .property__stretch {
+        grid-column-start : span 2;
+      }
+      .property__full-stretch {
+        grid-column-start : span 3;
+      }
+      @media only screen and (max-width: 1100px) {
+        grid-template-columns: 1fr 1fr;
+
+      }
+      }
+    }
+  }
+  .mat-h3 {
+    margin: 0;
+  }
+.kpi {
+  flex-wrap: wrap;
+  justify-content: center;
+  article {
+    padding: 2rem;
+    margin: 1rem;
+    border: 1px solid $light-grey-color;
+  }
+}
