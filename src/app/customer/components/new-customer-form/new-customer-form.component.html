@@ -1,7 +1,21 @@
-<header class="my8">
-    <h1 class="text-center  mat-h1">New Customer Form</h1>
-</header>
+<header  class="my4 inline--centred--spaced">
 
+    <button
+    queryParamsHandling="merge"
+    [routerLink]="['/customer/customers-viewer', { outlets: { customerContentOutlet: null } }]"
+    mat-icon-button>
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+      <h2  class="mat-h2">
+          <ng-container *ngIf="customer  else newCustomer">
+            {{customer.first_name | titlecase}} {{customer.last_name | titlecase}}
+          </ng-container>
+          <ng-template  #newCustomer>
+                New Customer
+          </ng-template>
+        </h2>
+<span></span>
+</header>
 <form  (ngSubmit)="onSubmit()" class="main-form" [formGroup]='customerForm'>
 
         <mat-form-field appearance="outline" class="field-civility">

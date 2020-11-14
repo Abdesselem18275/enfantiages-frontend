@@ -8,6 +8,12 @@ export interface Customer {
   phone_number:string,
   adress:string,
   birth_date:string,
+  total_due_amount: number,
+  total_gain_amount:number,
+  bought_items_count:number,
+  deposed_items_count:number,
+  total_purchase_amount:number,
+  total_deposit_amount:number,
 }
 
 export type Civility = 'Mr' | 'Mme'

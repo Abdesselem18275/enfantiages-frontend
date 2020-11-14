@@ -15,12 +15,8 @@ export class CustomerDetailComponent  {
   constructor(private dhs: DialogHandlerService,route : ActivatedRoute) {
     this.customer$ = route.data.pipe(map((x:Data) =>x.customerDetail))
    }
-
-   openSellDialog(customer: Customer) {
-     //this.dhs.openSellDialog(customer)
-  }
-  openCustomerDeleteDialog(customer):void {
-    //this.dhs.openItemDeleteDialog(customer)
+  openCustomerDeleteDialog(customer: Customer):void {
+    this.dhs.openResourceDeleteDialog(`profile/${customer.id}/`,`${customer.first_name} ${customer.last_name}`)
   }
 
 

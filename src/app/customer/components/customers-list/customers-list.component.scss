@@ -29,7 +29,9 @@ table {
     bottom: 3rem;
     z-index: 3;
   }
-  
+  .unpaid {
+    background-color: rgb(255,191,0,0.3);
+  }
   @media only screen and (max-width: 720px) {
     table {
       display: none;
@@ -39,4 +41,6 @@ table {
       width: 100%;
     }
   }
-  
+  .mat-h1 {
+    margin :0;
+  }

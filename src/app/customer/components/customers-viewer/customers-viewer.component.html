@@ -1,6 +1,6 @@
 
   <section class="full-width section-frame--fill inline--centred list-action-bar">
-    <button (click)="drawer.toggle()"  mat-icon-button>
+    <button   mat-icon-button>
       <mat-icon>tune</mat-icon>
     </button>
     <span *ngIf='selectedCustomersCount$ | async' class="mat-body-2">{{selectedCustomersCount$ | async}} selected Customers</span>

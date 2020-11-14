@@ -30,18 +30,20 @@ const routes: Routes = [{
           outlet: 'customerContentOutlet',
           resolve: {customerDetail : CustomerDetailResolverService}
         },
-        // {
-        //   path:'customer-edit/:id',
-        //   component:CustomerEditFormComponent,
-        //   outlet: 'customerContentOutlet',
-        //   resolve: {itemDetail : CustomerDetailResolverService}
-        // }
+        {
+          path:'new-customer',
+          component:NewCustomerFormComponent,
+          outlet: 'customerContentOutlet',
+        },
+        {
+          path:'customer-edit/:id',
+          component:NewCustomerFormComponent,
+          outlet: 'customerContentOutlet',
+          resolve: {customerDetail : CustomerDetailResolverService}
+        }
       ]
     },
-    {
-      path:'new-customer',
-      component:NewCustomerFormComponent,
-    }
+
   ]
 }];
 

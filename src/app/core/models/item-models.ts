@@ -17,7 +17,9 @@ export interface Item {
   category:string,
   size: string,
   gender:string,
-  colors:Color[]
+  colors:Color[],
+  is_deposer_settled:boolean,
+
 }
 export enum ItemState {
   SOLD = 'Sold',

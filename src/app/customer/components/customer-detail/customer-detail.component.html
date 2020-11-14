@@ -7,7 +7,6 @@
         <mat-icon>arrow_back</mat-icon>
       </button>
         <h2 class="mat-h2">{{customer.first_name | titlecase}} {{customer.last_name | titlecase}}</h2>
-  
       <button
       [matMenuTriggerData]="{customer: customer}"
       [matMenuTriggerFor]="customerActionMenu" mat-icon-button>
@@ -16,6 +15,14 @@
   
   
   </header>
+  <section class="redirect-buttons">
+    <button [routerLink]="['/item-store']" [queryParams]="{deposer:(customer$ | async).id}" mat-flat-button color="primary" mat-button>
+      {{(customer$|async).deposed_items_count}} Deposed Items
+    </button>
+    <button [routerLink]="['/item-store']" [queryParams]="{buyer:(customer$ | async).id}"mat-flat-button color="primary" mat-button>
+      {{(customer$|async).bought_items_count}} Bought Items
+   </button>
+  </section>
   <main *ngIf="customer$ |async as customer">
   <ul class="list-container">
     <li  class="list-el">
@@ -23,7 +30,10 @@
   
         <mat-icon class="mr4">qr_code</mat-icon>
         <h3 class="mat-h3">IDENTIFICATION</h3>
+
       </header>
+      <span *ngIf="customer.total_due_amount > 0"   class="mb2 font--caution">This customer need to be settled</span>
+
       <section class="el__content">
         <div>
           <label class="mat-body-2">Name</label>
@@ -52,25 +62,17 @@
       </section>
        </li>
   </ul>
-  <section class="inline kpi">
+  <section class="kpi">
 
-<article>
-  <p class="font--dark-grey">Purshased items count</p>
-  <h2 class="mat-h2">{{customer.bought_items_count}}</h2>
-</article>
 <article>
   <p class="font--dark-grey">Total purshases amount</p>
   <h2 class="mat-h2">{{customer.total_purchase_amount | currency:'TND'}}</h2>
 </article>
 <article>
-  <p class="font--dark-grey">Deposed items count</p>
-  <h2 class="mat-h2">{{customer.deposed_items_count}}</h2>
-</article>
-<article>
   <p class="font--dark-grey">Total deposits amount</p>
   <h2 class="mat-h2">{{customer.total_deposit_amount | currency:'TND'}}</h2>
 </article>
-<article>
+<article [class.frame__pulsing]="customer.total_due_amount > 0">
   <p class="font--dark-grey">Total due amount</p>
   <h2 class="mat-h2">{{customer.total_due_amount | currency:'TND'}}</h2>
 </article>
@@ -82,9 +84,9 @@
   </main>
   <mat-menu #customerActionMenu="matMenu">
     <ng-template matMenuContent let-customer="customer">
-      <button [disabled]="customer.buyer" (click)="openSellDialog(customer)" mat-menu-item>
-        <mat-icon>point_of_sale</mat-icon>
-        <span>Sell</span>
+      <button [disabled]="customer.total_due_amount == 0" mat-menu-item>
+        <mat-icon>payments</mat-icon>
+        <span>Settle</span>
       </button>
       <button queryParamsHandling="merge" [routerLink]="['/customer/customers-viewer', { outlets: { customerContentOutlet: ['customer-edit',customer.id] } }]" mat-menu-item>
         <mat-icon>edit</mat-icon>
@@ -94,6 +96,7 @@
         <mat-icon>delete</mat-icon>
         <span>delete</span>
       </button>
+      
     </ng-template>
   
   </mat-menu>

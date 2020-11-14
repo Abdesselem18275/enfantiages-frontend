@@ -47,5 +47,10 @@ export class CustomerStoreStateService {
   get CustomersCount():Observable<number> {
     return this._customersCountSubject.asObservable()
   }
-
+  addCustomer(payload:Customer):void {
+    let val = this._customersSubject.value
+    const index = val.findIndex(customer => customer.id === payload.id)
+    index > -1 ? val[index] = payload : val.push(payload)
+    this.setCustomers(val)
+  } 
 }

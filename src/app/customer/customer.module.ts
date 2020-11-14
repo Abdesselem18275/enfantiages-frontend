@@ -7,10 +7,13 @@ import { NewCustomerFormComponent } from './components/new-customer-form/new-cus
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { CustomerFormDialogComponent } from './components/customer-form-dialog/customer-form-dialog.component';
+import { CustomersListComponent } from './components/customers-list/customers-list.component';
+import { CustomersViewerComponent } from './components/customers-viewer/customers-viewer.component';
+import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
 
 
 @NgModule({
-  declarations: [CustomerComponent, NewCustomerFormComponent, CustomerFormDialogComponent],
+  declarations: [CustomerComponent, NewCustomerFormComponent, CustomerFormDialogComponent, CustomersListComponent, CustomersViewerComponent, CustomerDetailComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule ,

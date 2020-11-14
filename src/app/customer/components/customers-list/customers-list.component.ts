@@ -19,7 +19,7 @@ export class CustomersListComponent implements OnDestroy  {
   selection:SelectionModel<Customer>
   customersCounts$: Observable<number>
   @Output() selectedCustomers = new EventEmitter<Customer[]>();
-  displayedColumns = ['select','name','email','phone_number','total_due_amount','total_gain_amount','action']
+  displayedColumns = ['select','name','email','phone_number','total_due_amount','action']
   customersDataSource = new MatTableDataSource<Customer>();
   private subscribtion : Subscription
   constructor(
@@ -42,8 +42,8 @@ export class CustomersListComponent implements OnDestroy  {
   openCustomerSellDialog(customer:Customer):void {
     //this.dhs.openSellDialog(customer)
   }
-  openCustomerDeleteDialog(customer:Customer):void {
-    // this.dhs.openCustomerDeleteDialog(customer)
+  openResourceDeleteDialog(customer:Customer):void {
+    this.dhs.openResourceDeleteDialog(`/profile/${customer.id}/`,`${customer.first_name} ${customer.last_name}`)
   }
   isAllSelected() {
     const numSelected = this.selection.selected.length;
