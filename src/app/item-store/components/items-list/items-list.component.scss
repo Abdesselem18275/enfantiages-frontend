@@ -43,6 +43,15 @@ table {
     width: 100%;
   }
 }
-.mat-h1 {
-  margin: 0;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .mat-h2 {
+    margin :0;
+  }
+  @media only screen and (max-width: 820px) {
+    flex-direction: column;
+  }
 }
