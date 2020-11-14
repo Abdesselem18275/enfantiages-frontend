@@ -1,0 +1,100 @@
+<header *ngIf="customer$ |async as customer" class="my4 inline--centred--spaced">
+
+      <button
+      queryParamsHandling="merge"
+      [routerLink]="['/customer/customers-viewer', { outlets: { customerContentOutlet: null } }]"
+      mat-icon-button>
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+        <h2 class="mat-h2">{{customer.first_name | titlecase}} {{customer.last_name | titlecase}}</h2>
+  
+      <button
+      [matMenuTriggerData]="{customer: customer}"
+      [matMenuTriggerFor]="customerActionMenu" mat-icon-button>
+        <mat-icon >more_vert</mat-icon>
+      </button>
+  
+  
+  </header>
+  <main *ngIf="customer$ |async as customer">
+  <ul class="list-container">
+    <li  class="list-el">
+      <header class="inline--centred mb4">
+  
+        <mat-icon class="mr4">qr_code</mat-icon>
+        <h3 class="mat-h3">IDENTIFICATION</h3>
+      </header>
+      <section class="el__content">
+        <div>
+          <label class="mat-body-2">Name</label>
+          <p class="mat-body font--dark-grey">{{customer.first_name | titlecase}} {{customer.last_name | titlecase}}</p>
+        </div> 
+        <div>
+          <label class="mat-body-2">Email</label>
+          <p class="mat-body font--dark-grey">{{customer.email}}</p>
+        </div>  
+        <div>
+          <label class="mat-body-2">Id reference</label>
+          <p class="mat-body font--dark-grey">{{customer.id_reference | lowercase}}</p>
+        </div>
+        <div>
+          <label class="mat-body-2">Phone number</label>
+          <p class="mat-body font--dark-grey">{{customer.phone_number | lowercase}}</p>
+        </div>
+        <div>
+          <label class="property__stretch mat-body-2">Adress</label>
+          <p class="mat-body font--dark-grey">{{customer.adress | titlecase}}</p>
+        </div>  
+        <div *ngIf="customer.birth_date">
+          <label class="mat-body-2">Birth date</label>
+          <p class="mat-body font--dark-grey">{{customer.birth_date | date:'mediumDate'}}</p>
+        </div> 
+      </section>
+       </li>
+  </ul>
+  <section class="inline kpi">
+
+<article>
+  <p class="font--dark-grey">Purshased items count</p>
+  <h2 class="mat-h2">{{customer.bought_items_count}}</h2>
+</article>
+<article>
+  <p class="font--dark-grey">Total purshases amount</p>
+  <h2 class="mat-h2">{{customer.total_purchase_amount | currency:'TND'}}</h2>
+</article>
+<article>
+  <p class="font--dark-grey">Deposed items count</p>
+  <h2 class="mat-h2">{{customer.deposed_items_count}}</h2>
+</article>
+<article>
+  <p class="font--dark-grey">Total deposits amount</p>
+  <h2 class="mat-h2">{{customer.total_deposit_amount | currency:'TND'}}</h2>
+</article>
+<article>
+  <p class="font--dark-grey">Total due amount</p>
+  <h2 class="mat-h2">{{customer.total_due_amount | currency:'TND'}}</h2>
+</article>
+<article>
+  <p class="font--dark-grey">Total gains amount</p>
+  <h2 class="mat-h2">{{customer.total_gain_amount | currency:'TND'}}</h2>
+</article>
+  </section>
+  </main>
+  <mat-menu #customerActionMenu="matMenu">
+    <ng-template matMenuContent let-customer="customer">
+      <button [disabled]="customer.buyer" (click)="openSellDialog(customer)" mat-menu-item>
+        <mat-icon>point_of_sale</mat-icon>
+        <span>Sell</span>
+      </button>
+      <button queryParamsHandling="merge" [routerLink]="['/customer/customers-viewer', { outlets: { customerContentOutlet: ['customer-edit',customer.id] } }]" mat-menu-item>
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+      <button (click)="openCustomerDeleteDialog(customer)" mat-menu-item>
+        <mat-icon>delete</mat-icon>
+        <span>delete</span>
+      </button>
+    </ng-template>
+  
+  </mat-menu>
+  

@@ -1,23 +1,51 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
 import { CustomerComponent } from './components/customer/customer.component';
+import { CustomersListComponent } from './components/customers-list/customers-list.component';
+import { CustomersViewerComponent } from './components/customers-viewer/customers-viewer.component';
 import {NewCustomerFormComponent} from './components/new-customer-form/new-customer-form.component';
-
-const routes: Routes = [{ 
-  path: '', 
+import {CustomerDetailResolverService} from './resolvers/customer-detail-resolver.service';
+const routes: Routes = [{
+  path: '',
   component: CustomerComponent,
   children: [
     {
-      path: '',
+      path:'',
       pathMatch:'full',
-      redirectTo:'new-customer'
+      redirectTo:'customers-viewer'
+    },
+    {
+      path:'customers-viewer',
+      component: CustomersViewerComponent,
+      children: [
+        {
+          path:'',
+          component:CustomersListComponent,
+          outlet: 'customerContentOutlet',
+        },
+        {
+          path:'customer-detail/:id',
+          component:CustomerDetailComponent,
+          outlet: 'customerContentOutlet',
+          resolve: {customerDetail : CustomerDetailResolverService}
+        },
+        // {
+        //   path:'customer-edit/:id',
+        //   component:CustomerEditFormComponent,
+        //   outlet: 'customerContentOutlet',
+        //   resolve: {itemDetail : CustomerDetailResolverService}
+        // }
+      ]
     },
     {
       path:'new-customer',
-      component:NewCustomerFormComponent
+      component:NewCustomerFormComponent,
     }
   ]
 }];
+
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
