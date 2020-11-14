@@ -1,10 +1,16 @@
-<mat-paginator 
-              #paginator
-              [length]="itemsCounts$ | async"
-              [pageSize]="50"
-              (page)="updatePage($event)"
-              [pageSizeOptions]="[50,100,150]">
+<header class="global--gutters inline--centred--spaced">
+  <h1 class="mat-h1">
+    ITEMS LIST
+    </h1>
+  <mat-paginator 
+  #paginator
+  [length]="itemsCounts$ | async"
+  [pageSize]="50"
+  (page)="updatePage($event)"
+  [pageSizeOptions]="[50,100,150]">
 </mat-paginator>
+</header>
+
 <table mat-table [dataSource]="itemsDataSource">
   <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>
@@ -56,18 +62,6 @@
   </ng-container>
 
 
-  <!-- operational_impact Column -->
-  <ng-container matColumnDef="gain_ratio">
-    <th mat-header-cell *matHeaderCellDef> Gain Ratio </th>
-    <td mat-cell *matCellDef="let element"> {{element.initial_gain_ration | percent}} </td>
-  </ng-container>
-
-    <!-- shop_gain Column -->
-    <ng-container matColumnDef="shop_gain">
-      <th mat-header-cell *matHeaderCellDef> Shop gain </th>
-      <td mat-cell *matCellDef="let element"> {{element.initial_sale_price  - element.deposer_gain | currency :'TND':'symbol':'1.0-2'}} </td>
-    </ng-container>
-
 
   <!-- initial_sale_price Column -->
   <ng-container matColumnDef="initial_sale_price">
@@ -82,17 +76,24 @@
     <!-- deposer Column -->
     <ng-container matColumnDef="deposer">
       <th mat-header-cell *matHeaderCellDef> deposer </th>
-      <td mat-cell *matCellDef="let element"> {{element.deposer.first_name | titlecase}} {{element.deposer.last_name| titlecase}} </td>
+      <td mat-cell *matCellDef="let element"> 
+        <a queryParamsHandling="merge" [routerLink]="['/customer/customers-viewer', { outlets: { customerContentOutlet: ['customer-detail',element.deposer.id] } }]">
+          {{element.deposer.first_name | titlecase}} {{element.deposer.last_name| titlecase}} 
+        </a>
+
+        </td>
+
     </ng-container>
 
 
-    <ng-container matColumnDef="sale_date">
-      <th mat-header-cell *matHeaderCellDef> Sale date </th>
+    <ng-container matColumnDef="buyer">
+      <th mat-header-cell *matHeaderCellDef> Buyer </th>
       <td mat-cell *matCellDef="let element">
-        <ng-container *ngIf="element.sale_date else noData">
-
-        {{element.sale_date | date:'mediumDate'}}
-        </ng-container>
+        <ng-container *ngIf="element.buyer else noData">
+          <a queryParamsHandling="merge" [routerLink]="['/customer/customers-viewer', { outlets: { customerContentOutlet: ['customer-detail',element.buyer.id] } }]">
+          {{element.buyer.first_name | titlecase}} {{element.buyer.last_name| titlecase}} 
+        </a>
+             </ng-container>
     </td>
     </ng-container>
   <!-- action Column -->
@@ -110,7 +111,7 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr
   queryParamsHandling="merge"
-  mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;"></tr>
+  mat-row  [class.unpaid]="!row.is_deposer_settled" class="table-row" *matRowDef="let row; columns: displayedColumns;"></tr>
   <ng-template #noData>
  -
   </ng-template>
@@ -120,6 +121,7 @@
     (selectionChange)="updateSelection($event)"
     class="item-stream--small-width">
   <mat-list-option
+  [class.unpaid]="!item.is_deposer_settled"
   checkboxPosition="after"
    [value]="item"
   *ngFor="let item of items$ | async">

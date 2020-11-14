@@ -61,7 +61,10 @@ setCategories(payload : Category[]):void {
   get categories() :Observable<Category[]> {
     return this.categoriesDataSubject.asObservable()
   }
-  addCustomer(paylad:Customer):void {
-    this.setCustomers(this.customersDataSubject.value.concat([paylad]))
+  addCustomer(payload:Customer):void {
+    let val = this.customersDataSubject.value
+    const index = val.findIndex(customer => customer.id === payload.id)
+    index > -1 ? val[index] = payload : val.push(payload)
+    this.setCustomers(val)
   } 
 }

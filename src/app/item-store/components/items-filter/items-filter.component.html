@@ -31,6 +31,15 @@
    </mat-option>
  </mat-select>
 </mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Filter by brand</mat-label>
+
+<mat-select multiple formControlName="brand__in">
+ <mat-option [value]="option.id" *ngFor="let option of brands$ | async">
+        {{option.label}}
+ </mat-option>
+</mat-select>
+</mat-form-field>
   <button color="accent" type="submit" mat-flat-button>SUBMIT</button>
   <button color="warn"type="reset" mat-flat-button>RESET</button>
 

@@ -34,6 +34,7 @@ export class ItemsFilterComponent implements OnInit  {
   ngOnInit(): void {
     this.route.queryParamMap.pipe(
       take(1)).subscribe((queryParam : ParamMap) => {
+        this.filterForm.reset()
         Object.keys(this.filterForm.controls).forEach(key => {
           if(this.filterForm.controls.hasOwnProperty(key)) {
             const value = queryParam.get(key)&&queryParam.get(key).includes(',') ?
@@ -41,7 +42,7 @@ export class ItemsFilterComponent implements OnInit  {
             this.filterForm.controls[key].setValue(value)
           }
         })
-    })  }
+    })}
   onSubmit(): void {
     this.filterForm.markAsDirty()
     this.filterForm.enable()

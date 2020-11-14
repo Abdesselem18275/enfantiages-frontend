@@ -19,8 +19,8 @@ export class ItemDetailComponent  {
    openSellDialog(item: Item) {
      this.dhs.openSellDialog(item)
   }
-  openItemDeleteDialog(item):void {
-    this.dhs.openItemDeleteDialog(item)
+  openItemDeleteDialog(item: Item):void {
+    this.dhs.openResourceDeleteDialog(`item/${item.id}/`,item.reference)
   }
 
 }

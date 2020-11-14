@@ -6,6 +6,7 @@ import { catchError, tap } from 'rxjs/operators';
 import {API_URL} from '../../injectables';
 import { leafNodes } from 'src/app/core/utils';
 import { GlobalStateService } from './global-state.service';
+import { stringify } from '@angular/compiler/src/util';
 @Injectable({
   providedIn: 'root'
 })
@@ -43,6 +44,16 @@ export class AppDataService {
     return this.http.post<T>(query, payload, httpOptions).pipe(
       catchError(error => this.handleError(error)));
   }
+  put<T>(endPoint: string, payload: any): Observable<T> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+      })
+    };
+    const query: string = [this.apiUrl, endPoint].join('');
+    return this.http.put<T>(query, payload, httpOptions).pipe(
+      catchError(error => this.handleError(error)));
+  }
   patch<T>(endPoint: string, payload: any): Observable<T> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -72,7 +83,7 @@ export class AppDataService {
       
     }
     // Return an observable with a user-facing error message.
-    return throwError(leafNodes(error.error));
+    return throwError(Object.entries(error.error).map((x:[string,any]) =>x.join(' : ') ));
   }
 
 }

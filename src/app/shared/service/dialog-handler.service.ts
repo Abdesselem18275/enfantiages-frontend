@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { catchError, filter, map, switchMap, take } from 'rxjs/operators';
+import { filter, map, switchMap, take } from 'rxjs/operators';
 import { Item } from 'src/app/core/models/item-models';
 import { AppDataService } from 'src/app/shared/service/app-data.service';
 import { SellFormDialogComponent } from '../../item-store/components/sell-form-dialog/sell-form-dialog.component';
 import {sellFormValuereplacer} from '../../core/utils';
-import { CustomerFormDialogComponent } from 'src/app/customer/components/customer-form-dialog/customer-form-dialog.component';
-import { Customer } from 'src/app/core/models/profile-models';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ItemDeleteDialogComponent } from 'src/app/item-store/components/item-delete-dialog/item-delete-dialog.component';
 import { Router } from '@angular/router';
+import { ItemStoreStateService } from 'src/app/item-store/service/item-store-state.service';
+import { RessourceDeleteDialogComponent } from '../components/ressource-delete-dialog/ressource-delete-dialog.component';
 @Injectable({
   providedIn: 'root'
 })
 export class DialogHandlerService {
 
   constructor(
+    private iss : ItemStoreStateService,
     private _snackBar: MatSnackBar,
     private router : Router,
     private ads : AppDataService,
@@ -41,42 +41,22 @@ export class DialogHandlerService {
       }))
   }
 
-  openItemDeleteDialog(item:Item) {
-    const dialogRef = this.dialog.open(ItemDeleteDialogComponent, {
+  openResourceDeleteDialog(uri:string,label:string) {
+    const dialogRef = this.dialog.open(RessourceDeleteDialogComponent, {
       width: '320px',
-      data: {item}
+      data: {label}
     });
 
     dialogRef.beforeClosed().pipe(
       take(1),
       filter(result => result ? true : false),
-      switchMap(result => this.ads.delete('item/'+item.id.toString()+'/').pipe(take(1)))
+      switchMap(() => this.ads.delete(uri).pipe(take(1)))
       ).subscribe(() => {
-        this.router.navigate(['/item-store/items-viewer', { outlets: { itemContentOutlet: null } }])
-        this._snackBar.open(`Item ${item.reference} succesfully deleted `,'', {
+        //this.router.navigate(['/item-store/items-viewer', { outlets: { itemContentOutlet: null } }])
+        this._snackBar.open(`Object succesfully deleted `,'', {
         duration: 2000,
       })}
       )
   }
 
-  openNewCustomerDialog() {
-    const dialogRef = this.dialog.open(CustomerFormDialogComponent, {
-      width: '320px'
-    });
-
-    dialogRef.afterClosed().pipe(
-      take(1),
-      filter(result => result ? true : false),
-      map(result => JSON.stringify(result)),
-      switchMap(result => this.ads.post<{token:string,profile:Customer}>('profiles/',result).pipe(
-        take(1),
-      )))
-      .subscribe((customer:{token:string,profile:Customer})=> {
-        this._snackBar.open(`Customer ${customer.profile.first_name} ${customer.profile.last_name} added`,'', {
-        duration: 2000,
-      })},
-      (error) => {
-        dialogRef.disableClose = false
-  })
-  }
 }

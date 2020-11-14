@@ -1,5 +1,4 @@
 table {
-  min-width: 1400px;
   width: 100%;
   overflow-x: auto;
 }
@@ -7,14 +6,7 @@ table {
   overflow: initial;
   width: 4rem;
 }
-.mat-column-label {
-  max-width: 120px;
-  text-overflow: ellipsis;
-}
-.mat-column-brand {
-  max-width: 120px;
-  text-overflow: ellipsis;
-}
+
 .item-stream--small-width {
   display: none;
 }
@@ -38,6 +30,9 @@ table {
   bottom: 3rem;
   z-index: 3;
 }
+.unpaid {
+  background-color: rgb(255,191,0,0.3);
+}
 
 @media only screen and (max-width: 720px) {
   table {
@@ -47,4 +42,7 @@ table {
     display: block;
     width: 100%;
   }
+}
+.mat-h1 {
+  margin: 0;
 }

@@ -12,8 +12,9 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
 import { ControlErrorMessageComponent } from './components/control-error-message/control-error-message.component';
 import { ControlValidatorMessageDirective } from './directive/control-validator-message.directive';
 import { FormGroupValidatorMessageDirective } from './directive/form-group-validator-message.directive';
+import { RessourceDeleteDialogComponent } from './components/ressource-delete-dialog/ressource-delete-dialog.component';
 @NgModule({
-  declarations: [NavBarComponent, CustomersAutoCompleteFieldComponent, SearchBoxComponent, SideNavComponent, NotFountComponent, ValidCustomerDirective, ControlErrorMessageComponent, ControlValidatorMessageDirective, FormGroupValidatorMessageDirective],
+  declarations: [NavBarComponent, CustomersAutoCompleteFieldComponent, SearchBoxComponent, SideNavComponent, NotFountComponent, ValidCustomerDirective, ControlErrorMessageComponent, ControlValidatorMessageDirective, FormGroupValidatorMessageDirective, RessourceDeleteDialogComponent],
   imports: [
     MaterialModule,
     ReactiveFormsModule ,

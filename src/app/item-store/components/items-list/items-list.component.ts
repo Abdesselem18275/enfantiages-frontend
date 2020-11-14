@@ -21,7 +21,7 @@ export class ItemsListComponent implements OnDestroy  {
   selection:SelectionModel<Item>
   itemsCounts$: Observable<number>
   @Output() selectedItems = new EventEmitter<Item[]>();
-  displayedColumns = ['select','reference','category','gender','brand','size','initial_sale_price','gain_ratio','shop_gain','deposition_date','deposer','sale_date','action']
+  displayedColumns = ['select','reference','category','gender','brand','size','initial_sale_price','deposition_date','deposer','buyer','action']
   itemsDataSource = new MatTableDataSource<Item>();
   private subscribtion : Subscription
   constructor(
@@ -45,7 +45,7 @@ export class ItemsListComponent implements OnDestroy  {
     this.dhs.openSellDialog(item)
   }
   openItemDeleteDialog(item):void {
-    this.dhs.openItemDeleteDialog(item)
+    this.dhs.openResourceDeleteDialog(`item/${item.id}/`,item.reference)
   }
   isAllSelected() {
     const numSelected = this.selection.selected.length;

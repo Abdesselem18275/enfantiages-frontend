@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { switchMap, map,debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Customer } from 'src/app/core/models/profile-models';
+import { PaginatedResponseType } from 'src/app/core/models/shared';
 
 import { AppDataService } from '../../service/app-data.service';
 
@@ -27,7 +28,8 @@ export class CustomersAutoCompleteFieldComponent implements OnInit {
     this.filteredCutomers$ = this.relatedFormGroup.get(this.relatedControlName).valueChanges.pipe(
       debounceTime(200),
       map(value => value.toString().toLowerCase()),
-      switchMap((value) => this.ads.get<Customer[]>('profiles/',new Map().set('search',[value])))
+      switchMap((value) => this.ads.get<PaginatedResponseType<Customer>>('profiles/',new Map().set('search',[value]))),
+      map(paginated => paginated.results)
     )
   }
   displayFn(customer: Customer): string {
@@ -38,7 +40,7 @@ export class CustomersAutoCompleteFieldComponent implements OnInit {
      // Converts the route into a string that can be used
   // with the window.open() function
   const url = this.router.serializeUrl(
-    this.router.createUrlTree(['/customer/new-customer'])
+    this.router.createUrlTree(['/customer/customers-viewer', { outlets: { customerContentOutlet: ['new-customer'] } }])
   );
 
   window.open(url, '_blank');
