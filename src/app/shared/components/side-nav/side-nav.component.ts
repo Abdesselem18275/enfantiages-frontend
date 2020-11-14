@@ -9,7 +9,7 @@ const LINKS : SideNavLinkType[] = [
   {
     icon : 'people',
     label:'Customers',
-    routerLink:['/customers']
+    routerLink:['/customer']
   },
   {
     icon : 'analytics',

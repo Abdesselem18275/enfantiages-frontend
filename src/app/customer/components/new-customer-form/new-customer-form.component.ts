@@ -35,7 +35,7 @@ export class NewCustomerFormComponent implements OnInit {
       phone_number : [null,Validators.required],
       id_reference: [''],
       birth_date: [null],
-      //password:['default_pass',Validators.required]
+      password:['default_pass',Validators.required]
     })
     route.data.pipe(
       take(1),
@@ -66,7 +66,7 @@ export class NewCustomerFormComponent implements OnInit {
 
     if(this.customerForm.valid) {
       if(this.customer) {
-        this.ads.put<Customer>(`profile/${this.customer.id}/`,JSON.stringify(this.customerForm.value)).
+        this.ads.patch<Customer>(`profile/${this.customer.id}/`,JSON.stringify(this.customerForm.value)).
         pipe(take(1)).subscribe((customer:Customer)=> {
           this.ids.addCustomer(customer)
           this.css.addCustomer(customer)
