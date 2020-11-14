@@ -15,6 +15,8 @@ $enfantiages-app-accent:  mat-palette($mat-blue-grey,500,50,700);
 // The warn palette is optional (defaults to red).
 $enfantiages-app-warn:    mat-palette($mat-red);
 
+$enfantiages-app-caution:    mat-palette($mat-amber);
+
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as `color` or `typography`.
 $enfantiages-app-theme: mat-light-theme((
@@ -22,6 +24,7 @@ $enfantiages-app-theme: mat-light-theme((
     primary: $enfantiages-app-primary,
     accent: $enfantiages-app-accent,
     warn: $enfantiages-app-warn,
+    caution:$enfantiages-app-caution
   )
 ));
 

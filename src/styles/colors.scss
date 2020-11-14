@@ -11,8 +11,8 @@ $extreme-light-grey-color: rgba(0, 0, 0, 0.05);
 .font--blue {
   color: blue;
 }
-.font--amber {
-  color: orange;
+.font--caution {
+  color: mat-color($enfantiages-app-caution);
 }
 .font--grey {
   color: $grey-color;
