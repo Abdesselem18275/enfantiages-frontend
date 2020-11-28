@@ -23,9 +23,11 @@ export class ItemsStateToggelerComponent implements OnInit {
   ngOnInit(): void {
   }
   onChange(event:MatButtonToggleChange) :void {
+    console.warn(event.value)
     const navExtra : NavigationExtras = {
       queryParams : {
-        [this.paramKey]:event.value
+        [this.paramKey]:event.value,
+        ordering : event.value === ItemState.SOLD ? 'sale_date' : ''
       },
     }
     this.router.navigate(['/item-store/items-viewer'],navExtra)

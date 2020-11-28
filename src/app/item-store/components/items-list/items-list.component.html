@@ -47,27 +47,54 @@
       </td>
     </ng-container>
   <!-- brand Column -->
-  <ng-container matColumnDef="brand">
+  <ng-container *ngIf="(activeItemState$ | async) != itemState.SOLD" matColumnDef="brand">
     <th mat-header-cell *matHeaderCellDef> Brand </th>
     <td mat-cell *matCellDef="let element">
       {{element.brand | titlecase}}
     </td>
   </ng-container>
   <!-- size Column -->
-  <ng-container matColumnDef="size">
+  <ng-container *ngIf="(activeItemState$ | async) != itemState.SOLD" matColumnDef="size">
     <th mat-header-cell *matHeaderCellDef> Size </th>
     <td mat-cell *matCellDef="let element">
       {{element.size | titlecase}}
     </td>
   </ng-container>
 
-
-
-  <!-- initial_sale_price Column -->
-  <ng-container matColumnDef="initial_sale_price">
+  <!-- sale_price Column -->
+  <ng-container *ngIf="(activeItemState$ | async) != itemState.SOLD" matColumnDef="initial_sale_price">
     <th mat-header-cell *matHeaderCellDef> Sale price </th>
     <td mat-cell *matCellDef="let element"> {{element.initial_sale_price | currency :'TND':'symbol':'1.0-2'}} </td>
   </ng-container>
+
+  <!-- sale_price Column -->
+  <ng-container *ngIf="(activeItemState$ | async) == itemState.SOLD" matColumnDef="actual_sale_price">
+    <th mat-header-cell *matHeaderCellDef> Sale price </th>
+    <td mat-cell *matCellDef="let element"> {{element.actual_sale_price | currency :'TND':'symbol':'1.0-2'}} </td>
+  </ng-container>
+
+    <!-- buyer Column -->
+    <ng-container *ngIf="(activeItemState$ | async) == itemState.SOLD" matColumnDef="buyer">
+      <th mat-header-cell *matHeaderCellDef> Buyer </th>
+      <td mat-cell *matCellDef="let element"> 
+        <a queryParamsHandling="merge" [routerLink]="['/customer/customers-viewer', { outlets: { customerContentOutlet: ['customer-detail',element.buyer.id] } }]">
+          {{element.buyer.first_name | titlecase}} {{element.buyer.last_name| titlecase}} 
+        </a>
+
+        </td>
+
+    </ng-container>
+  <!-- sale_date Column -->
+  <ng-container matColumnDef="sale_date">
+    <th mat-header-cell *matHeaderCellDef> Sale date </th>
+    <td mat-cell *matCellDef="let element"> {{element.sale_date | date:'mediumDate'}} </td>
+  </ng-container>
+   <!-- sale_price Column -->
+   <ng-container matColumnDef="=sale_price">
+    <th mat-header-cell *matHeaderCellDef> Sale price </th>
+    <td mat-cell *matCellDef="let element"> {{element.sale_price | currency :'TND':'symbol':'1.0-2'}} </td>
+  </ng-container>
+
   <!-- deposition_date Column -->
   <ng-container matColumnDef="deposition_date">
     <th mat-header-cell *matHeaderCellDef> Deposit date </th>
@@ -85,17 +112,6 @@
 
     </ng-container>
 
-
-    <ng-container matColumnDef="buyer">
-      <th mat-header-cell *matHeaderCellDef> Buyer </th>
-      <td mat-cell *matCellDef="let element">
-        <ng-container *ngIf="element.buyer else noData">
-          <a queryParamsHandling="merge" [routerLink]="['/customer/customers-viewer', { outlets: { customerContentOutlet: ['customer-detail',element.buyer.id] } }]">
-          {{element.buyer.first_name | titlecase}} {{element.buyer.last_name| titlecase}} 
-        </a>
-             </ng-container>
-    </td>
-    </ng-container>
   <!-- action Column -->
   <ng-container matColumnDef="action" stickyEnd>
     <th mat-header-cell *matHeaderCellDef> Action </th>
@@ -108,10 +124,10 @@
        </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns$ | async"></tr>
   <tr
   queryParamsHandling="merge"
-  mat-row  [class.unpaid]="!row.is_deposer_settled" class="table-row" *matRowDef="let row; columns: displayedColumns;"></tr>
+  mat-row  [class.unpaid]="!row.is_deposer_settled" class="table-row" *matRowDef="let row; columns: displayedColumns$ | async;"></tr>
   <ng-template #noData>
  -
   </ng-template>
