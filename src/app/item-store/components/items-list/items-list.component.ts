@@ -100,7 +100,7 @@ export class ItemsListComponent implements OnDestroy  {
   openDeposerSettleDialog(item:Item) {
     this.dhs.openDeposerSettleDialog(
       `${item.deposer.first_name} ${item.deposer.last_name}`,
-      item.initial_sale_price * item.intial_gain_ratio,
+      item.initial_sale_price * (1 - item.intial_gain_ratio),
       [item.id]
     )
   }
