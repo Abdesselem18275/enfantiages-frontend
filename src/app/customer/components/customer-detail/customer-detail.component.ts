@@ -19,5 +19,11 @@ export class CustomerDetailComponent  {
     this.dhs.openResourceDeleteDialog(`profile/${customer.id}/`,`${customer.first_name} ${customer.last_name}`)
   }
 
-
+  openDeposerSettleDialog(customer:Customer):void {
+    this.dhs.openDeposerSettleDialog(
+      `${customer.first_name} ${customer.last_name}`,
+      customer.total_due_amount,
+      customer.unsetteled_items
+    )
+  }
 }

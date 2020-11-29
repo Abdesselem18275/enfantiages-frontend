@@ -10,7 +10,7 @@
     "color gender price gain"
     "description  description description description"
     "sale-group sale-group sale-group sale-group"
-    "buyer   sale-price  sale-date sale-date "
+    "buyer  sale-price sale-date sale-date"
     ". button button .";
     @media only screen and (max-width: 1024px) {
         grid-template-columns: repeat(4,minmax(0, 1fr));
@@ -83,6 +83,10 @@
 }
 .gender-field {
     grid-area: gender;
+}
+.deposer-paid-field {
+    grid-area: deposer-paid;
+
 }
 .sale-sub-group {
     grid-area: sale-group;

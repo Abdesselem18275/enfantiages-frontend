@@ -1,0 +1,11 @@
+<header class="dialog-header" mat-dialog-title>
+    <h2 class="mat-h2">SETTLE CONFIRMATION</h2>
+  </header>
+    <section class="column mb8" mat-dialog-content>
+        <p class="mat-caption full-width">Confirm that <strong>{{data.deposer}}</strong> will receive <strong>{{data.amount | currency:'TND'}}</strong></p>
+    </section>
+    <div mat-dialog-actions>
+        <button mat-button color="primary" type="submit" (click)="onSubmit()" cdkFocusInitial>SETTLE</button>
+      <button mat-button mat-dialog-close>CANCEL</button>
+    </div>
+  

@@ -1,12 +1,11 @@
-import { AfterViewInit, Component, ContentChild, EventEmitter, Inject, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Inject, OnDestroy, Output } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { AppDataService} from '../../../shared/service/app-data.service';
 import {Item, ItemState} from '../../../core/models/item-models';
 import {DialogHandlerService} from '../../../shared/service/dialog-handler.service'
 import {ItemStoreStateService} from '../../service/item-store-state.service'
 
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
-import { debounceTime, map, switchMap, take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatListOption, MatSelectionListChange } from '@angular/material/list';
@@ -25,7 +24,6 @@ export class ItemsListComponent implements OnDestroy  {
   activeItemState$ : Observable<ItemState>
   @Output() selectedItems = new EventEmitter<Item[]>();
   displayedColumns$: Observable<string[]>
-  // baseDisplayedColumns = ['select','reference','category','gender','brand','size','initial_sale_price','deposition_date','deposer','buyer','action']
   baseDisplayedColumns = ['select','deposition_date','deposer','reference','category','gender']
   itemsDataSource = new MatTableDataSource<Item>();
   private subscribtion : Subscription
@@ -98,5 +96,12 @@ export class ItemsListComponent implements OnDestroy  {
       queryParamsHandling:'merge'
     }
     this.router.navigate(['item-store'],navExtra)
+  }
+  openDeposerSettleDialog(item:Item) {
+    this.dhs.openDeposerSettleDialog(
+      `${item.deposer.first_name} ${item.deposer.last_name}`,
+      item.initial_sale_price * item.intial_gain_ratio,
+      [item.id]
+    )
   }
 }

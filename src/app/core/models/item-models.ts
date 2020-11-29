@@ -19,7 +19,7 @@ export interface Item {
   gender:string,
   colors:Color[],
   is_deposer_settled:boolean,
-
+  deposer_paid:boolean
 }
 export enum ItemState {
   SOLD = 'Sold',

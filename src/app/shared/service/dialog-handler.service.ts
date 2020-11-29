@@ -9,6 +9,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ItemStoreStateService } from 'src/app/item-store/service/item-store-state.service';
 import { RessourceDeleteDialogComponent } from '../components/ressource-delete-dialog/ressource-delete-dialog.component';
+import { Customer } from 'src/app/core/models/profile-models';
+import { DeposerSettelConfirmationComponent } from '../components/deposer-settel-confirmation/deposer-settel-confirmation.component';
+import { forkJoin } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -54,6 +57,32 @@ export class DialogHandlerService {
       ).subscribe(() => {
         //this.router.navigate(['/item-store/items-viewer', { outlets: { itemContentOutlet: null } }])
         this._snackBar.open(`Object succesfully deleted `,'', {
+        duration: 2000,
+      })}
+      )
+  }
+  openDeposerSettleDialog(deposer : string,amount:number,deposedItemsIds: number[]) {
+    const dialogRef = this.dialog.open(DeposerSettelConfirmationComponent, {
+      width: '320px',
+      data: {deposer,amount}
+    });
+   console.warn(deposer,amount,deposedItemsIds)
+   const reqArray = deposedItemsIds.map(id => this.ads.patch<Item>(
+    'item/'+id.toString()+'/',
+    JSON.stringify({deposer_paid:false})
+       ))
+    dialogRef.beforeClosed().pipe(
+      take(1),
+      filter(result => result ? true : false),
+      map(() => deposedItemsIds.map(id => this.ads.patch<Item>(
+        'item/'+id.toString()+'/',
+        JSON.stringify({deposer_paid:true})
+           ))),
+      switchMap((reqs) => forkJoin(reqs))
+      ).subscribe((x : Item[]) => {
+        const messageSubject = x.length > 1 ?  `${x.length} items` : `Item ${x[0].reference}`
+        //this.router.navigate(['/item-store/items-viewer', { outlets: { itemContentOutlet: null } }])
+        this._snackBar.open(`${messageSubject} succesfully setteled `,'', {
         duration: 2000,
       })}
       )

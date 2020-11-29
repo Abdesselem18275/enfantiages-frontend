@@ -93,7 +93,7 @@
         <mat-icon>list_alt</mat-icon>
         <span>Item detail</span>
       </button>
-      <button [disabled]="customer.total_due_amount == 0"  mat-menu-item>
+      <button (click)="openDeposerSettleDialog(customer)" [disabled]="customer.total_due_amount == 0"  mat-menu-item>
         <mat-icon>payments</mat-icon>
         <span>Settle</span>
       </button>

@@ -15,6 +15,7 @@ export interface Customer {
   deposed_items_count:number,
   total_purchase_amount:number,
   total_deposit_amount:number,
+  unsetteled_items : number[]
 }
 
 export type Civility = 'Mr' | 'Mme'

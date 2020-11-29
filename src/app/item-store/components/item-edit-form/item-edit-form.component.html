@@ -95,12 +95,20 @@
         <mat-error >
         </mat-error>
       </mat-form-field>
+      
       <header class="sale-sub-group">
         <h3 class="mat-h3">SALE INFORMATIONS</h3>
+        <mat-slide-toggle class="deposer-paid-field" formControlName="deposer_paid">
+          <span class="mat-body-2"> Is deposer paid ?</span>
+        </mat-slide-toggle>
+        
         <mat-error>
           <span *ngIf="editForm.errors?.saleIntegrityError && (editForm.dirty || editForm.touched)" class="mat-caption">
             Sale Integrity error : Some sale informations are missing
           </span>
+          <span *ngIf="editForm.errors?.deposerPaidError && (editForm.dirty || editForm.touched)" class="mat-caption">
+            You can't pay deposer wheras the item is the item is unsold
+      </span>
         </mat-error>
         <mat-divider></mat-divider>
       </header>
@@ -116,7 +124,10 @@
         <mat-label class="mat-caption">Sale date</mat-label>
         <input  type="datetime-local"  formControlName="sale_date" matInput>
         <mat-error></mat-error>
-      </mat-form-field>   
+      </mat-form-field>  
+
+      
+      
       <mat-form-field  class="gender-field"  appearance="outline">
         <mat-label>Gender</mat-label>
         <mat-select formControlName="gender">
@@ -135,6 +146,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+
       <button  class="field-button" mat-flat-button type="submit" color="primary">UPDATE</button>
 
 </form>

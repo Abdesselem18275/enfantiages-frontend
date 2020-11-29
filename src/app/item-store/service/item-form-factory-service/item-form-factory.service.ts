@@ -33,12 +33,13 @@ export class ItemFormFactoryService {
       size:[item.size,[Validators.required]],
       category:[item.category,[Validators.required]],
       colors:[item.colors ?item.colors.map(color => color.id):[] ,[Validators.required]],
+      deposer_paid:[item.deposer_paid],
       deposer:[item.deposer,[Validators.required],,[this.customerAsyncValidator.validate.bind(this.customerAsyncValidator)]],
       buyer:[item.buyer ? item.buyer : "" ,[],[this.customerAsyncValidator.validate.bind(this.customerAsyncValidator)]],
       actual_sale_price:[item.actual_sale_price ? item.actual_sale_price : ""],
       sale_date:[item.sale_date? moment(item.sale_date).format(moment.HTML5_FMT.DATETIME_LOCAL) : ""],
       gender:[item.gender,[Validators.required]],
-  },{validators:this._saleIntegrityValidator})
+  },{validators:[this._saleIntegrityValidator,this._ItemPaidWhenNotSoldValidator]})
   }
   getDepositGroupForm():FormGroup {
     return this.fb.group({
@@ -83,5 +84,18 @@ export class ItemFormFactoryService {
     else {
       return { saleIntegrityError: true }
     }
+  }
+  private _ItemPaidWhenNotSoldValidator : ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+    const buyer = control.get('buyer').value;
+    const isPaid = control.get("deposer_paid").value
+
+    if(buyer) {
+      return null
+    }
+    else if(isPaid)  {
+      return {deposerPaidError: true}
+} else {
+  return null
+}
   }
 }

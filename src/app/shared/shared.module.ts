@@ -13,8 +13,9 @@ import { ControlErrorMessageComponent } from './components/control-error-message
 import { ControlValidatorMessageDirective } from './directive/control-validator-message.directive';
 import { FormGroupValidatorMessageDirective } from './directive/form-group-validator-message.directive';
 import { RessourceDeleteDialogComponent } from './components/ressource-delete-dialog/ressource-delete-dialog.component';
+import { DeposerSettelConfirmationComponent } from './components/deposer-settel-confirmation/deposer-settel-confirmation.component';
 @NgModule({
-  declarations: [NavBarComponent, CustomersAutoCompleteFieldComponent, SearchBoxComponent, SideNavComponent, NotFountComponent, ValidCustomerDirective, ControlErrorMessageComponent, ControlValidatorMessageDirective, FormGroupValidatorMessageDirective, RessourceDeleteDialogComponent],
+  declarations: [NavBarComponent, CustomersAutoCompleteFieldComponent, SearchBoxComponent, SideNavComponent, NotFountComponent, ValidCustomerDirective, ControlErrorMessageComponent, ControlValidatorMessageDirective, FormGroupValidatorMessageDirective, RessourceDeleteDialogComponent, DeposerSettelConfirmationComponent],
   imports: [
     MaterialModule,
     ReactiveFormsModule ,

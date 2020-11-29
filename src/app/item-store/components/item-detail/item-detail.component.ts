@@ -22,5 +22,11 @@ export class ItemDetailComponent  {
   openItemDeleteDialog(item: Item):void {
     this.dhs.openResourceDeleteDialog(`item/${item.id}/`,item.reference)
   }
-
+  openDeposerSettleDialog(item:Item) {
+    this.dhs.openDeposerSettleDialog(
+      `${item.deposer.first_name} ${item.deposer.last_name}`,
+      item.initial_sale_price * item.intial_gain_ratio,
+      [item.id]
+    )
+  }
 }
