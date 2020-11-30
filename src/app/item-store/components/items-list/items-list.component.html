@@ -53,6 +53,15 @@
       {{element.brand | titlecase}}
     </td>
   </ng-container>
+    <!-- brand Column -->
+    <ng-container *ngIf="(activeItemState$ | async) != itemState.SOLD"  matColumnDef="state">
+      <th mat-header-cell *matHeaderCellDef> State </th>
+      <td mat-cell *matCellDef="let element">
+        <span [style.background-color]="element.buyer ? 'red' : 'yellowgreen'" class="item_state">
+           {{element.buyer ? 'SOLD' : 'AVAIL'}}
+        </span>
+      </td>
+    </ng-container>
   <!-- size Column -->
   <ng-container *ngIf="(activeItemState$ | async) != itemState.SOLD" matColumnDef="size">
     <th mat-header-cell *matHeaderCellDef> Size </th>
@@ -77,8 +86,8 @@
     <ng-container *ngIf="(activeItemState$ | async) == itemState.SOLD" matColumnDef="buyer">
       <th mat-header-cell *matHeaderCellDef> Buyer </th>
       <td mat-cell *matCellDef="let element"> 
-        <a queryParamsHandling="merge" [routerLink]="['/customer/customers-viewer', { outlets: { customerContentOutlet: ['customer-detail',element.buyer.id] } }]">
-          {{element.buyer.first_name | titlecase}} {{element.buyer.last_name| titlecase}} 
+        <a queryParamsHandling="merge" [routerLink]="['/customer/customers-viewer', { outlets: { customerContentOutlet: ['customer-detail',element.buyer?.id] } }]">
+          {{element.buyer?.first_name | titlecase}} {{element.buyer?.last_name| titlecase}} 
         </a>
 
         </td>

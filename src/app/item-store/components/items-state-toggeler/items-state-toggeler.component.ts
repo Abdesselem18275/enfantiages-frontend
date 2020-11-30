@@ -29,6 +29,7 @@ export class ItemsStateToggelerComponent implements OnInit {
         [this.paramKey]:event.value,
         ordering : event.value === ItemState.SOLD ? 'sale_date' : ''
       },
+      skipLocationChange : false
     }
     this.router.navigate(['/item-store/items-viewer'],navExtra)
   }

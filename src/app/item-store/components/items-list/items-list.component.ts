@@ -1,16 +1,17 @@
-import { AfterViewInit, Component, EventEmitter, Inject, OnDestroy, Output } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Inject, OnDestroy, Output } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import {Item, ItemState} from '../../../core/models/item-models';
 import {DialogHandlerService} from '../../../shared/service/dialog-handler.service'
 import {ItemStoreStateService} from '../../service/item-store-state.service'
 
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
-import { map, take } from 'rxjs/operators';
+import { map, take, tap } from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatListOption, MatSelectionListChange } from '@angular/material/list';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { APP_ITEM_STATE_QUERY_PARAM_KEY } from 'src/app/injectables';
+import { ChangeDetectionStrategy } from '@angular/compiler/src/compiler_facade_interface';
 @Component({
   selector: 'app-items-list',
   templateUrl: './items-list.component.html',
@@ -30,6 +31,7 @@ export class ItemsListComponent implements OnDestroy  {
   constructor(
     private router : Router,
     private route : ActivatedRoute,  
+    private cdr : ChangeDetectorRef,
     @Inject(APP_ITEM_STATE_QUERY_PARAM_KEY) private stateParamKey: string,
     private dhs: DialogHandlerService,
     private iss: ItemStoreStateService) {
@@ -43,10 +45,12 @@ export class ItemsListComponent implements OnDestroy  {
         take(1),
         map(params => params.has(this.stateParamKey) ? params.get(this.stateParamKey) as ItemState: ItemState.ALL )
       )
-      this.displayedColumns$ = this.activeItemState$.pipe(map((x:ItemState) => 
+      this.displayedColumns$ = this.activeItemState$.pipe(
+        tap(() => setTimeout(() =>{})),
+        map((x:ItemState) => 
       x === ItemState.SOLD ? 
         this.baseDisplayedColumns.concat(["actual_sale_price","buyer","sale_date",'action']) : 
-        this.baseDisplayedColumns.concat(["size","brand","initial_sale_price",'action'])))
+        this.baseDisplayedColumns.concat(["size","brand","initial_sale_price","state",'action'])))
   }
   
   ngOnDestroy(): void {
