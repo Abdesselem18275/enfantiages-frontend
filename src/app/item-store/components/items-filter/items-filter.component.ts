@@ -53,7 +53,6 @@ export class ItemsFilterComponent implements OnInit  {
           (x[key] as string[]).join(','):
           x[key]
       })
-      console.warn(x)
        const navExtra : NavigationExtras = {
         queryParams : {
           ...x

@@ -31,7 +31,6 @@ export class ItemEditFormComponent  {
     route.data.pipe(take(1),map((x:Data) =>x.itemDetail)).subscribe((item => {
       this.editForm = this.ffs.getItemEditForm(item);
       this.item = item;
-      console.warn(this.editForm);
     }))
     this.ids.sizes.pipe(take(1)).subscribe(sizes => this.sizes = sizes)
     this.ids.brands.pipe(take(1)).subscribe(brands => this.brands = brands)

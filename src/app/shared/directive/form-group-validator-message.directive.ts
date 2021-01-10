@@ -22,11 +22,9 @@ export class FormGroupValidatorMessageDirective implements OnDestroy, AfterConte
     this.subscription ? this.subscription.unsubscribe() : null
   }
   ngAfterContentInit(): void {
-    console.warn(this.formGroup)
     const factory = this.resolver.resolveComponentFactory<ControlErrorMessageComponent>(ControlErrorMessageComponent);
     this.subscription  =this.formGroup && this.formGroup.statusChanges.subscribe(x =>
       {
-        console.warn(x)
         this.errorMsgContainerEl.clear()
         if(x === 'INVALID') {
           const compRef = this.errorMsgContainerEl.createComponent(factory)

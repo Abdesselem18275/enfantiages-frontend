@@ -66,7 +66,6 @@ export class DialogHandlerService {
       width: '320px',
       data: {deposer,amount}
     });
-   console.warn(deposer,amount,deposedItemsIds)
    const reqArray = deposedItemsIds.map(id => this.ads.patch<Item>(
     'item/'+id.toString()+'/',
     JSON.stringify({deposer_paid:false})

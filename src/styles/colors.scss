@@ -1,4 +1,3 @@
-@import './app-custom-theme.scss';
 
 $dark-grey: rgba(0, 0, 0, 0.7);
 $grey-color: rgba(0, 0, 0, 0.54);
@@ -12,7 +11,7 @@ $extreme-light-grey-color: rgba(0, 0, 0, 0.05);
   color: blue;
 }
 .font--caution {
-  color: mat-color($enfantiages-app-caution);
+  color: orange
 }
 .font--grey {
   color: $grey-color;

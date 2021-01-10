@@ -39,7 +39,6 @@ export class NewCustomerFormComponent implements OnInit {
     })
     route.data.pipe(
       take(1),
-      tap(x => console.warn(x)),
       filter((x:Data) => x.hasOwnProperty('customerDetail')),
       map((x:Data) =>x.customerDetail)).subscribe((x) => {
         this.customer = x

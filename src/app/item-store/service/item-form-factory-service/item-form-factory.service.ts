@@ -24,7 +24,6 @@ export class ItemFormFactoryService {
     })
   }
   getItemEditForm(item:Item):FormGroup {
-    console.warn(moment(item.sale_date).format(moment.HTML5_FMT.DATETIME_LOCAL))
     return this.fb.group({
       intial_gain_ratio:[item.intial_gain_ratio*100,[Validators.required,Validators.min(0),Validators.max(100)]],
       initial_sale_price:[item.initial_sale_price,[Validators.required,Validators.min(0)]],
