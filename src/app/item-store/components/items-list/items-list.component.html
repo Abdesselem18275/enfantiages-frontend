@@ -11,7 +11,7 @@
 </mat-paginator>
 </header>
 
-<table mat-table [dataSource]="itemsDataSource">
+<table matSort (matSortChange)="updateSort($event)" mat-table [dataSource]="itemsDataSource">
   <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>
       <mat-checkbox (change)="masterSelectionChange($event)"
@@ -34,8 +34,8 @@
 
 
     <!-- label Column -->
-    <ng-container matColumnDef="category">
-      <th mat-header-cell *matHeaderCellDef> Category </th>
+    <ng-container  matColumnDef="category">
+      <th mat-sort-header="category" mat-header-cell *matHeaderCellDef> Category </th>
       <td mat-cell *matCellDef="let element">
         {{element.category | titlecase}}
       </td>
@@ -48,7 +48,7 @@
     </ng-container>
   <!-- brand Column -->
   <ng-container  matColumnDef="brand">
-    <th mat-header-cell *matHeaderCellDef> Brand </th>
+    <th mat-sort-header="brand" mat-header-cell *matHeaderCellDef> Brand </th>
     <td mat-cell *matCellDef="let element">
       {{element.brand | titlecase}}
     </td>
@@ -63,7 +63,7 @@
       </td>
     </ng-container>
   <!-- size Column -->
-  <ng-container  matColumnDef="size">
+  <ng-container   matColumnDef="size">
     <th mat-header-cell *matHeaderCellDef> Size </th>
     <td mat-cell *matCellDef="let element">
       {{element.size | titlecase}}
@@ -71,20 +71,20 @@
   </ng-container>
 
   <!-- sale_price Column -->
-  <ng-container matColumnDef="initial_sale_price">
-    <th mat-header-cell *matHeaderCellDef> Sale price </th>
+  <ng-container  matColumnDef="initial_sale_price">
+    <th mat-sort-header="initial_sale_price" mat-header-cell *matHeaderCellDef> Sale price </th>
     <td mat-cell *matCellDef="let element"> {{element.initial_sale_price | currency :'TND':'symbol':'1.0-2'}} </td>
   </ng-container>
 
   <!-- sale_price Column -->
-  <ng-container matColumnDef="actual_sale_price">
-    <th mat-header-cell *matHeaderCellDef> Sale price </th>
+  <ng-container  matColumnDef="actual_sale_price">
+    <th mat-sort-header="actual_sale_price" mat-header-cell *matHeaderCellDef> Sale price </th>
     <td mat-cell *matCellDef="let element"> {{element.actual_sale_price | currency :'TND':'symbol':'1.0-2'}} </td>
   </ng-container>
 
     <!-- buyer Column -->
     <ng-container  matColumnDef="buyer">
-      <th mat-header-cell *matHeaderCellDef> Buyer </th>
+      <th mat-sort-header="buyer" mat-header-cell *matHeaderCellDef> Buyer </th>
       <td mat-cell *matCellDef="let element"> 
         <a queryParamsHandling="merge" [routerLink]="['/customer/customers-viewer', { outlets: { customerContentOutlet: ['customer-detail',element.buyer?.id] } }]">
           {{element.buyer?.first_name | titlecase}} {{element.buyer?.last_name| titlecase}} 
@@ -94,24 +94,24 @@
 
     </ng-container>
   <!-- sale_date Column -->
-  <ng-container matColumnDef="sale_date">
-    <th mat-header-cell *matHeaderCellDef> Sale date </th>
+  <ng-container  matColumnDef="sale_date">
+    <th mat-sort-header="sale_date" mat-header-cell *matHeaderCellDef> Sale date </th>
     <td mat-cell *matCellDef="let element"> {{element.sale_date | date:'mediumDate'}} </td>
   </ng-container>
    <!-- sale_price Column -->
-   <ng-container matColumnDef="=sale_price">
-    <th mat-header-cell *matHeaderCellDef> Sale price </th>
+   <ng-container  matColumnDef="sale_price">
+    <th mat-sort-header="sale_price" mat-header-cell *matHeaderCellDef> Sale price </th>
     <td mat-cell *matCellDef="let element"> {{element.sale_price | currency :'TND':'symbol':'1.0-2'}} </td>
   </ng-container>
 
   <!-- deposition_date Column -->
-  <ng-container matColumnDef="deposition_date">
-    <th mat-header-cell *matHeaderCellDef> Deposit date </th>
+  <ng-container  matColumnDef="deposition_date">
+    <th mat-sort-header="deposition_date" mat-header-cell *matHeaderCellDef> Deposit date </th>
     <td mat-cell *matCellDef="let element"> {{element.deposition_date | date:'mediumDate'}} </td>
   </ng-container>
     <!-- deposer Column -->
-    <ng-container matColumnDef="deposer">
-      <th mat-header-cell *matHeaderCellDef> deposer </th>
+    <ng-container  matColumnDef="deposer">
+      <th mat-sort-header="deposer" mat-header-cell *matHeaderCellDef> deposer </th>
       <td mat-cell *matCellDef="let element"> 
         <a queryParamsHandling="merge" [routerLink]="['/customer/customers-viewer', { outlets: { customerContentOutlet: ['customer-detail',element.deposer.id] } }]">
           {{element.deposer.first_name | titlecase}} {{element.deposer.last_name| titlecase}} 
