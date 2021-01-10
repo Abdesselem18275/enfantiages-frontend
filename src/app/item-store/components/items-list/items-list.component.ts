@@ -45,12 +45,13 @@ export class ItemsListComponent implements OnDestroy  {
         take(1),
         map(params => params.has(this.stateParamKey) ? params.get(this.stateParamKey) as ItemState: ItemState.ALL )
       )
-      this.displayedColumns$ = this.activeItemState$.pipe(
-        tap(() => setTimeout(() =>{})),
-        map((x:ItemState) => 
-      x === ItemState.SOLD ? 
-        this.baseDisplayedColumns.concat(["actual_sale_price","buyer","sale_date",'action']) : 
-        this.baseDisplayedColumns.concat(["size","brand","initial_sale_price","state",'action'])))
+      this.displayedColumns$ = iss.itemsColumns
+      // this.displayedColumns$ = this.activeItemState$.pipe(
+      //   tap(() => setTimeout(() =>{})),
+      //   map((x:ItemState) => 
+      // x === ItemState.SOLD ? 
+      //   this.baseDisplayedColumns.concat(["actual_sale_price","buyer","sale_date",'action']) : 
+      //   this.baseDisplayedColumns.concat(["size","brand","initial_sale_price","state",'action'])))
   }
   
   ngOnDestroy(): void {
