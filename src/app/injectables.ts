@@ -1,14 +1,15 @@
-import { InjectionToken } from "@angular/core";
+import { InjectionToken } from '@angular/core';
 import { InitDataService } from './shared/service/init-data.service';
 
 const APP_API_URL = () => 'http://ec2-15-188-104-88.eu-west-3.compute.amazonaws.com/enfantiages/api/';
+const LOCAL_API_URL = () => 'http://127.0.0.1:8080/api/';
 
 const APP_TOKEN_KEY = () => 'appToken';
 const APP_PROFILE_ID = () => 'profileId';
 
 export const API_URL = new InjectionToken<string>('ApiUrl', {
   providedIn: 'root',
-  factory: APP_API_URL
+  factory: LOCAL_API_URL
 });
 export const TOKEN_KEY = new InjectionToken<string>('TokenKey', {
   providedIn: 'root',
