@@ -12,6 +12,7 @@ import { MatListOption, MatSelectionListChange } from '@angular/material/list';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { APP_ITEM_STATE_QUERY_PARAM_KEY } from 'src/app/injectables';
 import { ChangeDetectionStrategy } from '@angular/compiler/src/compiler_facade_interface';
+import { Sort } from '@angular/material/sort';
 @Component({
   selector: 'app-items-list',
   templateUrl: './items-list.component.html',
@@ -46,12 +47,6 @@ export class ItemsListComponent implements OnDestroy  {
         map(params => params.has(this.stateParamKey) ? params.get(this.stateParamKey) as ItemState: ItemState.ALL )
       )
       this.displayedColumns$ = iss.itemsColumns
-      // this.displayedColumns$ = this.activeItemState$.pipe(
-      //   tap(() => setTimeout(() =>{})),
-      //   map((x:ItemState) => 
-      // x === ItemState.SOLD ? 
-      //   this.baseDisplayedColumns.concat(["actual_sale_price","buyer","sale_date",'action']) : 
-      //   this.baseDisplayedColumns.concat(["size","brand","initial_sale_price","state",'action'])))
   }
   
   ngOnDestroy(): void {
@@ -108,5 +103,17 @@ export class ItemsListComponent implements OnDestroy  {
       item.initial_sale_price * (1 - item.intial_gain_ratio),
       [item.id]
     )
+  }
+  updateSort(event: Sort): void {
+    const direction = event.direction === 'asc' ? '' : '-'
+    const value = event.direction ? `${direction}${event.active}` : ''
+    const navExtra: NavigationExtras = {
+      queryParams : {
+        'ordering':value,
+        page : 1
+      },
+      queryParamsHandling: 'merge'
+    };
+    this.router.navigate(['/item-store'], navExtra);
   }
 }

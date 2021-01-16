@@ -20,11 +20,12 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   exports: [MatCheckboxModule,MatMenuModule,MatSnackBarModule,MatAutocompleteModule,MatDialogModule,MatListModule,MatTableModule,MatDividerModule, MatButtonModule, MatDividerModule,
             MatIconModule ,MatPaginatorModule,MatFormFieldModule,MatInputModule,MatDatepickerModule,MatButtonToggleModule,
-            MatProgressBarModule,MatSelectModule,MatSidenavModule,MatSlideToggleModule],
+            MatProgressBarModule,MatSelectModule,MatSidenavModule,MatSlideToggleModule,MatSortModule],
   providers: [
     {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true,strict: true}},
     {
