@@ -10,9 +10,9 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatListOption, MatSelectionListChange } from '@angular/material/list';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { APP_ITEM_STATE_QUERY_PARAM_KEY } from 'src/app/injectables';
 import { ChangeDetectionStrategy } from '@angular/compiler/src/compiler_facade_interface';
 import { Sort } from '@angular/material/sort';
+import {AppConfig, APP_CONFIG } from '../../../app.config'
 @Component({
   selector: 'app-items-list',
   templateUrl: './items-list.component.html',
@@ -32,8 +32,7 @@ export class ItemsListComponent implements OnDestroy  {
   constructor(
     private router : Router,
     private route : ActivatedRoute,  
-    private cdr : ChangeDetectorRef,
-    @Inject(APP_ITEM_STATE_QUERY_PARAM_KEY) private stateParamKey: string,
+    @Inject(APP_CONFIG) private appConfig: AppConfig,
     private dhs: DialogHandlerService,
     private iss: ItemStoreStateService) {
       this.items$ = iss.items
@@ -44,7 +43,7 @@ export class ItemsListComponent implements OnDestroy  {
       this.itemsCounts$ = this.iss.ItemsCount
       this.activeItemState$ = this.route.queryParamMap.pipe(
         take(1),
-        map(params => params.has(this.stateParamKey) ? params.get(this.stateParamKey) as ItemState: ItemState.ALL )
+        map(params => params.has(this.appConfig.itemStateQueryParamKey) ? params.get(this.appConfig.itemStateQueryParamKey) as ItemState: ItemState.ALL )
       )
       this.displayedColumns$ = iss.itemsColumns
   }

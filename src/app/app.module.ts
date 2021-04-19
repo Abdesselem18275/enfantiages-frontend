@@ -7,8 +7,11 @@ import { SharedModule} from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { loadInitData } from './injectables';
 import { InitDataService } from './shared/service/init-data.service';
+
+export function loadInitData(appInitService: InitDataService) {
+  return ():Promise<any> => appInitService.loadInitData();
+}
 @NgModule({
   declarations: [
     AppComponent

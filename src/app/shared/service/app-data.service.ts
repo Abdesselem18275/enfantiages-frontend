@@ -3,20 +3,21 @@ import { ParamMap } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
 import { catchError, tap } from 'rxjs/operators';
-import {API_URL} from '../../injectables';
-import { leafNodes } from 'src/app/core/utils';
 import { GlobalStateService } from './global-state.service';
-import { stringify } from '@angular/compiler/src/util';
+import { APP_CONFIG, AppConfig } from 'src/app/app.config';
 @Injectable({
   providedIn: 'root'
 })
 export class AppDataService {
 
-  constructor(@Inject(API_URL) private apiUrl: string,private gss: GlobalStateService, private http: HttpClient) {}
+  constructor(
+    @Inject(APP_CONFIG) private appConfig: AppConfig,
+    private gss: GlobalStateService, 
+    private http: HttpClient) {}
 
   get<T>(endPoint: string, paramMap?: Map<string, string[]>|ParamMap): Observable<T> {
     this.gss.setIsLoading(true);
-    const query: string = [this.apiUrl, endPoint].join('');
+    const query: string = [this.appConfig.apiEndpoint, endPoint].join('');
     let options = {};
     if (paramMap) {
       let httpParams = new HttpParams();
@@ -40,7 +41,7 @@ export class AppDataService {
         'Content-Type':  'application/json',
       })
     };
-    const query: string = [this.apiUrl, endPoint].join('');
+    const query: string = [this.appConfig.apiEndpoint, endPoint].join('');
     return this.http.post<T>(query, payload, httpOptions).pipe(
       catchError(error => this.handleError(error)));
   }
@@ -50,7 +51,7 @@ export class AppDataService {
         'Content-Type':  'application/json',
       })
     };
-    const query: string = [this.apiUrl, endPoint].join('');
+    const query: string = [this.appConfig.apiEndpoint, endPoint].join('');
     return this.http.put<T>(query, payload, httpOptions).pipe(
       catchError(error => this.handleError(error)));
   }
@@ -60,13 +61,13 @@ export class AppDataService {
         'Content-Type':  'application/json',
       })
     };
-    const query: string = [this.apiUrl, endPoint].join('');
+    const query: string = [this.appConfig.apiEndpoint, endPoint].join('');
     return this.http.patch<T>(query, payload, httpOptions).pipe(
       catchError(error => this.handleError(error)));
   }
 
   delete(endPoint: string):Observable<any> {
-    const query: string = [this.apiUrl, endPoint].join('');
+    const query: string = [this.appConfig.apiEndpoint, endPoint].join('');
     return this.http.delete(query).pipe(
       catchError(error => this.handleError(error))); 
   }

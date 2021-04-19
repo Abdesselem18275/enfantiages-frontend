@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, switchMap, take, tap, throttleTime } from 'rxjs/operators';
-import { APP_ITEM_STATE_QUERY_PARAM_KEY } from 'src/app/injectables';
+import { AppConfig, APP_CONFIG } from 'src/app/app.config';
 import { AppDataService } from 'src/app/shared/service/app-data.service';
 import { Item, ItemState} from '../../core/models/item-models';
 import {PaginatedResponseType} from '../../core/models/shared';
@@ -15,13 +15,13 @@ export class ItemStoreStateService {
   private _itemsCountSubject = new BehaviorSubject<number>(0)
   private itemsColumnsSubjects = new BehaviorSubject<string[]>([])
   constructor(
-    @Inject(APP_ITEM_STATE_QUERY_PARAM_KEY) private stateParamKey: string,
+    @Inject(APP_CONFIG) private appConfig: AppConfig,
     private ads : AppDataService ,private route : ActivatedRoute) {
     this.route.queryParamMap.pipe(
       debounceTime(300),
       tap((paramMap:ParamMap ) => {
         const baseDisplayedColumns = ['select','deposition_date','deposer','reference','category','gender']
-        const activeStatus = paramMap.has(this.stateParamKey) ? paramMap.get(this.stateParamKey) as ItemState: ItemState.ALL
+        const activeStatus = paramMap.has(this.appConfig.itemStateQueryParamKey) ? paramMap.get(this.appConfig.itemStateQueryParamKey) as ItemState: ItemState.ALL
         this.setItemsColumns(activeStatus === ItemState.SOLD ? 
         baseDisplayedColumns.concat(["actual_sale_price","buyer","sale_date",'action']) : 
         baseDisplayedColumns.concat(["size","brand","initial_sale_price","state",'action']))
