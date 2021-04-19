@@ -122,6 +122,10 @@
       <mat-icon>point_of_sale</mat-icon>
       <span>Sell</span>
     </button>
+    <button (click)="openItemReturnDialog(item)" [disabled]="item.buyer"  mat-menu-item>
+      <mat-icon>keyboard_return</mat-icon>
+      <span>Return</span>
+    </button>
     <button (click)="openDeposerSettleDialog(item)" [disabled]="!item.buyer"  mat-menu-item>
       <mat-icon>payments</mat-icon>
       <span>Settle</span>
