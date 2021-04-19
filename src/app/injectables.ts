@@ -1,4 +1,4 @@
-import { InjectionToken } from "@angular/core";
+import { InjectionToken } from '@angular/core';
 import { InitDataService } from './shared/service/init-data.service';
 
 const APP_API_URL = () => 'http://ec2-15-188-104-88.eu-west-3.compute.amazonaws.com/enfantiages/api/';
