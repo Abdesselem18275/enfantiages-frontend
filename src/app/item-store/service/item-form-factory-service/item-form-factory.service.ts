@@ -17,6 +17,12 @@ export class ItemFormFactoryService {
       actual_sale_price: [price, [Validators.required,Validators.min(min_price)]],
     })
   }
+  getReturnForm() : FormGroup {
+    return this.fb.group({
+      return_date : [moment().format(moment.HTML5_FMT.DATETIME_LOCAL),Validators.required],
+      return_cause: [''],
+    })
+  }
   getDepositForm():FormGroup {
     return this.fb.group({
       deposer : ['',Validators.required,[this.customerAsyncValidator.validate.bind(this.customerAsyncValidator)]],

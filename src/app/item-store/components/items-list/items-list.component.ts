@@ -103,6 +103,9 @@ export class ItemsListComponent implements OnDestroy  {
       [item.id]
     )
   }
+  openItemReturnDialog(item:Item) {
+    this.dhs.openItemReturnDialog(item)
+  }
   updateSort(event: Sort): void {
     const direction = event.direction === 'asc' ? '' : '-'
     const value = event.direction ? `${direction}${event.active}` : ''

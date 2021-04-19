@@ -23,8 +23,8 @@ export class ItemStoreStateService {
         const baseDisplayedColumns = ['select','deposition_date','deposer','reference','category','gender']
         const activeStatus = paramMap.has(this.appConfig.itemStateQueryParamKey) ? paramMap.get(this.appConfig.itemStateQueryParamKey) as ItemState: ItemState.ALL
         this.setItemsColumns(activeStatus === ItemState.SOLD ? 
-        baseDisplayedColumns.concat(["actual_sale_price","buyer","sale_date",'action']) : 
-        baseDisplayedColumns.concat(["size","brand","initial_sale_price","state",'action']))
+        baseDisplayedColumns.concat(['actual_sale_price','buyer','sale_date','action']) : 
+        baseDisplayedColumns.concat(['size','brand','initial_sale_price','state','action']))
       }),
       switchMap((paramMap:ParamMap ) => this.ads.get<PaginatedResponseType<Item>>('items/',paramMap)
       )).subscribe(response => {

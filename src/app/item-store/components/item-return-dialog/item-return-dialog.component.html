@@ -1,0 +1,36 @@
+<header class="dialog-header" mat-dialog-title>
+    <h2 class="mat-h2"> ITEM RETURN FORM </h2>
+    <span class="mat-body">{{data.item.reference}}</span>
+  </header>
+    <form  mat-dialog-content [formGroup]="returnForm">  
+    <mat-form-field appControlValidatorMessage appearance="outline" class="full-width">
+      <mat-label>Return date</mat-label>
+      <input required  type="datetime-local" formControlName="return_date" matInput>
+      <mat-error></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appControlValidatorMessage class="full-width mb2"  appearance="outline">
+      <mat-label class="mat-caption">Return cause</mat-label>
+      <input
+        [matAutocomplete]="autoBrand"
+        formControlName="return_cause"
+        matInput
+        type="text"
+        placeholder="Select a return cause">
+      <mat-autocomplete  #autoBrand="matAutocomplete">
+        <mat-option *ngFor="let return of getReturnCauseFiltredList()" [value]="return.label">
+            <span class="mat-caption">{{return.label}}</span>
+        </mat-option>
+      </mat-autocomplete>
+      <mat-hint class="inline--centred mat-body" align="start">
+        <span class="mat-caption"> Select a return cause </span>
+      </mat-hint>
+      <mat-error >
+      </mat-error>
+    </mat-form-field>
+    </form>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onClose()">CANCEL</button>
+      <button mat-button type="submit" (click)="onSubmit()" cdkFocusInitial>RETURN</button>
+    </div>
+  

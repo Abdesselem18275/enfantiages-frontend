@@ -11,7 +11,11 @@ import { ItemState } from 'src/app/core/models/item-models';
   styleUrls: ['./items-state-toggeler.component.scss']
 })
 export class ItemsStateToggelerComponent implements OnInit {
-  toggelerData : {key:string,value:string}[] = [{key:'all',value:ItemState.ALL},{key:'sold',value:ItemState.SOLD},{key:'AVAILABLE',value:ItemState.AVAILABLE}]
+  toggelerData : {key:string,value:string}[] = [
+    {key:'all',value:ItemState.ALL},
+    {key:'sold',value:ItemState.SOLD},
+    {key:'returned',value:ItemState.RETURNED},
+    {key:'AVAILABLE',value:ItemState.AVAILABLE}]
   activeOption$ : Observable<string>
   constructor(private router : Router,@Inject(APP_CONFIG) private appConfig: AppConfig,private route : ActivatedRoute) { 
     this.activeOption$ = this.route.queryParamMap.pipe(

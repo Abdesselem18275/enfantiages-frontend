@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, merge, Observable } from 'rxjs';
-import { Brand, Category, Color, Size } from 'src/app/core/models/item-models';
+import { Brand, Category, Color, ReturnCause, Size } from 'src/app/core/models/item-models';
 import { Customer } from 'src/app/core/models/profile-models';
 import { AppDataService } from './app-data.service';
 type initDataType = {
   customers : Customer[],
+  returnCauses:ReturnCause[],
   brands:Brand[],
   colors:Color[],
   sizes:Size[],
@@ -18,6 +19,7 @@ export class InitDataService {
   private sizesDataSubject = new BehaviorSubject<Size[]>(null)
   private categoriesDataSubject = new BehaviorSubject<Category[]>(null)
   private colorsDataSubject = new BehaviorSubject<Color[]>(null)
+  private returnCausesDataSubject = new BehaviorSubject<ReturnCause[]>(null)
   constructor(private ads :AppDataService) { }
 
   loadInitData():Promise<void| Object> {
@@ -27,6 +29,7 @@ export class InitDataService {
             this.setBrands(data.brands)
             this.setSizes(data.sizes);
             this.setColors(data.colors);
+            this.setReturnCauses(data.returnCauses)
             this.setCategories(data.categories);
            })    
   }
@@ -46,8 +49,14 @@ setColors(payload : Color[]):void {
 setCategories(payload : Category[]):void {
   this.categoriesDataSubject.next(payload)
 }
+setReturnCauses(payload:ReturnCause[]):void {
+  this.returnCausesDataSubject.next(payload)
+}
   get customers() :Observable<Customer[]> {
     return this.customersDataSubject.asObservable()
+  }
+  get returnCauses() :Observable<ReturnCause[]> {
+    return this.returnCausesDataSubject.asObservable()
   }
   get sizes() :Observable<Size[]> {
     return this.sizesDataSubject.asObservable()

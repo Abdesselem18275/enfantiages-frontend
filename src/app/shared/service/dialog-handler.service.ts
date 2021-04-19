@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { filter, map, switchMap, take } from 'rxjs/operators';
+import { filter, first, map, switchMap, take } from 'rxjs/operators';
 import { Item } from 'src/app/core/models/item-models';
 import { AppDataService } from 'src/app/shared/service/app-data.service';
 import { SellFormDialogComponent } from '../../item-store/components/sell-form-dialog/sell-form-dialog.component';
@@ -12,6 +12,7 @@ import { RessourceDeleteDialogComponent } from '../components/ressource-delete-d
 import { Customer } from 'src/app/core/models/profile-models';
 import { DeposerSettelConfirmationComponent } from '../components/deposer-settel-confirmation/deposer-settel-confirmation.component';
 import { forkJoin } from 'rxjs';
+import { ItemReturnDialogComponent } from 'src/app/item-store/components/item-return-dialog/item-return-dialog.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -66,10 +67,6 @@ export class DialogHandlerService {
       width: '320px',
       data: {deposer,amount}
     });
-   const reqArray = deposedItemsIds.map(id => this.ads.patch<Item>(
-    'item/'+id.toString()+'/',
-    JSON.stringify({deposer_paid:false})
-       ))
     dialogRef.beforeClosed().pipe(
       take(1),
       filter(result => result ? true : false),
@@ -85,6 +82,22 @@ export class DialogHandlerService {
         duration: 2000,
       })}
       )
+  }
+  openItemReturnDialog(item: Item) {
+    const dialogRef = this.dialog.open(ItemReturnDialogComponent, {
+      width: '320px',
+      data: {item}
+    });
+
+    dialogRef.beforeClosed().pipe(
+      take(1),
+      filter(result => result ? true : false),
+      switchMap(result => 
+        this.ads.patch<Item>('item/'+item.id.toString()+'/',JSON.stringify(result)).pipe(
+          first()))).subscribe(
+            (item:Item) => this._snackBar.open(`Item succesfully returned`,'', {
+        duration: 2000,
+      }))
   }
 
 }
