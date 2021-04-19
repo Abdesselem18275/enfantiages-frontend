@@ -1,7 +1,4 @@
 <header class="global--gutters header inline--centred--spaced">
-  <h2 class="mat-h2">
-    ITEMS LIST
-    </h2>
   <mat-paginator 
   #paginator
   [length]="itemsCounts$ | async"
@@ -150,10 +147,9 @@
   checkboxPosition="after"
    [value]="item"
   *ngFor="let item of items$ | async">
-    <p class="mat-body-2" matLine>{{item.reference}} </p>
-    <p class="mat-caption" matLine>{{item.category}} </p>
-    <p class="mat-caption" matLine>{{item.brand}} </p>
-    <p class="mat-caption" matLine>{{item.size}} </p>
+    <div class="mat-body-2" matLine>
+      <span>{{item.reference}}</span> </div>
+    <p class="mat-caption" matLine>{{item.category}} <span class="font--dark-grey">{{item.brand}}</span> </p>
     <mat-icon [matMenuTriggerData]="{item: item}"
     [matMenuTriggerFor]="itemActionMenu" mat-list-icon>more_vert</mat-icon>
     <mat-divider></mat-divider>

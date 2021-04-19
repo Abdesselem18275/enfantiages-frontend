@@ -11,7 +11,7 @@ export interface AppConfig {
 
 
 export const localAppConfig= (): AppConfig => ({
-    apiEndpoint: 'http://localhost/api/',
+    apiEndpoint: 'http://localhost:8000/api/',
     localSotrageTokenKey:'appToken',
     itemStateQueryParamKey:'availability',
 
@@ -26,6 +26,6 @@ export const appConfig= (): AppConfig => ({
 
 export const APP_CONFIG = new InjectionToken<AppConfig>('app.config', {
     providedIn: 'root',
-    factory: appConfig
+    factory: localAppConfig
   });
 
