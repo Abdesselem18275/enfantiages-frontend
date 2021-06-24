@@ -89,6 +89,6 @@ export class CustomersListComponent implements OnDestroy  {
       },
       queryParamsHandling:'merge'
     }
-    this.router.navigate(['customer-store'],navExtra)
+    this.router.navigate(['/customer/customers-viewer'],navExtra)
   }
 }

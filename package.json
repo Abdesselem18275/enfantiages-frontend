@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration=production",
+    "build": "ng build --prod  --common-chunk",
     "build:dev": "ng build --watch",
     "heroku-postbuild": "npm run build",
     "test": "ng test",
