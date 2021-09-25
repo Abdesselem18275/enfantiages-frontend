@@ -19,7 +19,7 @@ export const localAppConfig= (): AppConfig => ({
 
 export const appConfig= (): AppConfig => ({
     ... localAppConfig(),
-    apiEndpoint: 'http://ec2-15-237-114-65.eu-west-3.compute.amazonaws.com:1339/api/',
+    apiEndpoint: 'http://ec2-15-236-108-45.eu-west-3.compute.amazonaws.com/api/',
     
 
 });
